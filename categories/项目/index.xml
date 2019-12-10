@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>项目 on 小小盛的博客</title>
-    <link>https://example.com/categories/%E9%A1%B9%E7%9B%AE/</link>
+    <link>https://sgshy1995.github.io/categories/%E9%A1%B9%E7%9B%AE/</link>
     <description>Recent content in 项目 on 小小盛的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Sat, 07 Sep 2019 16:22:42 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/categories/%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sgshy1995.github.io/categories/%E9%A1%B9%E7%9B%AE/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>用CSS做一个字母围绕圆转的动画</title>
-      <link>https://example.com/2019/09/css-roundanimation/</link>
+      <link>https://sgshy1995.github.io/2019/09/css-roundanimation/</link>
       <pubDate>Sat, 07 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/css-roundanimation/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/css-roundanimation/</guid>
       <description>用CSS实现一个旋转动画 周围一圈子母（两串单词“PLAY”）围绕着一个圆圈转动。 如下所示： 大致的思路就是几个div用动画控制旋转： ①第一步 设</description>
     </item>
     
     <item>
       <title>用CSS做一个简单的三角形</title>
-      <link>https://example.com/2019/08/css-tranigle/</link>
+      <link>https://sgshy1995.github.io/2019/08/css-tranigle/</link>
       <pubDate>Fri, 30 Aug 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/08/css-tranigle/</guid>
+      <guid>https://sgshy1995.github.io/2019/08/css-tranigle/</guid>
       <description>今天我们介绍几种，用css实现**左上朝向三角形（Top-Left Triangle）**的写法。 示意图（以宽高各60px为例）： 第一种 1 2 3</description>
     </item>
     

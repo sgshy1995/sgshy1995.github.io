@@ -2,22 +2,22 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>HTML on 小小盛的博客</title>
-    <link>https://example.com/tags/html/</link>
+    <link>https://sgshy1995.github.io/tags/html/</link>
     <description>Recent content in HTML on 小小盛的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Mon, 30 Sep 2019 16:22:42 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/html/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sgshy1995.github.io/tags/html/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>HTML常用标签详解</title>
-      <link>https://example.com/2019/09/html5-target/</link>
+      <link>https://sgshy1995.github.io/2019/09/html5-target/</link>
       <pubDate>Mon, 30 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/html5-target/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/html5-target/</guid>
       <description>对于很多HTML初学者来说，记忆和掌握标签是一门很难搞的功课。来详细介绍常用的HTML标签。 stlye标签 用于定义元素的CSS样式 1 2 3 &amp;lt;style&amp;gt; /</description>
     </item>
     

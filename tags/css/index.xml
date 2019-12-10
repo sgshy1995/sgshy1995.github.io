@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>CSS on 小小盛的博客</title>
-    <link>https://example.com/tags/css/</link>
+    <link>https://sgshy1995.github.io/tags/css/</link>
     <description>Recent content in CSS on 小小盛的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
     <lastBuildDate>Fri, 20 Sep 2019 16:22:42 +0800</lastBuildDate>
     
-	<atom:link href="https://example.com/tags/css/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sgshy1995.github.io/tags/css/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>CSS技巧二：布局细节</title>
-      <link>https://example.com/2019/09/css-method-two/</link>
+      <link>https://sgshy1995.github.io/2019/09/css-method-two/</link>
       <pubDate>Fri, 20 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/css-method-two/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/css-method-two/</guid>
       <description>在我们写CSS代码的过程中养成记录一些小技巧的习惯。 不然我深有体会的就是，当时觉得很简单很简单很简单的东西，过段时间可能需要走弯路用几个小时</description>
     </item>
     
     <item>
       <title>CSS技巧一：IconFont使用</title>
-      <link>https://example.com/2019/09/css-method-one/</link>
+      <link>https://sgshy1995.github.io/2019/09/css-method-one/</link>
       <pubDate>Sun, 15 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/css-method-one/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/css-method-one/</guid>
       <description>在我们使用CSS对页面进行编辑布局时，经常会用到一些小图标或者logo。 常见的比如我们在制作个人主页时，使用超链接图标来跳转到你的微博或其他</description>
     </item>
     
     <item>
       <title>用CSS做一个字母围绕圆转的动画</title>
-      <link>https://example.com/2019/09/css-roundanimation/</link>
+      <link>https://sgshy1995.github.io/2019/09/css-roundanimation/</link>
       <pubDate>Sat, 07 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/css-roundanimation/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/css-roundanimation/</guid>
       <description>用CSS实现一个旋转动画 周围一圈子母（两串单词“PLAY”）围绕着一个圆圈转动。 如下所示： 大致的思路就是几个div用动画控制旋转： ①第一步 设</description>
     </item>
     
     <item>
       <title>CSS常见布局与居中</title>
-      <link>https://example.com/2019/09/css-local-one/</link>
+      <link>https://sgshy1995.github.io/2019/09/css-local-one/</link>
       <pubDate>Tue, 03 Sep 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/09/css-local-one/</guid>
+      <guid>https://sgshy1995.github.io/2019/09/css-local-one/</guid>
       <description>这里，就CSS左右布局，左中右布局，水平与垂直居中，进行讨论。 CSS常用于控制页面布局的定位机制： 普通流、相对定位、绝对定位和固定定位。还可</description>
     </item>
     
     <item>
       <title>用CSS做一个简单的三角形</title>
-      <link>https://example.com/2019/08/css-tranigle/</link>
+      <link>https://sgshy1995.github.io/2019/08/css-tranigle/</link>
       <pubDate>Fri, 30 Aug 2019 16:22:42 +0800</pubDate>
       
-      <guid>https://example.com/2019/08/css-tranigle/</guid>
+      <guid>https://sgshy1995.github.io/2019/08/css-tranigle/</guid>
       <description>今天我们介绍几种，用css实现**左上朝向三角形（Top-Left Triangle）**的写法。 示意图（以宽高各60px为例）： 第一种 1 2 3</description>
     </item>
     
