@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>JavaScript on 小小盛的博客</title>
+    <link>https://example.com/tags/javascript/</link>
+    <description>Recent content in JavaScript on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 08 Oct 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>浅谈：JS中的数据类型</title>
+      <link>https://example.com/2019/10/js-type/</link>
+      <pubDate>Tue, 08 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/10/js-type/</guid>
+      <description>JS中的数据类型。什么是数据类型？ 和我们平时交流一样一样。 什么是汉字，什么是拼音，什么是标点符号，什么又是现在流行的表情包？类型，可以是语言</description>
+    </item>
+    
+  </channel>
+</rss>

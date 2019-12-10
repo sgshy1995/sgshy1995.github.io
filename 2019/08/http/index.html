@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>HTTP的请求与响应以及使用Chrome的查看方式 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="GET/POST/Request/Response你会了吗？">
+<link rel="prev" href="https://example.com/2019/08/basic-markdown-preview/" />
+<link rel="next" href="https://example.com/2019/08/css-tranigle/" />
+<link rel="canonical" href="https://example.com/2019/08/http/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="HTTP的请求与响应以及使用Chrome的查看方式"/>
+<meta name="twitter:description" content="GET/POST/Request/Response你会了吗？"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "HTTP的请求与响应以及使用Chrome的查看方式",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/example.com\/2019\/08\/http\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "HTTP",
+    
+    "wordcount":  770 ,
+    "url": "https:\/\/example.com\/2019\/08\/http\/",
+    
+        "datePublished": "2019-08-29T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-08-29T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "GET\/POST\/Request\/Response你会了吗？"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://example.com/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://example.com/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">HTTP的请求与响应以及使用Chrome的查看方式</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://example.com/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://example.com/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-08-29>2019-08-29</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 770 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#http-">HTTP 请求</a></li>
+    <li><a href="#chrome-http-">用Chrome开发者工具查看 HTTP 请求内容</a></li>
+    <li><a href="#http-1">HTTP 响应</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#http-">HTTP 请求</a></li>
+    <li><a href="#chrome-http-">用Chrome开发者工具查看 HTTP 请求内容</a></li>
+    <li><a href="#http-1">HTTP 响应</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <p>HTTP 的作用就是指导浏览器和服务器如何进行沟通。</p>
+<p>今天，我们就HTTP的请求与响应，做出简短的介绍。</p>
+<a class="post-dummy-target" id="http-"></a><h2>HTTP 请求</h2>
+<p>这里使用 curl 命令来实现请求。</p>
+<p>请求示例1：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">curl -s -v -H &#34;TEST: test&#34; -- &#34;https://www.baidu.com&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>其中<code>-H &quot;TEST: test&quot;</code>可以删除。
+我们可以看一下请求结果。</p>
+<p><img src="/images/http/1.png" alt="请求"></p>
+<p>请求示例2：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-txt" data-lang="txt">curl -X POST -d &#34;1234567890&#34; -s -v -H &#34;Test: test&#34; -- &#34;https://www.baidu.com&#34;
+</code></pre></td></tr></table>
+</div>
+</div><p>该请求可以将 &lsquo;1234567890&rsquo; 字符串请求上传至服务器。可以看一下请求结果。</p>
+<p><img src="/images/http/2.png" alt="请求"></p>
+<p>以第一个命令为例，请求的内容为：(都只截取了其中以&gt;开头的请求内容)</p>
+<pre><code>GET / HTTP/1.1
+Host: www.baidu.com
+User-Agent: curl/7.54.0
+Accept: */*
+TEST: test
+</code></pre><p>可以看出请求的格式为：</p>
+<pre><code>1 动词 路径 协议/版本
+2 Key1: value1
+2 Key2: value2
+2 Key3: value3
+2 Content-Type: application/x-www-form-urlencoded
+2 Host: www.baidu.com
+2 User-Agent: curl/7.54.0
+3 
+4 要上传的数据
+</code></pre><p>请求最多包含四部分，最少包含三部分。（也就是说第四部分可以为空）
+<strong>第三部分永远都是一个回车（\n）!</strong></p>
+<p>动词有 <strong>GET、POST、PUT、PATCH、DELETE、HEAD、OPTIONS</strong> 等，
+这里的路径包括「查询参数」，但不包括「锚点」。
+如果你没有写路径，那么路径默认为 &ldquo;/&quot;。
+第 2 部分中的 Content-Type 标注了第 4 部分的格式。</p>
+<a class="post-dummy-target" id="chrome-http-"></a><h2>用Chrome开发者工具查看 HTTP 请求内容</h2>
+<p>打开 Network，在地址栏输入网址。查看「request」，点击「view source」
+可以看到请求的前三部分。
+如果有请求的第四部分，那么在「FormData」或「Payload」里面可以看到。</p>
+<p><img src="/images/http/3.png" alt="请求"></p>
+<a class="post-dummy-target" id="http-1"></a><h2>HTTP 响应</h2>
+<p>以上面两个请求为示例，我们截取得到的响应 (以&lt;开头)。</p>
+<p>第一个：</p>
+<p><img src="/images/http/4.jpeg" alt="请求"></p>
+<p>他的响应内容是：</p>
+<pre><code>HTTP/1.1 200 OK
+Accept-Ranges: bytes
+Cache-Control: private, no-cache, no-store, proxy-revalidate, no-transform
+Connection: Keep-Alive
+Content-Length: 2443
+Content-Type: text/html
+Date: Wed, 05 Dec 2018 12:10:46 GMT
+Etag: &quot;58860429-98b&quot;
+Last-Modified: Mon, 23 Jan 2017 13:24:57 GMT
+Pragma: no-cache
+Server: bfe/1.0.8.18
+Set-Cookie: BDORZ=27315; max-age=86400; domain=.baidu.com; path=/
+    
+&lt;!DOCTYPE html&gt; ... 省略
+</code></pre><p>第二个：</p>
+<p><img src="/images/http/5.jpeg" alt="请求"></p>
+<p>他的响应内容是：</p>
+<pre><code>HTTP/1.1 302 Found
+Connection: Keep-Alive
+Content-Length: 17931
+Content-Type: text/html
+Date: Wed, 05 Dec 2018 12:42:04 GMT
+Etag: &quot;54d9748e-460b&quot;
+Server: bfe/1.0.8.18
+    
+&lt;html&gt; ... 省略
+</code></pre><p>可以看出响应的格式为：</p>
+<pre><code>1 协议/版本号 状态码 状态解释
+2 Key1: value1
+2 Key2: value2
+2 Content-Length: 17931
+2 Content-Type: text/html
+3
+4 要下载的内容
+</code></pre><p>状态码是服务器对浏览器说的话，可以查阅或记忆。状态解释没什么用。</p>
+<p>第 2 部分中的 Content-Type 标注了第 4 部分的格式。</p>
+<p>第 2 部分中的 Content-Type 遵循 MIME 规范。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-08-29 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://example.com/2019/08/http/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fexample.com%2f2019%2f08%2fhttp%2f&amp;text=HTTP%e7%9a%84%e8%af%b7%e6%b1%82%e4%b8%8e%e5%93%8d%e5%ba%94%e4%bb%a5%e5%8f%8a%e4%bd%bf%e7%94%a8Chrome%e7%9a%84%e6%9f%a5%e7%9c%8b%e6%96%b9%e5%bc%8f&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2f2019%2f08%2fhttp%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fexample.com%2f2019%2f08%2fhttp%2f&amp;title=HTTP%e7%9a%84%e8%af%b7%e6%b1%82%e4%b8%8e%e5%93%8d%e5%ba%94%e4%bb%a5%e5%8f%8a%e4%bd%bf%e7%94%a8Chrome%e7%9a%84%e6%9f%a5%e7%9c%8b%e6%96%b9%e5%bc%8f" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fexample.com%2f2019%2f08%2fhttp%2f&amp;appkey=&amp;title=HTTP%e7%9a%84%e8%af%b7%e6%b1%82%e4%b8%8e%e5%93%8d%e5%ba%94%e4%bb%a5%e5%8f%8a%e4%bd%bf%e7%94%a8Chrome%e7%9a%84%e6%9f%a5%e7%9c%8b%e6%96%b9%e5%bc%8f" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://example.com/tags/http/"><i class="fas fa-tag fa-fw"></i>HTTP</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://example.com/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://example.com/2019/08/basic-markdown-preview/" class="prev" rel="prev" title="Markdown 基本语法预览"><i class="fas fa-angle-left fa-fw"></i>Markdown 基本语法预览</a>
+        
+        
+            <a href="https://example.com/2019/08/css-tranigle/" class="next" rel="next" title="用CSS做一个简单的三角形">用CSS做一个简单的三角形<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://example.com/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

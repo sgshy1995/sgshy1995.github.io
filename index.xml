@@ -1,0 +1,81 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>小小盛的博客 on 小小盛的博客</title>
+        <link>https://example.com/</link>
+        <description>Recent content in 小小盛的博客 on 小小盛的博客</description>
+        <generator>Hugo -- gohugo.io</generator>
+        
+            <language>zh</language>
+        
+        
+        
+            <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+        
+        
+            <lastBuildDate>Tue, 08 Oct 2019 16:22:42 +0800</lastBuildDate>
+        
+        <atom:link href="https://example.com/" rel="self" type="application/rss+xml" />
+        
+            <item>
+                <title>Posts</title>
+                <link>https://example.com/posts/</link>
+                <pubDate>Tue, 08 Oct 2019 16:22:42 +0800</pubDate>
+                
+                <guid>https://example.com/posts/</guid>
+                <description></description>
+            </item>
+        
+            <item>
+                <title>盛 光 晟 / E D E N - S H E N G</title>
+                <link>https://example.com/about/</link>
+                <pubDate>Fri, 02 Aug 2019 11:04:49 +0800</pubDate>
+                
+                <guid>https://example.com/about/</guid>
+                <description>&lt;p&gt;一名前端工程师，&lt;/p&gt;
+&lt;p&gt;也是一名学习者。&lt;/p&gt;
+&lt;p&gt;记录自己成长的足迹与点滴的生活。&lt;/p&gt;
+&lt;h3 id=&#34;heading&#34;&gt;关于我自己&lt;/h3&gt;
+&lt;h4 id=&#34;heading1&#34;&gt;我的链接&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;:(fas fa-code): 我的仓库 &lt;a href=&#34;https://github.com/sgshy1995&#34;&gt;MyGithub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;:(far fa-list-alt): Email &lt;a href=&#34;#&#34;&gt;&lt;a href=&#34;mailto:singlesaulwork@gmail.com&#34;&gt;singlesaulwork@gmail.com&lt;/a&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;:(far fa-comment-dots): Wechat &lt;a href=&#34;#&#34;&gt;sgs_1995&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading2&#34;&gt;学习经历&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;:(far fa-user): 东华大学 &lt;a href=&#34;https://www.dhu.edu.cn/&#34;&gt;DHU&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;:(fas fa-user-circle): 自学前端一年&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading3&#34;&gt;工作经历&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;:(fas fa-ellipsis-h): CMEC&lt;/li&gt;
+&lt;li&gt;:(fas fa-ellipsis-h): 上海福银投资控股集团&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id=&#34;heading4&#34;&gt;关于我的个人博客&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;:(fas fa-rocket): 架设在Github &lt;a href=&#34;https://github.com/sgshy1995/sgshy1995.github.io/&#34;&gt;Github-Blog&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;:(far fa-images): 我的图片库 &lt;a href=&#34;#&#34;&gt;图床&lt;/a&gt; 自动转换图片为懒加载&lt;/li&gt;
+&lt;li&gt;使用LoveIt主题 &lt;a href=&#34;https://github.com/dillonzq/LoveIt&#34;&gt;LoveIt :(far fa-heart):&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;hugo&#34;&gt;我的Hugo&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;:(fas fa-desktop): / :(fas fa-mobile): 响应式布局&lt;/li&gt;
+&lt;li&gt;:(fas fa-moon): / :(fas fa-sun): 模式&lt;/li&gt;
+&lt;li&gt;:(fas fa-language): 支持多语言和国际化&lt;/li&gt;
+&lt;li&gt;:(fab fa-searchengin): 使用基于 JSON-LD 格式 的 SEO SCHEMA 文件进行 SEO 优化&lt;/li&gt;
+&lt;li&gt;:(fas fa-tachometer-alt): 支持所有第三方库的 CDN&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;heading5&#34;&gt;社交和评论&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;:(far fa-id-card): 希望与我联系&lt;/li&gt;
+&lt;li&gt;:(fas fa-share-square): 欢迎分享我的博客&lt;/li&gt;
+&lt;li&gt;:(far fa-comment): 暂不支持 &lt;a href=&#34;https://disqus.com&#34;&gt;Disqus&lt;/a&gt; 评论系统&lt;/li&gt;
+&lt;li&gt;:(far fa-bell): 暂不支持 &lt;a href=&#34;https://github.com/gitalk/gitalk&#34;&gt;Gitalk&lt;/a&gt; 评论系统&lt;/li&gt;
+&lt;li&gt;:(far fa-comment-alt): 暂不支持 &lt;a href=&#34;https://valine.js.org/&#34;&gt;Valine&lt;/a&gt; 评论系统&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+            </item>
+        
+    </channel>
+</rss>

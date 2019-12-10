@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>用CSS做一个字母围绕圆转的动画 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="一个简单的三角形">
+<link rel="prev" href="https://example.com/2019/09/css-local-one/" />
+<link rel="next" href="https://example.com/2019/09/css-method-one/" />
+<link rel="canonical" href="https://example.com/2019/09/css-roundanimation/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="用CSS做一个字母围绕圆转的动画"/>
+<meta name="twitter:description" content="一个简单的三角形"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "用CSS做一个字母围绕圆转的动画",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/example.com\/2019\/09\/css-roundanimation\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "CSS",
+    
+    "wordcount":  507 ,
+    "url": "https:\/\/example.com\/2019\/09\/css-roundanimation\/",
+    
+        "datePublished": "2019-09-07T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-09-07T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "一个简单的三角形"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://example.com/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://example.com/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">用CSS做一个字母围绕圆转的动画</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://example.com/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://example.com/categories/%E9%A1%B9%E7%9B%AE/">项目</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-09-07>2019-09-07</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 507 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#css">用CSS实现一个旋转动画</a>
+      <ul>
+        <li><a href="#heading">①第一步</a></li>
+        <li><a href="#heading1">②第二步</a></li>
+        <li><a href="#heading2">③第三步</a></li>
+        <li><a href="#heading3">④第四步</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">源代码地址</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#css">用CSS实现一个旋转动画</a>
+      <ul>
+        <li><a href="#heading">①第一步</a></li>
+        <li><a href="#heading1">②第二步</a></li>
+        <li><a href="#heading2">③第三步</a></li>
+        <li><a href="#heading3">④第四步</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">源代码地址</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="css"></a><h2>用CSS实现一个旋转动画</h2>
+<p>周围一圈子母（两串单词“PLAY”）围绕着一个圆圈转动。</p>
+<p>如下所示：</p>
+<p><img src="/images/css-roundanimation/1.gif" alt="动画"></p>
+<p>大致的思路就是几个<code>div</code>用动画控制旋转：</p>
+<a class="post-dummy-target" id="heading"></a><h3>①第一步</h3>
+<p>设置你需要设置四个div写着两个P、两个L、两个A、两个Y。</p>
+<p>（我在他们中间加了一个<code>·</code>，但是需要<strong>再加一个div做成圆圈</strong>来占据中间的位置，也方便调整大小）。</p>
+<p>我给每个div中的文字两个字母之间加了很多个<code>&amp;nbsp;</code>来控制字母的间距。你也可以：</p>
+<p>在设置<code>text-align: center</code>后，设置<code>letter-spacing</code>来控制字母的间距。</p>
+<a class="post-dummy-target" id="heading1"></a><h3>②第二步</h3>
+<p>给它们默认的旋转位置，比如:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">one</span><span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">div</span><span class="p">.</span><span class="nc">two</span><span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">-45</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="err">…</span><span class="err">…</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>同时给他们绝对定位，相对于他们的<code>div.wrapper</code>。</p>
+<a class="post-dummy-target" id="heading2"></a><h3>③第三步</h3>
+<p>调整好专门用来占据中间位置的圆圈的样式。</p>
+<p>比如：<code>border-radius:50%</code>、<code>backgroud:black</code>等。</p>
+<a class="post-dummy-target" id="heading3"></a><h3>④第四步</h3>
+<p>给每个div一个旋转动画，对应各自的旋转起点和重点，设置相同的时间，就可以实现同步效果啦。</p>
+<p>比如说：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">div</span><span class="p">.</span><span class="nc">one</span><span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">animation</span><span class="p">:</span> <span class="mi">2</span><span class="kt">s</span> <span class="n">one</span> <span class="kc">linear</span> <span class="kc">infinite</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">div</span><span class="p">.</span><span class="nc">two</span><span class="p">{</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">-45</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">animation</span><span class="p">:</span> <span class="mi">2</span><span class="kt">s</span> <span class="n">two</span> <span class="kc">linear</span> <span class="kc">infinite</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">@</span><span class="k">keyframes</span> <span class="nt">one</span> <span class="p">{</span>
+  <span class="nt">from</span> <span class="p">{</span>
+    <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">0</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nt">to</span> <span class="p">{</span>
+    <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">360</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="p">@</span><span class="k">keyframes</span> <span class="nt">two</span> <span class="p">{</span>
+  <span class="nt">from</span> <span class="p">{</span>
+    <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">-45</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="nt">to</span> <span class="p">{</span>
+    <span class="k">transform</span><span class="p">:</span> <span class="nb">rotate</span><span class="p">(</span><span class="mi">315</span><span class="kt">deg</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="err">…</span><span class="err">…</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading4"></a><h2>源代码地址</h2>
+<p>代码及浏览地址：<a href="http://js.jirengu.com/gojonetuwo/1/edit?html,css,output">JSBIN</a></p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-09-07 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://example.com/2019/09/css-roundanimation/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-roundanimation%2f&amp;text=%e7%94%a8CSS%e5%81%9a%e4%b8%80%e4%b8%aa%e5%ad%97%e6%af%8d%e5%9b%b4%e7%bb%95%e5%9c%86%e8%bd%ac%e7%9a%84%e5%8a%a8%e7%94%bb&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-roundanimation%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-roundanimation%2f&amp;title=%e7%94%a8CSS%e5%81%9a%e4%b8%80%e4%b8%aa%e5%ad%97%e6%af%8d%e5%9b%b4%e7%bb%95%e5%9c%86%e8%bd%ac%e7%9a%84%e5%8a%a8%e7%94%bb" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-roundanimation%2f&amp;appkey=&amp;title=%e7%94%a8CSS%e5%81%9a%e4%b8%80%e4%b8%aa%e5%ad%97%e6%af%8d%e5%9b%b4%e7%bb%95%e5%9c%86%e8%bd%ac%e7%9a%84%e5%8a%a8%e7%94%bb" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://example.com/tags/css/"><i class="fas fa-tag fa-fw"></i>CSS</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://example.com/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://example.com/2019/09/css-local-one/" class="prev" rel="prev" title="CSS常见布局与居中"><i class="fas fa-angle-left fa-fw"></i>CSS常见布局与居中</a>
+        
+        
+            <a href="https://example.com/2019/09/css-method-one/" class="next" rel="next" title="CSS技巧一：IconFont使用">CSS技巧一：IconFont使用<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://example.com/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

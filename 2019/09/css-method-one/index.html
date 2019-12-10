@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>CSS技巧一：IconFont使用 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="CSS布局技巧">
+<link rel="prev" href="https://example.com/2019/09/css-roundanimation/" />
+<link rel="next" href="https://example.com/2019/09/css-method-two/" />
+<link rel="canonical" href="https://example.com/2019/09/css-method-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSS技巧一：IconFont使用"/>
+<meta name="twitter:description" content="CSS布局技巧"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "CSS技巧一：IconFont使用",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/example.com\/2019\/09\/css-method-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "CSS",
+    
+    "wordcount":  827 ,
+    "url": "https:\/\/example.com\/2019\/09\/css-method-one\/",
+    
+        "datePublished": "2019-09-15T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-09-15T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/example.com\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "CSS布局技巧"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://example.com/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://example.com/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://example.com/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://example.com/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://example.com/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://example.com/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">CSS技巧一：IconFont使用</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://example.com/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://example.com/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-09-15>2019-09-15</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 827 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">登录与搜索</a></li>
+    <li><a href="#heading1">添加入库/项目</a></li>
+    <li><a href="#heading2">生成代码</a></li>
+    <li><a href="#heading3">引入链接</a></li>
+    <li><a href="#heading4">加入页面</a></li>
+    <li><a href="#heading5">注意事项</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">登录与搜索</a></li>
+    <li><a href="#heading1">添加入库/项目</a></li>
+    <li><a href="#heading2">生成代码</a></li>
+    <li><a href="#heading3">引入链接</a></li>
+    <li><a href="#heading4">加入页面</a></li>
+    <li><a href="#heading5">注意事项</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <p>在我们使用CSS对页面进行编辑布局时，经常会用到一些小图标或者logo。</p>
+<p>常见的比如我们在制作个人主页时，使用超链接图标来跳转到你的微博或其他页面等。</p>
+<p>不外乎两种：</p>
+<p>自己通过专业的软件来切图或绘制，需要有一定的了解；</p>
+<p>第二种就是找现成的啦。我们在写CSS时需要用到很多的工具或者工具类网站，今天就为大家介绍一个专门采集各种图标的网站和使用的教程：</p>
+<p><a href="http://www.iconfont.cn">阿里巴巴矢量图标库</a></p>
+<a class="post-dummy-target" id="heading"></a><h2>登录与搜索</h2>
+<p>首先进入主页，点击右上角的登录，推荐使用GitHub登录。</p>
+<p><img src="/images/css-jiqiao/1.png" alt="登录"></p>
+<p>在搜索框内输入你想要找到的图标，比如：&ldquo;<code>weibo</code>&rdquo;。</p>
+<p><img src="/images/css-jiqiao/2.png" alt="搜索"></p>
+<a class="post-dummy-target" id="heading1"></a><h2>添加入库/项目</h2>
+<p>出现了很多关于微博的图标，这里我们点击第三行第一个&quot;weibo&rdquo;，鼠标挪动选择第一个“添加入库”。</p>
+<p>已经被添加入库的图标会以虚线框起来，以鉴别是否重复选取。</p>
+<p><img src="/images/css-jiqiao/3.png" alt="微博"></p>
+<p>我们再搜索几个自己需要的图标并以此添加入库。</p>
+<p><img src="/images/css-jiqiao/4.png" alt="入库"></p>
+<p>点击右上角的购物车小图标，选择添加至项目。创建项目并加入此新项目。</p>
+<p><img src="/images/css-jiqiao/5.png" alt="项目"></p>
+<a class="post-dummy-target" id="heading2"></a><h2>生成代码</h2>
+<p>在我的项目页面，「选择格式&quot;<code>Symbol</code>&rdquo;」——「查看在线链接」——「暂无代码，点此生成。」</p>
+<p><img src="/images/css-jiqiao/6.png" alt="图片描述"></p>
+<a class="post-dummy-target" id="heading3"></a><h2>引入链接</h2>
+<p>将代码引入html页面中，一般放在<code>head</code>标签内即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;////at.alicdn.com/t/font_959581_uir2sooudm.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这是一种最新的引入方式，也是未来主流的方式。</p>
+<p>再加入通用CSS代码，一次即可。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&#34;text/css&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">.</span><span class="nc">icon</span> <span class="p">{</span>
+       <span class="k">width</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span> <span class="k">height</span><span class="p">:</span> <span class="mi">1</span><span class="kt">em</span><span class="p">;</span>
+       <span class="k">vertical-align</span><span class="p">:</span> <span class="mf">-0.15</span><span class="kt">em</span><span class="p">;</span>
+       <span class="n">fill</span><span class="p">:</span> <span class="kc">currentColor</span><span class="p">;</span>
+       <span class="k">overflow</span><span class="p">:</span> <span class="kc">hidden</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading4"></a><h2>加入页面</h2>
+<p>这时候就可以通过添加<code>svg</code>标签放在合适的位置，来<code>代替img标签</code>引用图标了。
+还可以通过<code>font-size`,</code>color`来调整样式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">svg</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;icon&#34;</span> <span class="na">aria-hidden</span><span class="o">=</span><span class="s">&#34;true&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">use</span> <span class="na">xlink:href</span><span class="o">=</span><span class="s">&#34;#icon-xxx&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">use</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">svg</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以点击图标浮动信息底部的“<code>复制代码</code>”来<code>替换&quot;#icon-xxx&quot;</code>。</p>
+<p><img src="/images/css-jiqiao/7.png" alt="复制代码"></p>
+<a class="post-dummy-target" id="heading5"></a><h2>注意事项</h2>
+<p>在你对项目中的图标进行操作后，需要重新生成<code>script标签</code>并重新引入页面。包括但不限于增加删除、去色上色、修改名字等。</p>
+<p>可以通过<code>width;height</code>来控制大小，默认是内联元素。</p>
+<p>可以通过<code>fill</code>属性来控制标签的颜色，但是在某些情况下可能会冲突时效。</p>
+<p><a href="https://juejin.im/post/57975c0c5bbb500063f5ac9d">一个失效情况（转自BobChen）</a></p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-09-15 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://example.com/2019/09/css-method-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-method-one%2f&amp;text=CSS%e6%8a%80%e5%b7%a7%e4%b8%80%ef%bc%9aIconFont%e4%bd%bf%e7%94%a8&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-method-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-method-one%2f&amp;title=CSS%e6%8a%80%e5%b7%a7%e4%b8%80%ef%bc%9aIconFont%e4%bd%bf%e7%94%a8" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fexample.com%2f2019%2f09%2fcss-method-one%2f&amp;appkey=&amp;title=CSS%e6%8a%80%e5%b7%a7%e4%b8%80%ef%bc%9aIconFont%e4%bd%bf%e7%94%a8" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://example.com/tags/css/"><i class="fas fa-tag fa-fw"></i>CSS</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://example.com/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://example.com/2019/09/css-roundanimation/" class="prev" rel="prev" title="用CSS做一个字母围绕圆转的动画"><i class="fas fa-angle-left fa-fw"></i>用CSS做一个字母围绕圆转的动画</a>
+        
+        
+            <a href="https://example.com/2019/09/css-method-two/" class="next" rel="next" title="CSS技巧二：布局细节">CSS技巧二：布局细节<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://example.com/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

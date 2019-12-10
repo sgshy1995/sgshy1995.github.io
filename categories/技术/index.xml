@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>技术 on 小小盛的博客</title>
+    <link>https://example.com/categories/%E6%8A%80%E6%9C%AF/</link>
+    <description>Recent content in 技术 on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 08 Oct 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://example.com/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>浅谈：JS中的数据类型</title>
+      <link>https://example.com/2019/10/js-type/</link>
+      <pubDate>Tue, 08 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/10/js-type/</guid>
+      <description>JS中的数据类型。什么是数据类型？ 和我们平时交流一样一样。 什么是汉字，什么是拼音，什么是标点符号，什么又是现在流行的表情包？类型，可以是语言</description>
+    </item>
+    
+    <item>
+      <title>HTML常用标签详解</title>
+      <link>https://example.com/2019/09/html5-target/</link>
+      <pubDate>Mon, 30 Sep 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/09/html5-target/</guid>
+      <description>对于很多HTML初学者来说，记忆和掌握标签是一门很难搞的功课。来详细介绍常用的HTML标签。 stlye标签 用于定义元素的CSS样式 1 2 3 &amp;lt;style&amp;gt; /</description>
+    </item>
+    
+    <item>
+      <title>CSS技巧二：布局细节</title>
+      <link>https://example.com/2019/09/css-method-two/</link>
+      <pubDate>Fri, 20 Sep 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/09/css-method-two/</guid>
+      <description>在我们写CSS代码的过程中养成记录一些小技巧的习惯。 不然我深有体会的就是，当时觉得很简单很简单很简单的东西，过段时间可能需要走弯路用几个小时</description>
+    </item>
+    
+    <item>
+      <title>CSS技巧一：IconFont使用</title>
+      <link>https://example.com/2019/09/css-method-one/</link>
+      <pubDate>Sun, 15 Sep 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/09/css-method-one/</guid>
+      <description>在我们使用CSS对页面进行编辑布局时，经常会用到一些小图标或者logo。 常见的比如我们在制作个人主页时，使用超链接图标来跳转到你的微博或其他</description>
+    </item>
+    
+    <item>
+      <title>CSS常见布局与居中</title>
+      <link>https://example.com/2019/09/css-local-one/</link>
+      <pubDate>Tue, 03 Sep 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/09/css-local-one/</guid>
+      <description>这里，就CSS左右布局，左中右布局，水平与垂直居中，进行讨论。 CSS常用于控制页面布局的定位机制： 普通流、相对定位、绝对定位和固定定位。还可</description>
+    </item>
+    
+    <item>
+      <title>HTTP的请求与响应以及使用Chrome的查看方式</title>
+      <link>https://example.com/2019/08/http/</link>
+      <pubDate>Thu, 29 Aug 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://example.com/2019/08/http/</guid>
+      <description>HTTP 的作用就是指导浏览器和服务器如何进行沟通。 今天，我们就HTTP的请求与响应，做出简短的介绍。 HTTP 请求 这里使用 curl 命令来实现请求。 请求示例1： 1</description>
+    </item>
+    
+  </channel>
+</rss>
