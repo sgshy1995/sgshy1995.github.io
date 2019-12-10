@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>快速理解JS的原型与原型链 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="JavaScript原型链Prototype">
+<link rel="prev" href="https://sgshy1995.github.io/2019/10/js-type-transor/" />
+<link rel="next" href="https://sgshy1995.github.io/2019/10/js-dom/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/10/js-type-proto/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="快速理解JS的原型与原型链"/>
+<meta name="twitter:description" content="JavaScript原型链Prototype"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "快速理解JS的原型与原型链",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/10\/js-type-proto\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "JavaScript",
+    
+    "wordcount":  1804 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/10\/js-type-proto\/",
+    
+        "datePublished": "2019-10-20T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-10-21T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "JavaScript原型链Prototype"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">快速理解JS的原型与原型链</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-10-20>2019-10-20</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1804 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 4 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">概述</a></li>
+    <li><a href="#like-java-">Like Java ?</a></li>
+    <li><a href="#heading1">共用属性</a></li>
+    <li><a href="#heading2">原型与原型链</a></li>
+    <li><a href="#heading3">结论</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">概述</a></li>
+    <li><a href="#like-java-">Like Java ?</a></li>
+    <li><a href="#heading1">共用属性</a></li>
+    <li><a href="#heading2">原型与原型链</a></li>
+    <li><a href="#heading3">结论</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>概述</h2>
+<p>JavaScript中有基本类型和复杂类型的区分。</p>
+<p>当我们在声明一个基本类型时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">n1</span><span class="o">=</span> <span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n1</span><span class="p">)</span>
+<span class="c1">//1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这时我们可以用<strong>Number</strong>方法将1包装为对象，即声明一个对象1。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">n2</span><span class="o">=</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">n2</span><span class="p">)</span>
+<span class="c1">//Number {1}
+</span><span class="c1"></span><span class="c1">//[[PrimitiveValue]]:1
+</span><span class="c1"></span>
+<span class="c1">//△__proto__: Number
+</span><span class="c1"></span>
+<span class="c1">//constructor: ƒ Number()
+</span><span class="c1"></span><span class="c1">//toExponential: ƒ toExponential()
+</span><span class="c1"></span><span class="c1">//toFixed: ƒ toFixed()
+</span><span class="c1"></span><span class="c1">//toLocaleString: ƒ toLocaleString()
+</span><span class="c1"></span><span class="c1">//toPrecision: ƒ toPrecision()
+</span><span class="c1"></span><span class="c1">//toString: ƒ toString()
+</span><span class="c1"></span><span class="c1">//valueOf: ƒ valueOf()
+</span><span class="c1"></span><span class="c1">//__proto__: Object
+</span></code></pre></td></tr></table>
+</div>
+</div><p>n2的<strong>PrimitiveValue</strong>（初始值）为1，其实此时它就是一个<strong>hash</strong>。</p>
+<p>此时对象n2现在有很多方法，可以调用对应各自的函数。</p>
+<a class="post-dummy-target" id="like-java-"></a><h2>Like Java ?</h2>
+<p>但是，我们发现有一点：在我们直接声明基本数据类型n1时，也可以使用这些方法调用函数。</p>
+<p>比如<code>toString</code>方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">n1</span><span class="o">=</span> <span class="mi">1</span>
+<span class="nx">n1</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">//&#34;1&#34;
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这就要涉及到JavaScript的发明历史。在设计之初，它被要求：<strong>“长得像” Java</strong>。</p>
+<p>当时的Java声明一个对象，就是如此：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-java" data-lang="java"><span class="n">var</span> <span class="n">n</span><span class="o">=</span> <span class="k">new</span> <span class="n">Number</span><span class="o">(</span><span class="n">1</span><span class="o">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>设计师在设计的同时，为了简便快捷，也制定了我们最常用的声明方式：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">n</span><span class="o">=</span> <span class="mi">1</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当然，这种方法肯定被JavaScript程序员所喜爱，第一种方法几乎没有人用。</p>
+<p>但是有一个问题，如果直接声明n，那么它就是一个数字。<strong>而基本数据类型是没有属性的。</strong></p>
+<p>这时候该如何调取各种方法呢？</p>
+<p>声明一个临时对象，我们暂将它称为<strong>temp</strong>。
+比如在对n进行<code>toString</code>方法引用时，会声明一个临时对象，对n进行复杂封装，将其变为对象。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">n</span><span class="o">=</span> <span class="mi">1</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其实是:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">temp</span><span class="o">=</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+<span class="nx">temp</span><span class="p">.</span><span class="nx">toString</span><span class="p">(</span><span class="p">)</span>
+<span class="c1">//1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>将<strong>temp.toString</strong>的值赋予<code>n.toString</code>。在操作结束后，临时对象将从内存中抹除。</p>
+<a class="post-dummy-target" id="heading1"></a><h2>共用属性</h2>
+<p>number，string，boolean，object都有一些共同的方法，比如<code>toString</code>，<code>valueof</code>等等。为了避免重复声明和内存浪费，这些方法“归纳”与一个<strong>共用属性</strong>之中。</p>
+<p>JavaScript在声明一个对象后，并不是先默认复制一遍共用属性在内存中的存放地址，再在引用时调取对应的函数。</p>
+<p>而是：</p>
+<p>在声明对象时，就存入一个隐藏的属性：<strong><strong>proto</strong></strong>。该属性，对应其共用属性。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj</span><span class="o">=</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;Jack&#39;</span><span class="p">,</span>
+  <span class="nx">age</span><span class="o">:</span> <span class="mi">18</span>
+<span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+<span class="c1">//△{name:&#34;Jack&#34;, age:18}
+</span><span class="c1"></span>  <span class="c1">//age: 18
+</span><span class="c1"></span>  <span class="c1">//name: &#34;Jack&#34;
+</span><span class="c1"></span>  <span class="c1">//△__proto__: Object
+</span><span class="c1"></span>    <span class="c1">//constructor: ƒ Object()
+</span><span class="c1"></span>    <span class="c1">//hasOwnProperty: ƒ hasOwnProperty()
+</span><span class="c1"></span>    <span class="c1">//isPrototypeOf: ƒ isPrototypeOf()
+</span><span class="c1"></span>    <span class="c1">//propertyIsEnumerable: ƒ propertyIsEnumerable()
+</span><span class="c1"></span>    <span class="c1">//toLocaleString: ƒ toLocaleString()
+</span><span class="c1"></span>    <span class="c1">//toString: ƒ toString()
+</span><span class="c1"></span>    <span class="c1">//valueOf: ƒ valueOf()
+</span><span class="c1"></span>    <span class="c1">//__defineGetter__: ƒ __defineGetter__()
+</span><span class="c1"></span>    <span class="c1">//__defineSetter__: ƒ __defineSetter__()
+</span><span class="c1"></span>    <span class="c1">//__lookupGetter__: ƒ __lookupGetter__()
+</span><span class="c1"></span>    <span class="c1">//__lookupSetter__: ƒ __lookupSetter__()
+</span><span class="c1"></span>    <span class="c1">//get __proto__: ƒ __proto__()
+</span><span class="c1"></span>    <span class="c1">//set __proto__: ƒ __proto__()
+</span></code></pre></td></tr></table>
+</div>
+</div><p>那我们在调用<code>toString</code>方法时:</p>
+<p>JavaScript首先会检查数据类型是否是对象；若不是，则包装为对象作临时的转换。</p>
+<p><strong>然后，在检查对象中是否有toString这个属性；若没有，才进入共用属性进行检查。</strong></p>
+<p>两个空对象是不相等的，但他们的共有属性是相等的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj1</span><span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj1</span><span class="p">)</span>
+<span class="c1">//{}
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">obj2</span><span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">(</span><span class="p">)</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj2</span><span class="p">)</span>
+<span class="c1">//{}
+</span><span class="c1"></span><span class="nx">obj1</span> <span class="o">===</span> <span class="nx">obj2</span>
+<span class="c1">//false
+</span><span class="c1"></span><span class="nx">obj1</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nx">obj2</span><span class="p">.</span><span class="nx">__proto__</span>
+<span class="c1">//true
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但是，当我们声明一个number为对象时，它就有自己区别于普通对象的独特的共有属性。
+比如<code>toFixed</code>，<code>toExponential</code>等等。
+那么它的<code>__proto__</code>属性就对应自己独有的共同属性，在共同属性中还有另一个隐藏属性<code>__proto__</code>对应一般对象的共有属性。这样，number类型的对象就可以调用所有的函数。</p>
+<a class="post-dummy-target" id="heading2"></a><h2>原型与原型链</h2>
+<p>这里，就引入了两个新的概念。</p>
+<p><strong>那么，这个共有属性，就被称为原型（对象）。原型对象就是用来存放声明对象中共有的那部分属性。</strong></p>
+<p>JavaScript中所有的对象都可以继承其原型对象的属性。而原型对象自身也是一个对象，它也有自己的原型对象。</p>
+<p><strong>这样层层上溯，就形成了一个类似链表的结构，这就是原型链。</strong></p>
+<p>为了避免对原型对象在没有被使用时被内存清理，JavaScript通过<strong>prototype</strong>来默认引用。</p>
+<p>即<code>Object.prototype</code>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span>
+
+<span class="c1">//constructor: ƒ Object()
+</span><span class="c1"></span><span class="c1">//hasOwnProperty: ƒ hasOwnProperty()
+</span><span class="c1"></span><span class="c1">//isPrototypeOf: ƒ isPrototypeOf()
+</span><span class="c1"></span><span class="c1">//propertyIsEnumerable: ƒ propertyIsEnumerable()
+</span><span class="c1"></span><span class="c1">//toLocaleString: ƒ toLocaleString()
+</span><span class="c1"></span><span class="c1">//toString: ƒ toString()
+</span><span class="c1"></span><span class="c1">//valueOf: ƒ valueOf()
+</span><span class="c1"></span><span class="c1">//__defineGetter__: ƒ __defineGetter__()
+</span><span class="c1"></span><span class="c1">//__defineSetter__: ƒ __defineSetter__()
+</span><span class="c1"></span><span class="c1">//__lookupGetter__: ƒ __lookupGetter__()
+</span><span class="c1"></span><span class="c1">//__lookupSetter__: ƒ __lookupSetter__()
+</span><span class="c1"></span><span class="c1">//get __proto__: ƒ __proto__()
+</span><span class="c1"></span><span class="c1">//set __proto__: ƒ __proto__()
+</span></code></pre></td></tr></table>
+</div>
+</div><p><code>Number.prototype</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+
+<span class="c1">//constructor: ƒ Number()
+</span><span class="c1"></span><span class="c1">//toExponential: ƒ toExponential()
+</span><span class="c1"></span><span class="c1">//toFixed: ƒ toFixed()
+</span><span class="c1"></span><span class="c1">//toLocaleString: ƒ toLocaleString()
+</span><span class="c1"></span><span class="c1">//toPrecision: ƒ toPrecision()
+</span><span class="c1"></span><span class="c1">//toString: ƒ toString()
+</span><span class="c1"></span><span class="c1">//valueOf: ƒ valueOf()
+</span><span class="c1"></span><span class="c1">//__proto__: Object
+</span><span class="c1"></span><span class="c1">//[[PrimitiveValue]]: 0
+</span></code></pre></td></tr></table>
+</div>
+</div><p>如此，还有：
+<code>String.prototype</code>
+<code>Boolean.prototype</code>
+等等。</p>
+<p><code>Object.prototype.__proto__ === null</code></p>
+<p>我们制作一个简单的示意图，以便更直观地理解这些概念。</p>
+<p><img src="/images/js-type/1.jpeg" alt="图片描述"></p>
+<p>那么我们可以得到这些关系：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">obj</span><span class="o">=</span> <span class="p">{</span><span class="p">}</span><span class="p">;</span>
+<span class="nx">obj</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="c1">//true
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">n</span><span class="o">=</span> <span class="k">new</span> <span class="nb">Number</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">n</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Number</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="c1">//true
+</span><span class="c1"></span><span class="nx">n</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span><span class="p">;</span>
+<span class="c1">//true
+</span></code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading3"></a><h2>结论</h2>
+<p>总结起来，得到的结论就是：</p>
+<ul>
+<li>
+<p><strong>Object.prototype</strong>是<strong>Object</strong>的共用属性</p>
+</li>
+<li>
+<p><strong>obj.<strong>proto</strong><strong>是</strong>Object</strong>的共用属性的引用</p>
+</li>
+<li>
+<p>同理，对于<strong>String</strong>、<strong>Boolean</strong>、<strong>Symbol</strong>和<strong>Number</strong>也是如此</p>
+</li>
+</ul>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">object</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+<span class="nx">object</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span>  <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span>  <span class="c1">// 为 true
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">fn</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+<span class="nx">fn</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span>  <span class="c1">// 为 true
+</span><span class="c1"></span><span class="nx">fn</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span>
+<span class="kd">var</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span><span class="nx">array</span><span class="p">.</span><span class="nx">__proto__</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span><span class="nb">Array</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span>
+<span class="kc">true</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="nb">Boolean</span><span class="p">.</span><span class="nx">prototype</span> <span class="c1">// 为 true
+</span><span class="c1"></span>
+<span class="nb">Function</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">===</span> <span class="kc">null</span> <span class="c1">// 为 true
+</span></code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-10-21 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/10/js-type-proto/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f10%2fjs-type-proto%2f&amp;text=%e5%bf%ab%e9%80%9f%e7%90%86%e8%a7%a3JS%e7%9a%84%e5%8e%9f%e5%9e%8b%e4%b8%8e%e5%8e%9f%e5%9e%8b%e9%93%be&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f10%2fjs-type-proto%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f10%2fjs-type-proto%2f&amp;title=%e5%bf%ab%e9%80%9f%e7%90%86%e8%a7%a3JS%e7%9a%84%e5%8e%9f%e5%9e%8b%e4%b8%8e%e5%8e%9f%e5%9e%8b%e9%93%be" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f10%2fjs-type-proto%2f&amp;appkey=&amp;title=%e5%bf%ab%e9%80%9f%e7%90%86%e8%a7%a3JS%e7%9a%84%e5%8e%9f%e5%9e%8b%e4%b8%8e%e5%8e%9f%e5%9e%8b%e9%93%be" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/javascript/"><i class="fas fa-tag fa-fw"></i>JavaScript</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/10/js-type-transor/" class="prev" rel="prev" title="JS中的数据类型转换"><i class="fas fa-angle-left fa-fw"></i>JS中的数据类型转换</a>
+        
+        
+            <a href="https://sgshy1995.github.io/2019/10/js-dom/" class="next" rel="next" title="说一些关于DOM">说一些关于DOM<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DOM on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/dom/</link>
+    <description>Recent content in DOM on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 29 Oct 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/dom/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>说一些关于DOM</title>
+      <link>https://sgshy1995.github.io/2019/10/js-dom/</link>
+      <pubDate>Tue, 29 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/10/js-dom/</guid>
+      <description>DOM API 文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展置标语言的标准编程接口。DOM即文档对象模型，是一</description>
+    </item>
+    
+  </channel>
+</rss>

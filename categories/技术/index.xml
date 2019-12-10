@@ -7,10 +7,46 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 08 Oct 2019 16:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 11 Nov 2019 16:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>从不断“进化”的源码来碰面jQuery</title>
+      <link>https://sgshy1995.github.io/2019/11/js-to-jquery/</link>
+      <pubDate>Mon, 11 Nov 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/11/js-to-jquery/</guid>
+      <description>其本质 jQuery的本质是什么？一个JavaScript库。 接受一个旧的节点，返回一个新的对象（哈希），这个对象就是jQuery对象。 jQu</description>
+    </item>
+    
+    <item>
+      <title>说一些关于DOM</title>
+      <link>https://sgshy1995.github.io/2019/10/js-dom/</link>
+      <pubDate>Tue, 29 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/10/js-dom/</guid>
+      <description>DOM API 文档对象模型（Document Object Model，简称DOM），是W3C组织推荐的处理可扩展置标语言的标准编程接口。DOM即文档对象模型，是一</description>
+    </item>
+    
+    <item>
+      <title>快速理解JS的原型与原型链</title>
+      <link>https://sgshy1995.github.io/2019/10/js-type-proto/</link>
+      <pubDate>Sun, 20 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/10/js-type-proto/</guid>
+      <description>概述 JavaScript中有基本类型和复杂类型的区分。 当我们在声明一个基本类型时： 1 2 3 var n1= 1 console.log(n1) //1 这时我们可以用Number方法将1包装为对</description>
+    </item>
+    
+    <item>
+      <title>JS中的数据类型转换</title>
+      <link>https://sgshy1995.github.io/2019/10/js-type-transor/</link>
+      <pubDate>Mon, 14 Oct 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/10/js-type-transor/</guid>
+      <description>关于JavaScript中的各种数据类型的简单转换。 转换为字符串 toString 可以用toString这个API将其他数据类型转换为字符串，其中也有一些特</description>
+    </item>
     
     <item>
       <title>浅谈：JS中的数据类型</title>

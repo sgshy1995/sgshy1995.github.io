@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jQuery on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/jquery/</link>
+    <description>Recent content in jQuery on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Mon, 11 Nov 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/jquery/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>从不断“进化”的源码来碰面jQuery</title>
+      <link>https://sgshy1995.github.io/2019/11/js-to-jquery/</link>
+      <pubDate>Mon, 11 Nov 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/11/js-to-jquery/</guid>
+      <description>其本质 jQuery的本质是什么？一个JavaScript库。 接受一个旧的节点，返回一个新的对象（哈希），这个对象就是jQuery对象。 jQu</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>从不断“进化”的源码来碰面jQuery | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="JavaScript之jQuery">
+<link rel="prev" href="https://sgshy1995.github.io/2019/10/js-dom/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/11/js-to-jquery/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="从不断“进化”的源码来碰面jQuery"/>
+<meta name="twitter:description" content="JavaScript之jQuery"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "从不断“进化”的源码来碰面jQuery",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/11\/js-to-jquery\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "JavaScript, jQuery",
+    
+    "wordcount":  2308 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/11\/js-to-jquery\/",
+    
+        "datePublished": "2019-11-11T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-10-11T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "JavaScript之jQuery"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">从不断“进化”的源码来碰面jQuery</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-11>2019-11-11</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2308 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">其本质</a></li>
+    <li><a href="#heading1">便利之处</a></li>
+    <li><a href="#heading2">实现过程</a>
+      <ul>
+        <li><a href="#heading3">封装函数</a></li>
+        <li><a href="#heading4">命名空间</a></li>
+        <li><a href="#heading5">直接操纵节点</a></li>
+        <li><a href="#heading6">重要的替换</a></li>
+        <li><a href="#heading7">接受选择器</a></li>
+        <li><a href="#heading8">多元素选择器</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading9">写在最后</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">其本质</a></li>
+    <li><a href="#heading1">便利之处</a></li>
+    <li><a href="#heading2">实现过程</a>
+      <ul>
+        <li><a href="#heading3">封装函数</a></li>
+        <li><a href="#heading4">命名空间</a></li>
+        <li><a href="#heading5">直接操纵节点</a></li>
+        <li><a href="#heading6">重要的替换</a></li>
+        <li><a href="#heading7">接受选择器</a></li>
+        <li><a href="#heading8">多元素选择器</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading9">写在最后</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>其本质</h2>
+<p>jQuery的本质是什么？一个JavaScript库。</p>
+<p>接受一个旧的节点，返回一个新的对象（哈希），这个对象就是jQuery对象。</p>
+<p>jQuery的特点就是它拥有自己的API。</p>
+<p><strong>jQuery的源码调用DOM API，但是jQuery对象无法使用DOM API。</strong></p>
+<a class="post-dummy-target" id="heading1"></a><h2>便利之处</h2>
+<p>jQuery极大地简化了JS编程，也容易上手和学习。</p>
+<p>尽可能的避免了你使用原生DOM那些很“烂、复杂”的API。</p>
+<p>jQuery的兼容性极好。</p>
+<p>但是极多的API和不断更新的时效性，想要透彻了解还是离不开：熟能生巧。</p>
+<a class="post-dummy-target" id="heading2"></a><h2>实现过程</h2>
+<p>其实就是编写源码，反复优化实现需求的过程。</p>
+<a class="post-dummy-target" id="heading3"></a><h3>封装函数</h3>
+<p>首先我们来封装函数。
+这里只举一个“添加类”的函数为例。在实际开发中，我们要声明很多的函数来实现方法的需求。</p>
+<p>我们使用简单的html结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span>111<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span>222<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span>333<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">ul</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;item1&#34;</span><span class="p"></span><span class="p">&gt;</span>select1<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;item2&#34;</span><span class="p"></span><span class="p">&gt;</span>select2<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">li</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;item3&#34;</span><span class="p"></span><span class="p">&gt;</span>select3<span class="p">&lt;</span><span class="p">/</span><span class="nt">li</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">ul</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>函数的功能：</p>
+<p>为指定节点(node)添加类。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">addClass</span><span class="p">(</span><span class="nx">node</span><span class="p">,</span><span class="nx">classes</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//给传入的元素节点添加一个或多个类
+</span><span class="c1"></span>  <span class="nx">classes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">=&gt;</span><span class="nx">node</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="nx">addClass</span><span class="p">(</span><span class="nx">item3</span><span class="p">,</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="p">)</span> <span class="c1">//id为&#34;item3&#34;的节点
+</span><span class="c1"></span>
+<span class="c1">//&lt;li id=&#34;item3&#34; class=&#34;a b&#34;&gt;select3&lt;/li&gt;
+</span></code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading4"></a><h3>命名空间</h3>
+<p>上面的函数，虽然功能已经初步实现，但是有一个很大的问题：</p>
+<p>我们在处理复杂页面时，为了方便使用和记忆，可能会声明很多名字和DOM API极为“类似”的函数；那么就会在不知不觉中，覆盖掉一些API固有的函数，也可能会覆盖一些全局变量。</p>
+<p>DOM API将众多方法放在document对象中(<code>window.document.xxx</code>)。我们也需要给它们一个命名空间，即将其写入一个库中，来暂时性的解决这个问题。</p>
+<p>也同时直接的告诉开发者：<strong>我们声明的这些函数，是有内在的关联性的，因为它们都是在操纵节点。</strong></p>
+<p><strong>命名空间</strong>：名字空间，也称命名空间、名称空间等，它表示着一个标识符的可见范围。一个标识符可在多个名字空间中定义，它在不同名字空间中的含义是互不相干的。命名空间就是一种设计模式。（详见<a href="https://zh.wikipedia.org/wiki/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4">维基百科</a>）</p>
+<p>比如笔者的 name = &lsquo;sgs&rsquo;</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">sgs</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span> <span class="c1">//声明一个空的库
+</span><span class="c1"></span>
+<span class="kd">function</span> <span class="nx">addClass</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="nx">如上</span><span class="p">}</span>
+<span class="nx">sgs</span><span class="p">.</span><span class="nx">addClass</span> <span class="o">=</span> <span class="nx">addClass</span>
+
+<span class="nx">sgs</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="nx">item2</span><span class="p">,</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span><span class="p">)</span>
+<span class="c1">//实现同样的效果
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这样我们就可以调用sgs库的方法来达到同样的目的，而避免了全局变量的覆盖；同时，这些方法都在我们归纳的同一个库中。</p>
+<p>这个问题解决以后，我们又发现：我们其实并不想这样使用一个API。</p>
+<p><strong>我们是否可以直接的对节点调用一个功能函数：item3.addClass()呢？</strong></p>
+<a class="post-dummy-target" id="heading5"></a><h3>直接操纵节点</h3>
+<p>如何实现？将node放在“前面”。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">node</span><span class="p">.</span><span class="nx">fn</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="nx">y</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们来“篡改”Node的原型，给Node的公有属性添加一个属性。</p>
+<p>把函数中的<strong>node</strong>全部替换为<strong>this</strong>，调用函数时默认把<strong>this</strong>当做第一个参数传入进来。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">Node</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">addClass</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">classes</span><span class="p">)</span> <span class="p">{</span> 
+  <span class="nx">classes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">=&gt;</span><span class="k">this</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以在Node.prototype中找到我们自己添加的属性。</p>
+<p>使用方法时：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">item3</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">,</span><span class="s1">&#39;c&#39;</span><span class="p">]</span><span class="p">)</span>
+<span class="c1">//=== item3.addClass.call(item3,[&#39;a&#39;,&#39;b&#39;,&#39;c&#39;])
+</span></code></pre></td></tr></table>
+</div>
+</div><p>但是，我们这样操作是在改Node的公有属性。这样就有很大的麻烦：</p>
+<p>如果众多开发者都在改公有属性，那么既会相互覆盖，同时公有属性也失去了本身最为一个标准的意义。</p>
+<p>如何再进一步的改进？</p>
+<a class="post-dummy-target" id="heading6"></a><h3>重要的替换</h3>
+<p>我们自己声明一个类似的&quot;Node&rdquo;，名为：<strong>&ldquo;jQuery&rdquo;</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="p">{</span> <span class="c1">//传入node节点
+</span><span class="c1"></span>  <span class="k">return</span> <span class="p">{</span>
+            <span class="c1">//key: value
+</span><span class="c1"></span>            
+            <span class="nx">node</span><span class="p">.</span><span class="nx">APIOne</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">APITwo</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+            <span class="p">...</span>
+            <span class="nx">node</span><span class="p">.</span><span class="nx">addClass</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">classes</span><span class="p">)</span><span class="p">{</span>
+               <span class="nx">classes</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">=&gt;</span><span class="nx">node</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span><span class="p">)</span>
+            <span class="p">}</span>
+         <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们现在是这样使用的</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//首先根据节点获取一个新的对象
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">nodex</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="nx">item3</span><span class="p">)</span>
+
+<span class="c1">//使用jQuery提供的新API来操作 
+</span><span class="c1"></span><span class="nx">nodex</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="p">)</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>首先我们把参数item3传给了jQuery，然后jQuery将其存在了函数的node里面；这样我们使用其他方法时，可以直接通过操作nodex这个对象来操作节点。</p>
+<a class="post-dummy-target" id="heading7"></a><h3>接受选择器</h3>
+<p>当你传入的不是一个id对应的节点，而是表示一个节点的选择器：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">nodex</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;#item3&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>让jQuery源码进行传参类型的判断：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">nodeOrSelector</span><span class="p">)</span><span class="p">{</span>
+  <span class="kd">let</span> <span class="nx">node</span>
+  <span class="k">if</span><span class="p">(</span><span class="k">typeof</span> <span class="nx">nodeOrSelector</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">node</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="nx">nodeOrSelector</span><span class="p">)</span>
+    <span class="c1">//如果jQuery发现你输入了字符串，那么就回去寻找这个字符串对应的节点
+</span><span class="c1"></span>  <span class="p">}</span><span class="k">else</span><span class="p">{</span>
+    <span class="nx">node</span> <span class="o">=</span> <span class="nx">nodeOrSelector</span>
+  <span class="p">}</span>
+  <span class="k">return</span>
+  <span class="p">...</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading8"></a><h3>多元素选择器</h3>
+<p>当你传入一个选择多个元素节点的选择器时</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">nodex</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;ul&gt;li&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">nodey</span> <span class="o">=</span> <span class="nx">jQuery</span><span class="p">(</span><span class="s1">&#39;ul li:nth-child(2)&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>将1~n个节点全部放在伪数组中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">nodeOrSelector</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">//--------------------判断部分--------------------
+</span><span class="c1"></span>    <span class="kd">let</span> <span class="nx">nodes</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+    <span class="k">if</span> <span class="p">(</span><span class="k">typeof</span> <span class="nx">nodeOrSelector</span> <span class="o">===</span> <span class="s1">&#39;string&#39;</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">let</span> <span class="nx">temp</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="nx">nodeOrSelector</span><span class="p">)</span> <span class="c1">//伪数组，但它的原型链还覆盖有很多层
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//获取纯净的原型链，__proto__===Object.prototype
+</span><span class="c1"></span>            <span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span>
+        <span class="p">}</span>
+        <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span> <span class="o">=</span> <span class="nx">temp</span><span class="p">.</span><span class="nx">length</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">nodeOrSelector</span> <span class="k">instanceof</span> <span class="nx">Node</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//说明传入的是一个节点，但是保持一致性也要变成伪数组
+</span><span class="c1"></span>        <span class="nx">nodes</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="mi">0</span><span class="o">:</span> <span class="nx">nodeOrSelector</span><span class="p">,</span>
+            <span class="nx">length</span><span class="o">:</span> <span class="mi">1</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//--------------------添加类方法--------------------
+</span><span class="c1"></span>    <span class="nx">nodes</span><span class="p">.</span><span class="nx">addClass</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="p">)</span> <span class="p">{</span> 
+        <span class="kd">let</span> <span class="nx">array</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span> <span class="c1">//传入多个字符串代表类，不用传入数组，内部将字符串组合为数组
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">k</span> <span class="o">&lt;</span> <span class="nx">arguments</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">k</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+            <span class="nx">array</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">arguments</span><span class="p">[</span><span class="nx">k</span><span class="p">]</span><span class="p">)</span>
+        <span class="p">}</span>
+        <span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//nodes并不是元素，而是伪数组
+</span><span class="c1"></span>                <span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span>
+            <span class="p">}</span>
+        <span class="p">}</span><span class="p">)</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//------------------设置节点文本方法------------------
+</span><span class="c1"></span>    <span class="nx">nodes</span><span class="p">.</span><span class="nx">setText</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">text</span><span class="p">)</span> <span class="p">{</span> <span class="c1">//设置传入参数的文本
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">nodes</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">nodes</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="nx">text</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+    
+    <span class="c1">//-------------------------------------------------
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">nodes</span>
+<span class="p">}</span>
+
+<span class="c1">//** 我们同时引入$，通过$来声明jQuery对象：**
+</span><span class="c1"></span>
+<span class="nb">window</span><span class="p">.</span><span class="nx">$</span> <span class="o">=</span> <span class="nx">jQuery</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用jQuery的两个API：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">var</span> <span class="nx">$div</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">)</span>
+<span class="kd">var</span> <span class="nx">$li</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="s1">&#39;ul&gt;li&#39;</span><span class="p">)</span>
+<span class="nx">$div</span><span class="p">.</span><span class="nx">addClass</span><span class="p">(</span><span class="s1">&#39;active&#39;</span><span class="p">)</span>
+<span class="nx">$li</span><span class="p">.</span><span class="nx">setText</span><span class="p">(</span><span class="s1">&#39;We are the same&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading9"></a><h2>写在最后</h2>
+<p>至此，可以看出，jQuery的本质就是一个JavaScript库。</p>
+<p>通过一个<strong>进化的过程来达到一个使用的标准</strong>。</p>
+<p>jQuery的API就是源代码中的属性对应的函数，而且jQuery的源码远比此复杂和繁琐，才得以实现如此强大的功能。</p>
+<p>我们可以允许在不完全透彻理解的情况下使用一个原理，<strong>就像我们引入外部的库一样。</strong></p>
+<p>我们在此只是形象化的了解jQuery实现的基本原理。知根知底，才可以更透彻的学习和使用jQuery。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-10-11 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/11/js-to-jquery/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-to-jquery%2f&amp;text=%e4%bb%8e%e4%b8%8d%e6%96%ad%e2%80%9c%e8%bf%9b%e5%8c%96%e2%80%9d%e7%9a%84%e6%ba%90%e7%a0%81%e6%9d%a5%e7%a2%b0%e9%9d%a2jQuery&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-to-jquery%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-to-jquery%2f&amp;title=%e4%bb%8e%e4%b8%8d%e6%96%ad%e2%80%9c%e8%bf%9b%e5%8c%96%e2%80%9d%e7%9a%84%e6%ba%90%e7%a0%81%e6%9d%a5%e7%a2%b0%e9%9d%a2jQuery" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-to-jquery%2f&amp;appkey=&amp;title=%e4%bb%8e%e4%b8%8d%e6%96%ad%e2%80%9c%e8%bf%9b%e5%8c%96%e2%80%9d%e7%9a%84%e6%ba%90%e7%a0%81%e6%9d%a5%e7%a2%b0%e9%9d%a2jQuery" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/javascript/"><i class="fas fa-tag fa-fw"></i>JavaScript</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/jquery/"><i class="fas fa-tag fa-fw"></i>jQuery</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/10/js-dom/" class="prev" rel="prev" title="说一些关于DOM"><i class="fas fa-angle-left fa-fw"></i>说一些关于DOM</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>
