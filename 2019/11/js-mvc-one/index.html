@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>MVC：面包块而不是面条 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="MVC到Vue/React">
+<link rel="prev" href="https://sgshy1995.github.io/2019/11/js-to-jquery/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/11/js-mvc-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="MVC：面包块而不是面条"/>
+<meta name="twitter:description" content="MVC到Vue/React"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "MVC：面包块而不是面条",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/11\/js-mvc-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "JavaScript, MVC, 事件",
+    
+    "wordcount":  2473 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/11\/js-mvc-one\/",
+    
+        "datePublished": "2019-11-20T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-11-20T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "MVC到Vue\/React"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+                <a class="menu-item" href="https://hugo-loveit-en.netlify.com" title=""><i class="fas fa-language fa-fw"></i></a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">MVC：面包块而不是面条</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-11-20>2019-11-20</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2473 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">概述</a></li>
+    <li><a href="#heading1">模块化</a></li>
+    <li><a href="#mvc">MVC设计模式（思想）</a>
+      <ul>
+        <li><a href="#model">Model（数据）</a></li>
+        <li><a href="#view">View（视图）</a></li>
+        <li><a href="#controller">Controller（控制器）</a></li>
+        <li><a href="#heading2">为了“好代码”</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading3">表驱动法编程</a>
+      <ul>
+        <li><a href="#heading4">什么是表驱动法</a></li>
+        <li><a href="#heading5">简单示例</a></li>
+        <li><a href="#heading6">自动绑定事件</a></li>
+      </ul>
+    </li>
+    <li><a href="#eventbus">EventBus</a>
+      <ul>
+        <li><a href="#heading7">集成方法</a></li>
+        <li><a href="#heading8">内部模拟</a></li>
+        <li><a href="#heading9">常用方法与优势</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">写在最后</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">概述</a></li>
+    <li><a href="#heading1">模块化</a></li>
+    <li><a href="#mvc">MVC设计模式（思想）</a>
+      <ul>
+        <li><a href="#model">Model（数据）</a></li>
+        <li><a href="#view">View（视图）</a></li>
+        <li><a href="#controller">Controller（控制器）</a></li>
+        <li><a href="#heading2">为了“好代码”</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading3">表驱动法编程</a>
+      <ul>
+        <li><a href="#heading4">什么是表驱动法</a></li>
+        <li><a href="#heading5">简单示例</a></li>
+        <li><a href="#heading6">自动绑定事件</a></li>
+      </ul>
+    </li>
+    <li><a href="#eventbus">EventBus</a>
+      <ul>
+        <li><a href="#heading7">集成方法</a></li>
+        <li><a href="#heading8">内部模拟</a></li>
+        <li><a href="#heading9">常用方法与优势</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">写在最后</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>概述</h2>
+<p>在软件工程中，<a href="https://zh.wikipedia.org/wiki/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F_(%E8%AE%A1%E7%AE%97%E6%9C%BA)">设计模式</a>（design pattern）是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。</p>
+<p>设计模式并不直接用来完成代码的编写，而是描述在各种不同情况下，要怎么解决问题的一种方案。</p>
+<a class="post-dummy-target" id="heading1"></a><h2>模块化</h2>
+<p>面向对象设计模式 通常以类别或对象来描述其中的关系和相互作用。</p>
+<p>设计模式能使不稳定依赖于相对稳定、具体依赖于相对抽象，避免会引起麻烦的紧耦合，以增强软件设计面对并适应变化的能力。</p>
+<p><strong>简单来说，就是总有“万金油”的代码，是所有项目或块的通用代码；并且使用通用代码，可以使整体的结构更加清晰，彼此之间虽有联系，但是不会有那种“牵一发而“改”全身的情况。</strong></p>
+<p>你的代码会 <strong>Be Like Bread Nuggets</strong> 而不是 <strong>Just Like Noodles</strong>。这就叫做代码“模块化”。</p>
+<p>有些人把写的像 Shit 一样的代码称为 <strong>Spaghetti Code</strong>。</p>
+<p><img src="/images/js-type/2.jpeg" alt="noodle-code"></p>
+<a class="post-dummy-target" id="mvc"></a><h2>MVC设计模式（思想）</h2>
+<p>MVC 是一种设计模式（或者软件架构），把系统分为三层：<strong>Model数据</strong>、<strong>View视图</strong>和<strong>Controller控制器</strong>。</p>
+<p>实现到各个Javascript框架中都有多少的衍变，但都是从MVC用于Web设计开发衍生出去的。</p>
+<p>举个例子：可能你在编写的时候觉得，一步接一步，逻辑已经很清晰了；在几天后，你回过头看自己的项目，你已经失去了头绪。
+有很多重复的地方，改一步就要改所有，这其中就可能会有严重的错误产生。</p>
+<p>而运用MVC思想，真正的把你的代码变成一个个分块，而不是一大坨堆在一起。</p>
+<a class="post-dummy-target" id="model"></a><h3>Model（数据）</h3>
+<p>Model 数据管理，包括数据逻辑、数据请求、数据存储等功能。</p>
+<p>前端 Model 主要负责 AJAX 请求或者 LocalStorage 存储。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//定义数据
+</span><span class="c1"></span>    <span class="nx">data</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="c1">//初始化
+</span><span class="c1"></span>    <span class="nx">init</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+    <span class="c1">//各种方法
+</span><span class="c1"></span>    <span class="nx">fetch</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+    <span class="nx">save</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+    <span class="nx">update</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+    <span class="k">delete</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="view"></a><h3>View（视图）</h3>
+<p>View 负责用户界面，前端 View 主要负责 HTML 渲染。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">view</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span><span class="p">}</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;&lt;h1&gt;hi&lt;/h1&#39;</span><span class="o">&gt;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="controller"></a><h3>Controller（控制器）</h3>
+<p>Controller 负责处理 View 的事件，并更新 Model；也负责监听 Model 的变化，并更新 View，Controller 控制其他的所有流程。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">view</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">model</span><span class="o">:</span> <span class="kc">null</span><span class="p">,</span>
+    <span class="nx">init</span><span class="p">(</span><span class="nx">view</span><span class="p">,</span> <span class="nx">model</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">view</span> <span class="o">=</span> <span class="nx">view</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">model</span> <span class="o">=</span> <span class="nx">model</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">bindEvents</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">render</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">view</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">name</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">bindEvents</span><span class="p">(</span><span class="p">)</span><span class="p">{</span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading2"></a><h3>为了“好代码”</h3>
+<p>MVC 只是一种设计模式，给了我们一种设计代码结构的主要思路。在设计模式实现的过程中，如果结合更多的方法与理念，可以让代码向真正的“好代码”靠近。</p>
+<p><strong>主要的结构是几个面包块，面包块里也有面包块。</strong></p>
+<p>使用 “表驱动编程”思想 和 EventBus方法。</p>
+<a class="post-dummy-target" id="heading3"></a><h2>表驱动法编程</h2>
+<a class="post-dummy-target" id="heading4"></a><h3>什么是表驱动法</h3>
+<p>所谓<a href="https://baike.baidu.com/item/%E8%A1%A8%E9%A9%B1%E5%8A%A8%E6%B3%95/15768054?noadapt=1">表驱动法</a>(Table-Driven Approach)，简单讲是指用查表的方法获取值。</p>
+<p>表驱动法是一种编程模式，表里可以存数据，也可以存指令，或函数等都可以。</p>
+<p>在数值不多的时候我们可以用逻辑语句(if/else 或 case do)的方法来获取值,但随着数值的增多逻辑语句就会越来越长,此时表驱动法的优势就显现出来了。</p>
+<p>表驱动编程在 JavaScript 中的一个重要应用是<strong>自动绑定事件</strong>。</p>
+<a class="post-dummy-target" id="heading5"></a><h3>简单示例</h3>
+<p>我们平时查字典以及插算数表“九九八十一”就是典型的表驱动法。</p>
+<pre><code>《乘法算数表》
+1 一一得一；
+2 二二得四；
+3 三三得九；
+...
+9 九九八十一。
+
+- 第一题：3✖️3 = ？
+在上面找。。。好的，就在第三行，我看到它了，结果就是81。
+</code></pre><a class="post-dummy-target" id="heading6"></a><h3>自动绑定事件</h3>
+<p>比如下面就是代码中的Controller部分。绑定事件中有jquery的事件监听方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">init</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">init</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span>
+
+        <span class="c1">//绑定事件
+</span><span class="c1"></span>        <span class="nx">controller</span><span class="p">.</span><span class="nx">bindEvents</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">bindEvents</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//jquery对象
+</span><span class="c1"></span>        <span class="nx">view</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="s1">&#39;#a1&#39;</span><span class="p">,</span><span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span><span class="p">{</span>
+            <span class="nx">doSomething_a1</span>
+        <span class="p">}</span><span class="p">)</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="s1">&#39;#a2&#39;</span><span class="p">,</span><span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span><span class="p">{</span>
+            <span class="nx">doSomething_a2</span>
+        <span class="p">}</span><span class="p">)</span>
+        <span class="p">...</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">element</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;click&#39;</span><span class="p">,</span><span class="s1">&#39;#an&#39;</span><span class="p">,</span><span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span><span class="p">{</span>
+            <span class="nx">doSomething_an</span>
+        <span class="p">}</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>上面的代码，有很多重复的地方。用表驱动方法可以简化这些代码。把那些相同相似的地方“隐藏”，只留下需要的。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="p">...</span>
+
+        <span class="c1">//我们将之称为自动绑定事件
+</span><span class="c1"></span>        <span class="nx">controller</span><span class="p">.</span><span class="nx">autoBindEvents</span><span class="p">(</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="c1">//事件
+</span><span class="c1"></span>    <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>
+        <span class="s1">&#39;click #a1&#39;</span><span class="o">:</span> <span class="s1">&#39;method_1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;click #a1&#39;</span><span class="o">:</span> <span class="s1">&#39;method_1&#39;</span><span class="p">,</span>
+        <span class="p">...</span>
+        <span class="s1">&#39;click #a1&#39;</span><span class="o">:</span> <span class="s1">&#39;method_n&#39;</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">autoBindEvents</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//实现过程，比如遍历
+</span><span class="c1"></span>        <span class="k">for</span> <span class="p">(</span><span class="kd">let</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">controller</span><span class="p">.</span><span class="nx">events</span><span class="p">)</span>
+        <span class="c1">//比如将包含&#39;事件 选择器&#39;的字符串分为几个部分，放到不同的变量中
+</span><span class="c1"></span>    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">method_1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">doSomething_a1</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">method_2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">doSomething_a2</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="nx">method_n</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">doSomething_an</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在MVC优化代码过程中，我们提取出了一个“哈希表”(events)；<strong>我们只留下了需要的、不能再简略的东西：doSomething。</strong></p>
+<p>这就是表驱动法编程。</p>
+<a class="post-dummy-target" id="eventbus"></a><h2>EventBus</h2>
+<p>EventBus也是一种设计模式或框架，主要用于组件/对象间通信的优化简化。</p>
+<p>我们将这样一个抽象概念变的形象化：</p>
+<p><strong>比如有这样的一个需求</strong>：我们在操纵几个不同的 button 时，触发点击事件后会更新数据 data 中的 i ；
+而事件监听到只要 i 变化就会重新渲染页面，并将 i 写入页面中的某个位置。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">//...view设置完毕
+</span><span class="c1"></span><span class="c1">//...model设置完毕
+</span><span class="c1"></span><span class="c1">//view中有一个render方法
+</span><span class="c1"></span>
+<span class="kr">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="nx">method_1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//model.data.i += 1
+</span><span class="c1"></span>        <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">doWithMethod_1</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="nx">method_2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">doWithMethod_2</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+    <span class="p">...</span>
+    <span class="nx">method_n</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="o">=</span> <span class="nx">doWithMethod_n</span>
+        <span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以有两种方法来单独做一个视图和数据的动态变化：</p>
+<p>①使用Vue2的新API：Object.defineProperty;</p>
+<p>②使用EventBus。在这里我们简单阐述这种方法。</p>
+<a class="post-dummy-target" id="heading7"></a><h3>集成方法</h3>
+<p>使用EventBus，可以将其从外部集成到项目中：</p>
+<p>下载到本地或使用远程库。</p>
+<p>你也可以自己“造”一个。</p>
+<a class="post-dummy-target" id="heading8"></a><h3>内部模拟</h3>
+<p>在JS文件中自己声明一个EventBus，来模拟使用EventBus的功能。为了方便起见，这里通过引入jquery实现。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">$</span> <span class="nx">from</span> <span class="s1">&#39;jquery&#39;</span>
+
+<span class="kr">const</span> <span class="nx">eventBus</span> <span class="o">=</span> <span class="nx">$</span><span class="p">(</span><span class="nb">window</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这里的eventBus包含了很多的方法，<strong>on方法</strong>可以监听事件，<strong>trigger方法</strong>可以触发事件。</p>
+<p><strong>在一个地方使用on方法，另外一个地方使用trigger方法，就初步实现了数据通信功能。</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">model</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">i</span><span class="o">:</span> <span class="nx">come</span> <span class="nx">from</span> <span class="nx">somewhere</span>
+    <span class="p">}</span><span class="err">，</span>
+    <span class="c1">//update 事件
+</span><span class="c1"></span>    <span class="nx">update</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//将 data 更新到 model.data
+</span><span class="c1"></span>        <span class="nb">Object</span><span class="p">.</span><span class="nx">assign</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">,</span> <span class="nx">data</span><span class="p">)</span>
+        <span class="c1">//触发 model:updated 事件
+</span><span class="c1"></span>        <span class="nx">eventBus</span><span class="p">.</span><span class="nx">trigger</span><span class="p">(</span><span class="s1">&#39;model:updated&#39;</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kr">const</span> <span class="nx">controller</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">//初始化方法
+</span><span class="c1"></span>    <span class="nx">init</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//初始化渲染
+</span><span class="c1"></span>        <span class="nx">view</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+        <span class="c1">//只要监听到 model:updated 方法就渲染更新页面
+</span><span class="c1"></span>        <span class="nx">eventBus</span><span class="p">.</span><span class="nx">on</span><span class="p">(</span><span class="s1">&#39;model:updated&#39;</span><span class="p">,</span> <span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+            <span class="nx">v</span><span class="p">.</span><span class="nx">render</span><span class="p">(</span><span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span><span class="p">)</span>
+        <span class="p">}</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="nx">method_1</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">//model.update(i: model.data.i + 1)
+</span><span class="c1"></span>        <span class="nx">model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="nx">doWithMethod_1</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">method_2</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="nx">doWithMethod_2</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="p">...</span>
+    <span class="nx">method_n</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">model</span><span class="p">.</span><span class="nx">update</span><span class="p">(</span><span class="nx">i</span><span class="o">:</span> <span class="nx">model</span><span class="p">.</span><span class="nx">data</span><span class="p">.</span><span class="nx">i</span> <span class="nx">doWithMethod_n</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading9"></a><h3>常用方法与优势</h3>
+<a class="post-dummy-target" id="heading10"></a><h4>方法</h4>
+<p>eventBus提供了 on 、off 和 trigger 等API，on 用于监听事件，trigger 用域触发事件。</p>
+<a class="post-dummy-target" id="heading11"></a><h4>几个优势</h4>
+<ul>
+<li>使用 eventBus 可以满足“分块”的原则，不需要关心彼此的细节，但是却可以互相调用各自的功能。</li>
+<li>简洁代码。</li>
+<li>速度快且轻量。</li>
+</ul>
+<a class="post-dummy-target" id="heading12"></a><h2>写在最后</h2>
+<p>本文章希望用通俗易懂的方式阐述MVC和一些思想、方法的关系，具体详细的代码就不予展示。</p>
+<p>但是初步接触MVC思想可能会存在误解，欢迎讨论和纠正。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-11-20 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/11/js-mvc-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-mvc-one%2f&amp;text=MVC%ef%bc%9a%e9%9d%a2%e5%8c%85%e5%9d%97%e8%80%8c%e4%b8%8d%e6%98%af%e9%9d%a2%e6%9d%a1&amp;via=%2f" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-mvc-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-mvc-one%2f&amp;title=MVC%ef%bc%9a%e9%9d%a2%e5%8c%85%e5%9d%97%e8%80%8c%e4%b8%8d%e6%98%af%e9%9d%a2%e6%9d%a1" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f11%2fjs-mvc-one%2f&amp;appkey=&amp;title=MVC%ef%bc%9a%e9%9d%a2%e5%8c%85%e5%9d%97%e8%80%8c%e4%b8%8d%e6%98%af%e9%9d%a2%e6%9d%a1" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/javascript/"><i class="fas fa-tag fa-fw"></i>JavaScript</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/mvc/"><i class="fas fa-tag fa-fw"></i>MVC</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E4%BA%8B%E4%BB%B6/"><i class="fas fa-tag fa-fw"></i>事件</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/11/js-to-jquery/" class="prev" rel="prev" title="从不断“进化”的源码来碰面jQuery"><i class="fas fa-angle-left fa-fw"></i>从不断“进化”的源码来碰面jQuery</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 11 Nov 2019 16:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 20 Nov 2019 16:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>MVC：面包块而不是面条</title>
+      <link>https://sgshy1995.github.io/2019/11/js-mvc-one/</link>
+      <pubDate>Wed, 20 Nov 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/11/js-mvc-one/</guid>
+      <description>概述 在软件工程中，设计模式（design pattern）是对软件设计中普遍存在（反复出现）的各种问题，所提出的解决方案。 设计模式并不直接用来</description>
+    </item>
     
     <item>
       <title>从不断“进化”的源码来碰面jQuery</title>

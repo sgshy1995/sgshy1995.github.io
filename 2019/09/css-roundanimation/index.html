@@ -41,7 +41,7 @@
     
         "keywords": "CSS",
     
-    "wordcount":  507 ,
+    "wordcount":  475 ,
     "url": "https:\/\/sgshy1995.github.io\/2019\/09\/css-roundanimation\/",
     
         "datePublished": "2019-09-07T16:22:42\x2b08:00",
@@ -149,8 +149,8 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-09-07>2019-09-07</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 507 字&nbsp;
-                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+                <i class="fas fa-pencil-alt fa-fw"></i>约 475 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 1 分钟&nbsp;</div>
         </div>
 
         
@@ -226,12 +226,12 @@
 <p>周围一圈子母（两串单词“PLAY”）围绕着一个圆圈转动。</p>
 <p>如下所示：</p>
 <p><img src="/images/css-roundanimation/1.gif" alt="动画"></p>
-<p>大致的思路就是几个<code>div</code>用动画控制旋转：</p>
+<p>大致的思路就是几个div用动画控制旋转：</p>
 <a class="post-dummy-target" id="heading"></a><h3>①第一步</h3>
-<p>设置你需要设置四个div写着两个P、两个L、两个A、两个Y。</p>
-<p>（我在他们中间加了一个<code>·</code>，但是需要<strong>再加一个div做成圆圈</strong>来占据中间的位置，也方便调整大小）。</p>
+<p>设置你需要设置四个 div 写着 两个P、两个L、两个A、两个Y。</p>
+<p>（我在他们中间加了一个<code>·</code>，但是需要再加一个 div 做成圆圈来占据中间的位置，也方便调整大小）。</p>
 <p>我给每个div中的文字两个字母之间加了很多个<code>&amp;nbsp;</code>来控制字母的间距。你也可以：</p>
-<p>在设置<code>text-align: center</code>后，设置<code>letter-spacing</code>来控制字母的间距。</p>
+<p>在设置 <strong>text-align: center</strong> 后，设置 <strong>letter-spacing</strong> 来控制字母的间距。</p>
 <a class="post-dummy-target" id="heading1"></a><h3>②第二步</h3>
 <p>给它们默认的旋转位置，比如:</p>
 <div class="highlight"><div class="chroma">
@@ -254,10 +254,10 @@
 <span class="err">…</span><span class="err">…</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>同时给他们绝对定位，相对于他们的<code>div.wrapper</code>。</p>
+</div><p>同时给他们绝对定位，相对于他们的 <strong>div.wrapper</strong>。</p>
 <a class="post-dummy-target" id="heading2"></a><h3>③第三步</h3>
 <p>调整好专门用来占据中间位置的圆圈的样式。</p>
-<p>比如：<code>border-radius:50%</code>、<code>backgroud:black</code>等。</p>
+<p>比如：<strong>border-radius:50%</strong>、<strong>backgroud:black</strong> 等。</p>
 <a class="post-dummy-target" id="heading3"></a><h3>④第四步</h3>
 <p>给每个div一个旋转动画，对应各自的旋转起点和重点，设置相同的时间，就可以实现同步效果啦。</p>
 <p>比如说：</p>

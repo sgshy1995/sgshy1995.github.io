@@ -41,7 +41,7 @@
     
         "keywords": "CSS",
     
-    "wordcount":  1334 ,
+    "wordcount":  1240 ,
     "url": "https:\/\/sgshy1995.github.io\/2019\/09\/css-method-two\/",
     
         "datePublished": "2019-09-20T16:22:42\x2b08:00",
@@ -149,7 +149,7 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-09-20>2019-09-20</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1334 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1240 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div>
 
@@ -224,7 +224,7 @@
 不然我深有体会的就是，当时觉得<strong>很简单很简单很简单</strong>的东西，过段时间可能需要走弯路用几个小时去实现，这就是蛋疼的CSS吧。</p>
 <a class="post-dummy-target" id="heading"></a><h2>修改默认样式</h2>
 <p>一般特定的元素都有自己默认的样式，但是在我们的整体布局中，可能适得其反。</p>
-<p>我习惯使用<code>border-box</code>的盒模型，因人而异。</p>
+<p>我习惯使用<strong>border-box</strong>的盒模型，因人而异。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -322,13 +322,13 @@
 <p>可以在网页结构上直接作出暂时性的修改，查看每个元素的样式。</p>
 <p>关于这点我们在之后的博客进行详细说明。</p>
 <a class="post-dummy-target" id="heading2"></a><h2>尽量少定义宽高</h2>
-<p>尽量少用<code>width</code>和<code>height</code>这两个属性。</p>
+<p>尽量少用 <strong>width</strong> 和 <strong>height</strong> 这两个属性。</p>
 <p><strong>在定义元素的高度时，我们知道一个元素的高度是由内容决定的，比如div高度由其内部文档流高度总和决定。</strong></p>
 <p>这样直接用width输入像素值，很容易造成内部溢出而显示错误或超出范围。</p>
-<p>在定义元素高度时，如果直接用<code>height</code>输入像素也会因一些变化或其他CSS样式而引起显示问题。不到万不得已，尽量少使用或在可控范围内使用。</p>
-<p>我们可以根据实际大小位置需要，用<code>margin</code>和<code>padding</code>来控制元素的位置以及样式大小。</p>
+<p>在定义元素高度时，如果直接用 <strong>height</strong> 输入像素也会因一些变化或其他CSS样式而引起显示问题。不到万不得已，尽量少使用或在可控范围内使用。</p>
+<p>我们可以根据实际大小位置需要，用 <strong>margin</strong> 和 <strong>padding</strong> 来控制元素的位置以及样式大小。</p>
 <a class="post-dummy-target" id="heading3"></a><h2>不到万不得已</h2>
-<p>如果要规定div的宽度，尽量使用<code>max-width</code>。可以在缩小浏览器窗口时等比例缩放。</p>
+<p>如果要规定div的宽度，尽量使用 <strong>max-width</strong> 。可以在缩小浏览器窗口时等比例缩放。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -353,9 +353,9 @@
 <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><p>但是固定定位会导致元素样式收缩，可以用<code>width: 100%;</code>来解决。</p>
+</div><p>但是固定定位会导致元素样式收缩，可以用 <strong>width: 100%;</strong> 来解决。</p>
 <p>但此时不能加左右的padding，否则总宽度会超过body的宽度。</p>
-<p><strong>解决办法是给一个父元素div 可以用来调整padding和margin。div宽度无法超过body，而且会自适应。</strong></p>
+<p><strong>解决办法是给一个父元素div 可以用来调整 padding 和 margin 。div 宽度无法超过 body ，而且会自适应。</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -383,11 +383,11 @@
 </code></pre></td></tr></table>
 </div>
 </div><a class="post-dummy-target" id="dtdd"></a><h2>dt和dd左右布局</h2>
-<p><strong>如何实现dl中的dt和dd左右布局？</strong></p>
+<p>如何实现 dl 中的 dt 和 dd 左右布局？</p>
 <p>将<code>&lt;dl&gt;</code>中的<code>&lt;dt&gt;</code>和<code>&lt;dd&gt;</code>一起设置通向浮动后，发现所有元素并排排在一起；虽然自动换行，但是是无序的。</p>
 <p>我们为达到目的：让同一类左右排布；不同类上下排布。</p>
 <p><strong>可以利用自动换行的原理，为<code>&lt;dt&gt;</code>和<code>&lt;dd&gt;</code>分别设置百分比宽度，总和达到100%即可。</strong></p>
-<p><strong>同时用<code>padding</code>调节上下间距。</strong></p>
+<p>同时用 padding 调节上下间距。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt"> 1
@@ -442,9 +442,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><a class="post-dummy-target" id="hover"></a><h2>元素hover的动画问题</h2>
-<p>当遇到配合JS实现样式变化时，比如在一个元素hover时出现，即<code>dispaly:block</code>，在鼠标移走后变为<code>none</code>。</p>
-<p>这时候，它的<code>transition: time;</code>就会失效。</p>
-<p>可以换一种思路，比如说父级元素设置<code>overflow:hidden</code>，子元素默认移除父元素，鼠标进入元素时移动回原位。</p>
+<p>当遇到配合JS实现样式变化时，比如在一个元素hover时出现，即 <strong>dispaly:block</strong> ，在鼠标移走后变为 <strong>none</strong> 。</p>
+<p>这时候，它的 <strong>transition: time</strong> 就会失效。</p>
+<p>可以换一种思路，比如说父级元素设置 <strong>overflow:hidden</strong>，子元素默认移除父元素，鼠标进入元素时移动回原位。</p>
 <p>但是如果想要配合其他元素的动画实现，避免互相影响，可能需要配合JS使用。</p>
 <hr>
 <p>以后会补充一些小技巧，持续更新。</p>
