@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>WebPack高级：一键部署 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="webpack高级">
+<link rel="prev" href="https://sgshy1995.github.io/2019/12/webpack-two/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/12/webpack-three/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="WebPack高级：一键部署"/>
+<meta name="twitter:description" content="webpack高级"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WebPack高级：一键部署",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "Git, 转译, Shell",
+    
+    "wordcount":  1082 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/",
+    
+        "datePublished": "2019-12-10T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-12-10T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "webpack高级"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">WebPack高级：一键部署</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-10>2019-12-10</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1082 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#heading1">全部部署</a>
+      <ul>
+        <li><a href="#heading2">本地打包</a></li>
+        <li><a href="#heading3">创建仓库</a></li>
+        <li><a href="#ignore">创建ignore</a></li>
+        <li><a href="#heading4">提交代码</a></li>
+        <li><a href="#github">上传到github仓库</a></li>
+        <li><a href="#githubpages">修改GithubPages路径</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading5">分支部署</a>
+      <ul>
+        <li><a href="#ignore1">添加ignore</a></li>
+        <li><a href="#heading6">提交代码</a></li>
+        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#heading7">新建一个分支</a></li>
+        <li><a href="#heading8">进入分支</a></li>
+        <li><a href="#heading9">删除文件</a></li>
+        <li><a href="#heading10">拷贝</a></li>
+        <li><a href="#heading11">再次本地提交</a></li>
+        <li><a href="#github2">上传至github</a></li>
+        <li><a href="#heading12">使用分支预览</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading13">用脚本实现这一切</a>
+      <ul>
+        <li><a href="#master">回到master分支</a></li>
+        <li><a href="#heading14">创建脚本</a></li>
+        <li><a href="#heading15">编写脚本</a></li>
+        <li><a href="#heading16">注意</a></li>
+        <li><a href="#heading17">一键部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#heading1">全部部署</a>
+      <ul>
+        <li><a href="#heading2">本地打包</a></li>
+        <li><a href="#heading3">创建仓库</a></li>
+        <li><a href="#ignore">创建ignore</a></li>
+        <li><a href="#heading4">提交代码</a></li>
+        <li><a href="#github">上传到github仓库</a></li>
+        <li><a href="#githubpages">修改GithubPages路径</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading5">分支部署</a>
+      <ul>
+        <li><a href="#ignore1">添加ignore</a></li>
+        <li><a href="#heading6">提交代码</a></li>
+        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#heading7">新建一个分支</a></li>
+        <li><a href="#heading8">进入分支</a></li>
+        <li><a href="#heading9">删除文件</a></li>
+        <li><a href="#heading10">拷贝</a></li>
+        <li><a href="#heading11">再次本地提交</a></li>
+        <li><a href="#github2">上传至github</a></li>
+        <li><a href="#heading12">使用分支预览</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading13">用脚本实现这一切</a>
+      <ul>
+        <li><a href="#master">回到master分支</a></li>
+        <li><a href="#heading14">创建脚本</a></li>
+        <li><a href="#heading15">编写脚本</a></li>
+        <li><a href="#heading16">注意</a></li>
+        <li><a href="#heading17">一键部署</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>前言</h2>
+<p>当你完成一个webpack项目时，就到了将代码搞到仓库里的时候。</p>
+<ul>
+<li>
+<p>你可以全部部署到github仓库，使用GithubPages域名的dist路径来浏览页面。</p>
+</li>
+<li>
+<p>也可以将dist目录与根目录分开在不同的仓库。</p>
+</li>
+<li>
+<p>当然是物尽其用，利用github分支功能分开部署。</p>
+</li>
+<li>
+<p>步骤太繁琐？脚本一键部署！</p>
+</li>
+</ul>
+<a class="post-dummy-target" id="heading1"></a><h2>全部部署</h2>
+<a class="post-dummy-target" id="heading2"></a><h3>本地打包</h3>
+<p>首先进入项目根目录，本地打包。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn build
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading3"></a><h3>创建仓库</h3>
+<p>在本地创建仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git init
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="ignore"></a><h3>创建ignore</h3>
+<p>创建ignore文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ touch .gitignore
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>.gitignore</strong></p>
+<pre><code>/node_modules/
+</code></pre><a class="post-dummy-target" id="heading4"></a><h3>提交代码</h3>
+<p>提交代码。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git add .
+$ git commit
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="github"></a><h3>上传到github仓库</h3>
+<p>在Github创建一个新的仓库，将本地文件上传至仓库。</p>
+<p>比如仓库名称为 &ldquo;webpack-demo-1&rdquo;，你的 github用户名为 lisa。使用SSH方式。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git remote add origin git@github.com:lisa/webpack-demo-1.git
+$ git push -u origin master
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="githubpages"></a><h3>修改GithubPages路径</h3>
+<p>如果开启GithubPages，那么在master分支访问会得到404页面。因为你的网页预览目录应该在根目录下的dist目录。</p>
+<p>那么你可以在首页的Edit选项中手动记录正确的访问地址，以方便预览网页。
+在GithubPages提供的浏览地址后面加上：&ldquo;dist/index.html&rdquo;。</p>
+<a class="post-dummy-target" id="heading5"></a><h2>分支部署</h2>
+<p>使用sh脚本文件和Github分支功能可以实现一键部署，并且把dist目录和项目其他文件分开。</p>
+<a class="post-dummy-target" id="ignore1"></a><h3>添加ignore</h3>
+<p>回到上面的第三步。在提交代码前，把dist目录也加入。</p>
+<p><strong>.gitignore</strong></p>
+<pre><code>/dist/
+/node_modules/
+</code></pre><a class="post-dummy-target" id="heading6"></a><h3>提交代码</h3>
+<p>同样的方法，在本地提交代码。</p>
+<a class="post-dummy-target" id="github1"></a><h3>上传至github</h3>
+<p>如果你新建了一个仓库，那么使用同样的方式上传。</p>
+<p>如果已经全部部署到了一个github仓库，那么把本次本地提交上传至github。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git push
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading7"></a><h3>新建一个分支</h3>
+<p>新建一个仓库分支。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git branch gh-pages
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading8"></a><h3>进入分支</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git checkout gh-pages
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading9"></a><h3>删除文件</h3>
+<p>删除所有“不需要”的文件，只留下：</p>
+<ul>
+<li>
+<p>/node_modules/</p>
+</li>
+<li>
+<p>/dist/</p>
+</li>
+<li>
+<p>.gitignore</p>
+</li>
+</ul>
+<a class="post-dummy-target" id="heading10"></a><h3>拷贝</h3>
+<p>将dist目录中的文件拷贝至当前目录（根目录）。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ mv dist/* ./
+</code></pre></td></tr></table>
+</div>
+</div><p>将dist目录（已经为空）删除。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ rm -rf dist
+</code></pre></td></tr></table>
+</div>
+</div><p>那么目前的目录已经是一个网站的根目录。</p>
+<a class="post-dummy-target" id="heading11"></a><h3>再次本地提交</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git add .
+$ git commit . -m <span class="s2">&#34;delete source code&#34;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="github2"></a><h3>上传至github</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git push
+$ git push --set-upstream origin gh-pages
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading12"></a><h3>使用分支预览</h3>
+<p>在GithubPages中选择gh-pages分支的域名来浏览网页即可。</p>
+<a class="post-dummy-target" id="heading13"></a><h2>用脚本实现这一切</h2>
+<a class="post-dummy-target" id="master"></a><h3>回到master分支</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ git checkout master
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading14"></a><h3>创建脚本</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ touch deploy.sh
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading15"></a><h3>编写脚本</h3>
+<p><strong>deploy.sh</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-sh" data-lang="sh">yarn build <span class="o">&amp;&amp;</span>
+git checkout gh-pages <span class="o">&amp;&amp;</span>
+rm -rf src *.json *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh <span class="o">&amp;&amp;</span>
+mv dist/* ./ <span class="o">&amp;&amp;</span>
+rm -rf dist<span class="p">;</span>
+git add . <span class="o">&amp;&amp;</span>
+git commit . -m <span class="s2">&#34;update&#34;</span> <span class="o">&amp;&amp;</span>
+git push <span class="o">&amp;&amp;</span>
+git checkout -
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading16"></a><h3>注意</h3>
+<p><strong>注意：在使用脚本部署之前，一定要确认自己的本地master分支已经提交更新或上传至github仓库。以防止出错。</strong></p>
+<a class="post-dummy-target" id="heading17"></a><h3>一键部署</h3>
+<p>使用脚本文件一键部署，重复上述步骤并自动回到master分支。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ sh deploy.sh
+</code></pre></td></tr></table>
+</div>
+</div>
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-12-10 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/12/webpack-three/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;text=WebPack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;title=WebPack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;appkey=&amp;title=WebPack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/git/"><i class="fas fa-tag fa-fw"></i>Git</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/"><i class="fas fa-tag fa-fw"></i>转译</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/shell/"><i class="fas fa-tag fa-fw"></i>Shell</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/12/webpack-two/" class="prev" rel="prev" title="WebPack高级：环境配置、引入和懒加载"><i class="fas fa-angle-left fa-fw"></i>WebPack高级：环境配置、引入和懒加载</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

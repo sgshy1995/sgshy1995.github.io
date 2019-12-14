@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Git on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/git/</link>
+    <description>Recent content in Git on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Tue, 10 Dec 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WebPack高级：一键部署</title>
+      <link>https://sgshy1995.github.io/2019/12/webpack-three/</link>
+      <pubDate>Tue, 10 Dec 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/webpack-three/</guid>
+      <description>前言 当你完成一个webpack项目时，就到了将代码搞到仓库里的时候。 你可以全部部署到github仓库，使用GithubPages域名的dis</description>
+    </item>
+    
+  </channel>
+</rss>

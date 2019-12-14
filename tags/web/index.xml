@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Web on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/web/</link>
+    <description>Recent content in Web on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 05 Dec 2019 16:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/web/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WebPack高级：环境配置、引入和懒加载</title>
+      <link>https://sgshy1995.github.io/2019/12/webpack-two/</link>
+      <pubDate>Thu, 05 Dec 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/webpack-two/</guid>
+      <description>文档 这里介绍webpack的一些高级配置，包括根据不同环境（开发和生产）使用不同的配置文件；引入 SCSS， LESS和 Stylus，以及引入图</description>
+    </item>
+    
+    <item>
+      <title>WebPack入门：从安装到配置</title>
+      <link>https://sgshy1995.github.io/2019/12/webpack-one/</link>
+      <pubDate>Sun, 01 Dec 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/webpack-one/</guid>
+      <description>文档 webpack 用于编译 JavaScript 模块。 一旦完成安装，你就可以通过 webpack 的 CLI 或 API 与其配合交互。 这里以入门者的角度（中文）介绍 webpack 的常用配置。当 webpack 更新后，以下细节可能</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>WebPack入门：从安装到配置 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="webpack入门">
+<link rel="prev" href="https://sgshy1995.github.io/2019/11/js-mvc-one/" />
+<link rel="next" href="https://sgshy1995.github.io/2019/12/webpack-two/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/12/webpack-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="WebPack入门：从安装到配置"/>
+<meta name="twitter:description" content="webpack入门"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "WebPack入门：从安装到配置",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "JavaScript, Web, 转译",
+    
+    "wordcount":  2553 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-one\/",
+    
+        "datePublished": "2019-12-01T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-12-01T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "webpack入门"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">WebPack入门：从安装到配置</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-01>2019-12-01</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2553 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 6 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">文档</a></li>
+    <li><a href="#heading1">基本安装</a>
+      <ul>
+        <li><a href="#heading2">版本信息</a></li>
+        <li><a href="#heading3">初始化安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">创建结构/目录</a></li>
+    <li><a href="#-webpack">启动 webpack</a>
+      <ul>
+        <li><a href="#heading5">使用本地路径</a></li>
+        <li><a href="#-npx-">使用 npx 命令</a></li>
+        <li><a href="#build">优化生成方式-build</a></li>
+        <li><a href="#dist">用插件清理dist目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#-configuration">配置 configuration</a>
+      <ul>
+        <li><a href="#heading9">路径及模式</a></li>
+        <li><a href="#heading10">缓存需求文件名</a></li>
+        <li><a href="#html">自动生成HTML</a></li>
+        <li><a href="#css">引入和自动生成CSS</a></li>
+        <li><a href="#css1">分离抽成css文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading11">预览页面-快速开发</a>
+      <ul>
+        <li><a href="#heading12">安装</a></li>
+        <li><a href="#heading13">配置文件</a></li>
+        <li><a href="#heading14">添加脚本命令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">文档</a></li>
+    <li><a href="#heading1">基本安装</a>
+      <ul>
+        <li><a href="#heading2">版本信息</a></li>
+        <li><a href="#heading3">初始化安装</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">创建结构/目录</a></li>
+    <li><a href="#-webpack">启动 webpack</a>
+      <ul>
+        <li><a href="#heading5">使用本地路径</a></li>
+        <li><a href="#-npx-">使用 npx 命令</a></li>
+        <li><a href="#build">优化生成方式-build</a></li>
+        <li><a href="#dist">用插件清理dist目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#-configuration">配置 configuration</a>
+      <ul>
+        <li><a href="#heading9">路径及模式</a></li>
+        <li><a href="#heading10">缓存需求文件名</a></li>
+        <li><a href="#html">自动生成HTML</a></li>
+        <li><a href="#css">引入和自动生成CSS</a></li>
+        <li><a href="#css1">分离抽成css文件</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading11">预览页面-快速开发</a>
+      <ul>
+        <li><a href="#heading12">安装</a></li>
+        <li><a href="#heading13">配置文件</a></li>
+        <li><a href="#heading14">添加脚本命令</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>文档</h2>
+<p><a href="https://www.webpackjs.com/">webpack</a> 用于编译 JavaScript 模块。</p>
+<p>一旦完成安装，你就可以通过 webpack 的 CLI 或 API 与其配合交互。</p>
+<p>这里以入门者的角度（中文）介绍 webpack 的常用配置。当 webpack 更新后，以下细节可能有出入，但是总体的核心不变。</p>
+<p>详见 webpack 的 <a href="https://webpack.js.org/guides/getting-started/">英文文档</a> 和 <a href="https://www.webpackjs.com/guides/getting-started/">中文文档</a>。</p>
+<a class="post-dummy-target" id="heading1"></a><h2>基本安装</h2>
+<a class="post-dummy-target" id="heading2"></a><h3>版本信息</h3>
+<p>首先通过 npm 查看 webpack 目前的版本信息。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ npm info webpack
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到下面的信息：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="c1">// webpack@4.41.2 | MIT | deps: 23 | versions: 625
+</span><span class="c1"></span>
+<span class="c1">// 可执行文件
+</span><span class="c1"></span><span class="c1">// bin: webpack
+</span><span class="c1"></span>
+<span class="c1">// 所有版本
+</span><span class="c1"></span><span class="c1">// dist-tags:
+</span><span class="c1"></span><span class="c1">// latest: 4.41.2   legacy: 1.15.0   next: 5.0.0-beta.9
+</span><span class="c1"></span><span class="c1">// webpack-2: 2.7.0   webpack-3: 3.12.0
+</span></code></pre></td></tr></table>
+</div>
+</div><p>我们使用默认的最新版本 webpack4。这里推荐使用 yarn 代替 npm。</p>
+<a class="post-dummy-target" id="heading3"></a><h3>初始化安装</h3>
+<p>新建（进入）项目，初始化 yarn 创建 package.json 后，在本地安装。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir webpack-demo <span class="o">&amp;&amp;</span> <span class="nb">cd</span> webpack-demo
+$ yarn init -y
+$ yarn add webpack webpack-cli --dev
+</code></pre></td></tr></table>
+</div>
+</div><p>安装成功后，项目中出现名为 node_modules 的文件夹和名为 yarn.lock 以及 package.json 的文件。</p>
+<a class="post-dummy-target" id="heading4"></a><h2>创建结构/目录</h2>
+<p>在根目录下新建 <strong>src 目录</strong> 和 <strong>index.js 文件</strong>。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir src
+$ touch src/index.js
+$ <span class="nb">echo</span> <span class="s1">&#39;console.log(&#39;</span>success<span class="s1">&#39;)&#39;</span> &gt;&gt; src/index.js
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="-webpack"></a><h2>启动 webpack</h2>
+<a class="post-dummy-target" id="heading5"></a><h3>使用本地路径</h3>
+<p>我们的 webpack 因为是装在本地，所以需要用路径来使用。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ ./node_modules/.bin/webpack
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="-npx-"></a><h3>使用 npx 命令</h3>
+<p>使用 npx 来启动 webpack，会自动在当前目录中寻找 webpack 的可执行文件。</p>
+<p><strong>注意</strong>：在 Windows 系统中某些情况可能存在不稳定性，比如 安装 node 时路径有空格等。这时需要使用第一种方法。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ npx webpack
+</code></pre></td></tr></table>
+</div>
+</div><p>webpack 在当前目录的 dist 目录中输出结果。此时应有转译后的 main.js 文件。</p>
+<p>这是webpack自带的一个加载器：babel-loader实现的。</p>
+<a class="post-dummy-target" id="build"></a><h3>优化生成方式-build</h3>
+<p>在 package.json 文件中 设置 script脚本中的 build方法。</p>
+<p>该方法将清空dist目录，并重新运行webpack，重新生成dist目录和其中的文件；更加利于开发。</p>
+<p><strong>package.json</strong></p>
+<a class="post-dummy-target" id="maclinux"></a><h4>Mac/Linux</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="err">+</span>    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;rm -rf dist; webpack&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="windows"></a><h4>Windows</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="err">+</span>    <span class="nt">&#34;build&#34;</span><span class="p">:</span> <span class="s2">&#34;rm -rf dist &amp;&amp; webpack&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading6"></a><h4>使用命令</h4>
+<p>这样你以后可以用下面的方法取代npx命令。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn build
+</code></pre></td></tr></table>
+</div>
+</div><p>或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ npm run build
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="dist"></a><h3>用插件清理dist目录</h3>
+<p>你也可以不用build方法，而是安装一个清理插件<strong>clean-webpack-plugin</strong>。工作原理和build方法相似。</p>
+<a class="post-dummy-target" id="heading7"></a><h4>安装插件：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add clean-webpack-plugin --dev
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading8"></a><h4>配置插件：</h4>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">
+<span class="o">+</span> <span class="kr">const</span> <span class="nx">CleanWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;clean-webpack-plugin&#39;</span><span class="p">)</span><span class="p">;</span>
+
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">entry</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">app</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
+      <span class="nx">print</span><span class="o">:</span> <span class="s1">&#39;./src/main.js&#39;</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>     <span class="k">new</span> <span class="nx">CleanWebpackPlugin</span><span class="p">(</span><span class="p">[</span><span class="s1">&#39;dist&#39;</span><span class="p">]</span><span class="p">)</span>
+    <span class="p">]</span>
+  <span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样在你每次运行 <strong>npx webpack</strong> 时，只会重新生成新的文件而看不到旧的文件。</p>
+<p><strong>注意：最好使用配置script脚本的方法来使用build实现这个功能，而不推荐使用插件。这是为了下面自定义不同模式的配置文件做基础。</strong></p>
+<a class="post-dummy-target" id="-configuration"></a><h2>配置 configuration</h2>
+<p>这时候警告提示需要设置配置文件中的转译模式。需要对配置文件进行配置。</p>
+<p>在操作之前，最好把它整成一个 git，每一步都 git。</p>
+<p><strong>注意：以下每一步都是在上一步的操作基础上进行操作，有些相同相似的或不需要的代码则没有展示。请忽略代码中的 “+”（加号表示局部增加或替换代码）和相关注释说明代码。</strong></p>
+<p>如果你有另外的需求，最后参阅原始文档进行配置。</p>
+<a class="post-dummy-target" id="heading9"></a><h3>路径及模式</h3>
+<p>在根目录下创建配置文件。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ touch webpack.config.js
+</code></pre></td></tr></table>
+</div>
+</div><p>进入配置文件，写入以下代码。</p>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">path</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&#34;path&#34;</span><span class="p">)</span><span class="p">;</span>
+
+<span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1">// 转译模式： development 开发者模式 / production 产品模式
+</span><span class="c1"></span>  <span class="nx">mode</span><span class="o">:</span> <span class="s2">&#34;development&#34;</span><span class="p">,</span>
+    <span class="c1">// 输入源
+</span><span class="c1"></span>  <span class="nx">entry</span><span class="o">:</span> <span class="s2">&#34;./src/index.js&#34;</span><span class="p">,</span>
+    <span class="c1">// 输出
+</span><span class="c1"></span>  <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// 文件名
+</span><span class="c1"></span>    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;main.js&#34;</span><span class="p">,</span>
+      <span class="c1">// 输出路径
+</span><span class="c1"></span>    <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s2">&#34;dist&#34;</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading10"></a><h3>缓存需求文件名</h3>
+<p>可以设置为生成 包含 MD5哈希 的字符串插入文件名用于 HTTP缓存。</p>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+
+   <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+<span class="o">+</span>    <span class="nx">filename</span><span class="o">:</span> <span class="s2">&#34;main.[contenthash].js&#34;</span>
+   <span class="p">}</span>
+
+<span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="html"></a><h3>自动生成HTML</h3>
+<p>webpack 可以使用插件来自动生成 HTML。</p>
+<p>在命令行安装插件：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add html-webpack-plugin
+</code></pre></td></tr></table>
+</div>
+</div><p>安装后修改配置文件</p>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">+</span> <span class="kr">const</span> <span class="nx">HtmlWebpackPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;html-webpack-plugin&#39;</span><span class="p">)</span><span class="p">;</span>
+  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+<span class="o">+</span>   <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>     <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">(</span><span class="p">{</span>
+       <span class="c1">//html 标题
+</span><span class="c1"></span><span class="o">+</span>       <span class="nx">title</span><span class="o">:</span> <span class="s1">&#39;Output Management&#39;</span>
+<span class="o">+</span>     <span class="p">}</span><span class="p">)</span>
+<span class="o">+</span>   <span class="p">]</span><span class="p">,</span>
+  <span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>执行命令构建命令 <strong>yarn build</strong> 可以在dist目录中生成一个 index.html文件。</p>
+</li>
+<li>
+<p>该文件会自动引入你项目中的外部文件</p>
+</li>
+<li>
+<p>如果你在外部文件名中引入了 MD5哈希字符串，那么每次 build 的同时 html文件也会自动更新。</p>
+</li>
+<li>
+<p>引入js会在body标签的最后面加入 script链接。</p>
+</li>
+<li>
+<p>引入 css 可以配置为以 style标签 形式插入还是 link标签 插入。</p>
+</li>
+</ul>
+<a class="post-dummy-target" id="html1"></a><h4>使用模板来生成html</h4>
+<p>你也可以使用项目中写好的 html模板 来让 webpack 生成新的 html 。</p>
+<p>该模板要放在 src 目录下面的 assets 文件夹中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ mkdir src/assets
+$ touch src/assets/index.html
+</code></pre></td></tr></table>
+</div>
+</div><p>在插件的 html 配置中再加入一行：</p>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+      <span class="k">new</span> <span class="nx">HtmlWebpackPlugin</span><span class="p">(</span><span class="p">{</span>
+<span class="o">+</span>       <span class="nx">template</span><span class="o">:</span> <span class="s1">&#39;src/assets/index.html&#39;</span>
+      <span class="p">}</span><span class="p">)</span>
+    <span class="p">]</span><span class="p">,</span>
+  <span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>注意：如果你的模板存在但内容为空，webpack 只会生成一个只有引入外部文件链接的 空html文件。</p>
+<p>模板中的内容会覆盖你在插件中的配置，比如说 title。</p>
+<p>如果你想使用配置文件中的 title，请在模板中这样写：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html">   <span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
++    <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span><span class="err">&lt;</span>%= htmlWebpackPlugin.options.title %&gt;<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+   <span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="css"></a><h3>引入和自动生成CSS</h3>
+<p>首先在src目录中创建css文件，并在index.js文件中用import方法引入。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ touch src/default.css
+$ <span class="nb">echo</span> <span class="s2">&#34;body{background: red;}&#34;</span> &gt;&gt; src/default.css
+$ <span class="nb">echo</span> <span class="s2">&#34;import &#39;./default.css&#39;&#34;</span> &gt;&gt; src/index.js
+</code></pre></td></tr></table>
+</div>
+</div><p>安装加载器</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add css-loader style-loader --dev
+</code></pre></td></tr></table>
+</div>
+</div><p>修改配置文件。</p>
+<ul>
+<li>css-loader的作用是如果发现任何以.css结尾的文件名，那么就处理文件并读到js文件中。</li>
+<li>style-loader的作用是把读到的内容变为html文件中的style标签并放入head标签中。</li>
+</ul>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">entry</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
+    <span class="nx">output</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;main.js&#39;</span><span class="p">,</span>
+      <span class="nx">path</span><span class="o">:</span> <span class="nx">path</span><span class="p">.</span><span class="nx">resolve</span><span class="p">(</span><span class="nx">__dirname</span><span class="p">,</span> <span class="s1">&#39;dist&#39;</span><span class="p">)</span>
+    <span class="p">}</span><span class="p">,</span>
+<span class="o">+</span>   <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+<span class="o">+</span>     <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>       <span class="p">{</span>
+<span class="o">+</span>         <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+<span class="o">+</span>         <span class="nx">use</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>           <span class="s1">&#39;style-loader&#39;</span><span class="p">,</span>
+<span class="o">+</span>           <span class="s1">&#39;css-loader&#39;</span>
+<span class="o">+</span>         <span class="p">]</span>
+<span class="o">+</span>       <span class="p">}</span>
+<span class="o">+</span>     <span class="p">]</span>
+<span class="o">+</span>   <span class="p">}</span>
+  <span class="p">}</span><span class="p">;</span>
+
+</code></pre></td></tr></table>
+</div>
+</div><p>使用 build 方法后在 dist 目录的 index.html 文件中插入 style 标签。</p>
+<p>这是通过js文件来动态实现的，因此你需要在 dist 目录里创建一个 web服务器 才能看到效果。</p>
+<a class="post-dummy-target" id="css1"></a><h3>分离抽成css文件</h3>
+<p>使用<strong>mini-css-extract-plugin</strong>来打包css文件，把css样式从js文件中提取到单独的css文件中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add mini-css-extract-plugin --dev
+</code></pre></td></tr></table>
+</div>
+</div><p>配置文件</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">+</span>  <span class="kr">const</span> <span class="nx">MiniCssExtractPlugin</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">&#39;mini-css-extract-plugin&#39;</span><span class="p">)</span>
+
+   <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+     <span class="nx">plugins</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>      <span class="k">new</span> <span class="nx">MiniCssExtractPlugin</span><span class="p">(</span><span class="p">{</span>
+<span class="o">+</span>        <span class="c1">// Options similar to the same options in webpackOptions.output
+</span><span class="c1"></span><span class="o">+</span>        <span class="c1">// all options are optional
+</span><span class="c1"></span><span class="o">+</span>        <span class="nx">filename</span><span class="o">:</span> <span class="s1">&#39;[name].[contenthash].css&#39;</span><span class="p">,</span>
+<span class="o">+</span>        <span class="nx">chunkFilename</span><span class="o">:</span> <span class="s1">&#39;[id].[contenthash].css&#39;</span><span class="p">,</span>
+<span class="o">+</span>        <span class="nx">ignoreOrder</span><span class="o">:</span> <span class="kc">false</span><span class="p">,</span> <span class="c1">// Enable to remove warnings about conflicting order
+</span><span class="c1"></span><span class="o">+</span>      <span class="p">}</span><span class="p">)</span><span class="p">,</span>
+     <span class="p">]</span><span class="p">,</span>
+     <span class="nx">module</span><span class="o">:</span> <span class="p">{</span>
+       <span class="nx">rules</span><span class="o">:</span> <span class="p">[</span>
+         <span class="p">{</span>
+           <span class="nx">test</span><span class="o">:</span> <span class="sr">/\.css$/</span><span class="p">,</span>
+           <span class="nx">use</span><span class="o">:</span> <span class="p">[</span>
+<span class="o">+</span>            <span class="p">{</span>
+<span class="o">+</span>              <span class="nx">loader</span><span class="o">:</span> <span class="nx">MiniCssExtractPlugin</span><span class="p">.</span><span class="nx">loader</span><span class="p">,</span>
+<span class="o">+</span>              <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>
+<span class="o">+</span>                <span class="c1">// you can specify a publicPath here
+</span><span class="c1"></span><span class="o">+</span>                <span class="c1">// by default it uses publicPath in webpackOptions.output
+</span><span class="c1"></span><span class="o">+</span>                <span class="nx">publicPath</span><span class="o">:</span> <span class="s1">&#39;../&#39;</span><span class="p">,</span>
+<span class="o">+</span>                <span class="nx">hmr</span><span class="o">:</span> <span class="nx">process</span><span class="p">.</span><span class="nx">env</span><span class="p">.</span><span class="nx">NODE_ENV</span> <span class="o">===</span> <span class="s1">&#39;development&#39;</span><span class="p">,</span>
+<span class="o">+</span>              <span class="p">}</span><span class="p">,</span>
+<span class="o">+</span>            <span class="p">}</span><span class="p">,</span>
+             <span class="s1">&#39;css-loader&#39;</span><span class="p">,</span>
+           <span class="p">]</span><span class="p">,</span>
+         <span class="p">}</span><span class="p">,</span>
+       <span class="p">]</span><span class="p">,</span>
+     <span class="p">}</span><span class="p">,</span>
+   <span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>使用build方法后，将会在dist目录里重新生成一个带有MD5哈希字符串的main.css文件，并且在html文件中以link标签方式从外部引入。</p>
+<p><strong>此方法会把所有通过import方式引入的CSS文件全部整合为一个文件，并且有根据引入顺序来排列内容。</strong></p>
+<a class="post-dummy-target" id="heading11"></a><h2>预览页面-快速开发</h2>
+<p>使用<strong>webpack-dev-server</strong>可以设置一个简单的web服务器，无需build即可预览dist文件目录下的文件，并实现实时重新加载。</p>
+<a class="post-dummy-target" id="heading12"></a><h3>安装</h3>
+<p>在命令行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn add webpack-dev-server --dev
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading13"></a><h3>配置文件</h3>
+<p>修改配置文件，告诉开发服务器在哪里查找文件：</p>
+<p><strong>webpack.config.js</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js">  <span class="nx">module</span><span class="p">.</span><span class="nx">exports</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="nx">entry</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">app</span><span class="o">:</span> <span class="s1">&#39;./src/index.js&#39;</span><span class="p">,</span>
+      <span class="nx">print</span><span class="o">:</span> <span class="s1">&#39;./src/print.js&#39;</span>
+    <span class="p">}</span><span class="p">,</span>
+<span class="o">+</span>   <span class="nx">devtool</span><span class="o">:</span> <span class="s1">&#39;inline-source-map&#39;</span><span class="p">,</span>
+<span class="o">+</span>   <span class="nx">devServer</span><span class="o">:</span> <span class="p">{</span>
+<span class="o">+</span>     <span class="nx">contentBase</span><span class="o">:</span> <span class="s1">&#39;./dist&#39;</span>
+<span class="o">+</span>   <span class="p">}</span>
+  <span class="p">}</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading14"></a><h3>添加脚本命令</h3>
+<p>添加一个script脚本可以直接运行开发服务器。</p>
+<p><strong>package.json</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+   <span class="nt">&#34;script&#34;</span><span class="p">:</span> <span class="p">{</span>
+<span class="err">+</span>    <span class="nt">&#34;start&#34;</span><span class="p">:</span> <span class="s2">&#34;webpack-dev-server --open&#34;</span>
+   <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>&ldquo;- -open&rdquo; 表示自动打开浏览器，可以删除或保留。</p>
+<p>只需运行</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ yarn start
+</code></pre></td></tr></table>
+</div>
+</div><p>或</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-shell" data-lang="shell">$ npm run start
+</code></pre></td></tr></table>
+</div>
+</div><p>即可在 <strong>localhost:8080</strong> 创建服务。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-12-01 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/12/webpack-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-one%2f&amp;text=WebPack%e5%85%a5%e9%97%a8%ef%bc%9a%e4%bb%8e%e5%ae%89%e8%a3%85%e5%88%b0%e9%85%8d%e7%bd%ae&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-one%2f&amp;title=WebPack%e5%85%a5%e9%97%a8%ef%bc%9a%e4%bb%8e%e5%ae%89%e8%a3%85%e5%88%b0%e9%85%8d%e7%bd%ae" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-one%2f&amp;appkey=&amp;title=WebPack%e5%85%a5%e9%97%a8%ef%bc%9a%e4%bb%8e%e5%ae%89%e8%a3%85%e5%88%b0%e9%85%8d%e7%bd%ae" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/javascript/"><i class="fas fa-tag fa-fw"></i>JavaScript</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/web/"><i class="fas fa-tag fa-fw"></i>Web</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/"><i class="fas fa-tag fa-fw"></i>转译</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/11/js-mvc-one/" class="prev" rel="prev" title="MVC：面包块而不是面条"><i class="fas fa-angle-left fa-fw"></i>MVC：面包块而不是面条</a>
+        
+        
+            <a href="https://sgshy1995.github.io/2019/12/webpack-two/" class="next" rel="next" title="WebPack高级：环境配置、引入和懒加载">WebPack高级：环境配置、引入和懒加载<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>
