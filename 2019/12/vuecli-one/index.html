@@ -1,0 +1,589 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>@Vue/Cli 入门指南 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="从Webpack到Vue">
+<link rel="prev" href="https://sgshy1995.github.io/2019/12/webpack-three/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/12/vuecli-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="@Vue/Cli 入门指南"/>
+<meta name="twitter:description" content="从Webpack到Vue"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "@Vue\/Cli 入门指南",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/vuecli-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "Vue, 转译",
+    
+    "wordcount":  738 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/12\/vuecli-one\/",
+    
+        "datePublished": "2019-12-13T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-12-13T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "从Webpack到Vue"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">@Vue/Cli 入门指南</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-13>2019-12-13</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 738 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 2 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">前言</a>
+      <ul>
+        <li><a href="#cli">CLI</a></li>
+        <li><a href="#cli-">CLI 服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading1">安装</a>
+      <ul>
+        <li><a href="#heading2">全局安装</a></li>
+        <li><a href="#heading3">查看版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">创建项目</a>
+      <ul>
+        <li><a href="#vue-create">使用vue create</a></li>
+        <li><a href="#heading5">配置</a></li>
+        <li><a href="#heading6">本地预览</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">前言</a>
+      <ul>
+        <li><a href="#cli">CLI</a></li>
+        <li><a href="#cli-">CLI 服务</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading1">安装</a>
+      <ul>
+        <li><a href="#heading2">全局安装</a></li>
+        <li><a href="#heading3">查看版本</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">创建项目</a>
+      <ul>
+        <li><a href="#vue-create">使用vue create</a></li>
+        <li><a href="#heading5">配置</a></li>
+        <li><a href="#heading6">本地预览</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>前言</h2>
+<p>从 Webpack 到 <a href="https://cli.vuejs.org/zh/guide/">@Vue/Cli</a>。</p>
+<p>Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统，提供了很多功能：</p>
+<a class="post-dummy-target" id="cli"></a><h3>CLI</h3>
+<p>CLI (@vue/cli) 是一个全局安装的 npm 包，提供了终端里的 vue 命令。</p>
+<p>它可以通过 vue create 快速创建一个新项目的脚手架，或者直接通过 vue serve 构建新想法的原型。</p>
+<p>你也可以通过 vue ui 通过一套图形化界面管理你的所有项目。</p>
+<a class="post-dummy-target" id="cli-"></a><h3>CLI 服务</h3>
+<p>CLI 服务 (@vue/cli-service) 是一个开发环境依赖。它是一个 npm 包，局部安装在每个 @vue/cli 创建的项目中。</p>
+<p>CLI 服务是构建于 webpack 和 webpack-dev-server 之上的。它包含了：</p>
+<ul>
+<li>加载其它 CLI 插件的核心服务；</li>
+<li><strong>一个针对绝大部分应用优化过的内部的 webpack 配置；</strong></li>
+<li>项目内部的 vue-cli-service 命令，提供 serve、build 和 inspect 命令。</li>
+</ul>
+<a class="post-dummy-target" id="heading1"></a><h2>安装</h2>
+<a class="post-dummy-target" id="heading2"></a><h3>全局安装</h3>
+<p>使用 npm 或 yarn。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ npm install -g @vue/cli
+<span class="c1"># 或</span>
+$ yarn global add @vue/cli 
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading3"></a><h3>查看版本</h3>
+<p>如果安装成功，你可以看到版本信息，并检查你的版本是否正确。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ vue --version
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading4"></a><h2>创建项目</h2>
+<p>进入即将创建项目的目录。</p>
+<a class="post-dummy-target" id="vue-create"></a><h3>使用vue create</h3>
+<p>使用 Vue 创建项目。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ vue create vue-demo
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading5"></a><h3>配置</h3>
+<p>你会被提示选取一个 preset。</p>
+<p>你可以选默认的包含了基本的 Babel + ESLint 设置的 preset，也可以选“手动选择特性”来选取需要的特性。</p>
+<p>这个默认的设置非常适合快速创建一个新项目的原型，而手动设置则提供了更多的选项，它们是面向生产的项目更加需要的。</p>
+<p>这里以入门者的角度选择配置。(回车进行下一步，↑↓键将光标上下移动选择，空格键选择或取消勾选)</p>
+<ul>
+<li>
+<p><strong>目前方法 present</strong>:</p>
+<ul>
+<li>Manually select features</li>
+</ul>
+</li>
+<li>
+<p><strong>包含特征 features</strong>:</p>
+<ul>
+<li>Bable</li>
+<li>CSS Pre-processors</li>
+<li>Linter / Formatter</li>
+<li>Unit Testing</li>
+</ul>
+</li>
+<li>
+<p><strong>CSS 预处理器 CSS pre-processors</strong>:</p>
+<ul>
+<li>Sass/SCSS (With dart-sass)</li>
+</ul>
+</li>
+<li>
+<p><strong>代码校验/格式化 Linter / Formatter</strong>:</p>
+<ul>
+<li>ESLint with error prevention only</li>
+</ul>
+</li>
+<li>
+<p><strong>何时触发校验 additional lint features</strong>:</p>
+<ul>
+<li>Lint and fix on commit</li>
+</ul>
+</li>
+<li>
+<p><strong>单元测试方案 unit testing solution</strong>:</p>
+<ul>
+<li>Jest</li>
+</ul>
+</li>
+<li>
+<p><strong>如何设置配置文件 prefer placing &hellip;</strong>:</p>
+<ul>
+<li>In dedicated config files</li>
+</ul>
+</li>
+<li>
+<p><strong>是否把以上选项作为以后项目的默认配置 save this as &hellip;</strong>:</p>
+<ul>
+<li>N</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="heading6"></a><h3>本地预览</h3>
+<p>开启一个本地预览服务器来检查项目是否成功创建。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ yarn serve
+</code></pre></td></tr></table>
+</div>
+</div><p>如果看到以下提示，证明你的项目创建成功了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># App running at:</span>
+<span class="c1"># - Local: http://localhost:8080/ (端口号可能不一样)</span>
+<span class="c1"># - Network: http://192.168.31.107:8080/</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>当你访问本地地址时，应该可以看到一个带有 Vue Logo 和 相关功能介绍的页面。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-12-13 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/12/vuecli-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-one%2f&amp;text=%40Vue%2fCli%20%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-one%2f&amp;title=%40Vue%2fCli%20%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-one%2f&amp;appkey=&amp;title=%40Vue%2fCli%20%e5%85%a5%e9%97%a8%e6%8c%87%e5%8d%97" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/vue/"><i class="fas fa-tag fa-fw"></i>Vue</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/"><i class="fas fa-tag fa-fw"></i>转译</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/12/webpack-three/" class="prev" rel="prev" title="Webpack高级：一键部署"><i class="fas fa-angle-left fa-fw"></i>Webpack高级：一键部署</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

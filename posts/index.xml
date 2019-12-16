@@ -7,13 +7,22 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Tue, 10 Dec 2019 16:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Fri, 13 Dec 2019 16:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>WebPack高级：一键部署</title>
+      <title>@Vue/Cli 入门指南</title>
+      <link>https://sgshy1995.github.io/2019/12/vuecli-one/</link>
+      <pubDate>Fri, 13 Dec 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/vuecli-one/</guid>
+      <description>前言 从 Webpack 到 @Vue/Cli。 Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统，提供了很多功能： CLI CLI (@vue/cli) 是一个全局安装的 npm 包，提供了终端里的 vue 命令。 它可以</description>
+    </item>
+    
+    <item>
+      <title>Webpack高级：一键部署</title>
       <link>https://sgshy1995.github.io/2019/12/webpack-three/</link>
       <pubDate>Tue, 10 Dec 2019 16:22:42 +0800</pubDate>
       
@@ -22,7 +31,7 @@
     </item>
     
     <item>
-      <title>WebPack高级：环境配置、引入和懒加载</title>
+      <title>Webpack高级：环境配置、引入和懒加载</title>
       <link>https://sgshy1995.github.io/2019/12/webpack-two/</link>
       <pubDate>Thu, 05 Dec 2019 16:22:42 +0800</pubDate>
       
@@ -31,7 +40,7 @@
     </item>
     
     <item>
-      <title>WebPack入门：从安装到配置</title>
+      <title>Webpack入门：从安装到配置</title>
       <link>https://sgshy1995.github.io/2019/12/webpack-one/</link>
       <pubDate>Sun, 01 Dec 2019 16:22:42 +0800</pubDate>
       
