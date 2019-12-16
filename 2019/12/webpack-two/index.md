@@ -314,9 +314,9 @@ export default function lazyModule() {
 
 ## 使用不同的配置文件
 
-在开发模式和生产模式，选择不同的配置，达到使用webpack的最优化选择。
+在开发模式和生产模式，选择不同的配置，达到使用 webpack 的最优化选择。
 
-在开始之前，你需要先配置json文件。让不同方法对应不同的build文件。
+在开始之前，你需要先配置 json 文件中的 script 脚本。让不同方法使用不同的配置文件。
 
 **package.json**
 

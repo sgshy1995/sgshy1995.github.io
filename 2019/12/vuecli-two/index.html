@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Vue使用实例：vue/vue.runtime | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="从Webpack到Vue">
+<link rel="prev" href="https://sgshy1995.github.io/2019/12/vuecli-one/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/12/vuecli-two/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue使用实例：vue/vue.runtime"/>
+<meta name="twitter:description" content="从Webpack到Vue"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Vue使用实例：vue\/vue.runtime",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/vuecli-two\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "Vue, 转译",
+    
+    "wordcount":  1801 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/12\/vuecli-two\/",
+    
+        "datePublished": "2019-12-16T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-12-16T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "从Webpack到Vue"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">Vue使用实例：vue/vue.runtime</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-16>2019-12-16</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1801 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 4 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#heading1">创建实例</a>
+      <ul>
+        <li><a href="#heading2">初始化</a></li>
+        <li><a href="#heading3">运行服务</a></li>
+        <li><a href="#vue-">Vue 不支持你这样写？</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-1">Vue 的两个版本</a>
+      <ul>
+        <li><a href="#heading4">完整版</a></li>
+        <li><a href="#heading5">只包含运行时版（非完整版）</a></li>
+        <li><a href="#heading6">两者的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading7">非完整版的存在意义</a>
+      <ul>
+        <li><a href="#heading8">简单插入</a></li>
+        <li><a href="#heading9">加入事件监听</a></li>
+        <li><a href="#heading10">“表面上”的弊端</a></li>
+        <li><a href="#heading11">意义</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">两全其美：单文件组件</a>
+      <ul>
+        <li><a href="#-vue-">创建 vue 文件</a></li>
+        <li><a href="#js">js中引入</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading13">写在最后</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#heading1">创建实例</a>
+      <ul>
+        <li><a href="#heading2">初始化</a></li>
+        <li><a href="#heading3">运行服务</a></li>
+        <li><a href="#vue-">Vue 不支持你这样写？</a></li>
+      </ul>
+    </li>
+    <li><a href="#vue-1">Vue 的两个版本</a>
+      <ul>
+        <li><a href="#heading4">完整版</a></li>
+        <li><a href="#heading5">只包含运行时版（非完整版）</a></li>
+        <li><a href="#heading6">两者的区别</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading7">非完整版的存在意义</a>
+      <ul>
+        <li><a href="#heading8">简单插入</a></li>
+        <li><a href="#heading9">加入事件监听</a></li>
+        <li><a href="#heading10">“表面上”的弊端</a></li>
+        <li><a href="#heading11">意义</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">两全其美：单文件组件</a>
+      <ul>
+        <li><a href="#-vue-">创建 vue 文件</a></li>
+        <li><a href="#js">js中引入</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading13">写在最后</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>前言</h2>
+<p>本文假设：</p>
+<ul>
+<li>
+<p>你已经使用 <a href="https://cli.vuejs.org/zh/guide/">vue-cli</a> 生成了一个 vue 项目。或参照 <a href="http://eden-sheng.cn/2019/12/vuecli-one/">小教程</a>。</p>
+</li>
+<li>
+<p>并且，src 目录中只有 main.js，public 目录中只有 index.html。</p>
+</li>
+</ul>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading1"></a><h2>创建实例</h2>
+<p>通过用 Vue 函数创建一个新的 Vue 实例开始：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+
+<span class="kd">var</span> <span class="nx">vm</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// options
+</span><span class="c1"></span><span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>Vue 类似于 <a href="https://zh.wikipedia.org/wiki/MVVM">MVVM模型</a>，经常会使用 <strong>vm (ViewModel 的缩写)</strong> 来表示 <strong>Vue 实例</strong>。</p>
+<p>vm 封装了这个实例对于组件内容的所有操作，包括数据、事件绑定等。</p>
+<a class="post-dummy-target" id="heading2"></a><h3>初始化</h3>
+<p>我们使用 MVC 来封装这个 div，并使用模板语法的一种占位符来将变量 n 变为字符串插入 html。</p>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span>{{n}}<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+    <span class="c1">// 元素 element
+</span><span class="c1"></span>    <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading3"></a><h3>运行服务</h3>
+<p>创建一个本地服务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ yarn serve
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="vue-"></a><h3>Vue 不支持你这样写？</h3>
+<p>这时浏览本地页面，看不到任何渲染效果，并且控制台会警告：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># You are using the runtime-only build of Vue where the template compiler is not available.</span> 
+<span class="c1"># Either pre-compile the templates into render functions, or use the compiler-included build.</span>
+
+<span class="c1"># (found in &lt;Root&gt;)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>简单的意思来说，就是你在使用 Vue 的 runtime-only 版本，Vue 不支持你这样写。</p>
+<a class="post-dummy-target" id="vue-1"></a><h2>Vue 的两个版本</h2>
+<p>Vue 有两个版本。</p>
+<ul>
+<li>完整版
+<ul>
+<li>vue.js</li>
+<li>vue.min.js</li>
+</ul>
+</li>
+<li>只包含运行时版（非完整版）
+<ul>
+<li>vue.runtime.js</li>
+<li>vue.runtime.min.js</li>
+</ul>
+</li>
+</ul>
+<p>vue-cli 创建的 vue 项目，默认的配置是 vue.runtime.js 版本。</p>
+<p>下面通过实际在项目中的操作来说明两者的区别。</p>
+<a class="post-dummy-target" id="heading4"></a><h3>完整版</h3>
+<p>完整版，即 vue.js。</p>
+<p>我们通过 CDN 来引入完整版取代 import 方法。</p>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span>{{n}}<span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.bootcss.com/vue/2.6.10/vue.min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// 元素 element
+</span><span class="c1"></span>  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>可以看到，在 MVC 模型中，视图 el 并没有写在 js 文件中，而是直接写在 html中。</p>
+<p>当把 el 写入 js 中：</p>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.bootcss.com/vue/2.6.10/vue.min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// 元素 element
+</span><span class="c1"></span>  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="sb">`</span><span class="sb">
+</span><span class="sb">    &lt;div&gt;{{n}}&lt;/div&gt;
+</span><span class="sb">  </span><span class="sb">`</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>结果是一样的。仍然支持。</p>
+<a class="post-dummy-target" id="heading5"></a><h3>只包含运行时版（非完整版）</h3>
+<p>对于只包含运行时版，以下简称为非完整版。</p>
+<p>当你引入非完整版时，使用以上方法，页面中再次消失渲染效果。说明这个Vue版本不支持你这样编写。</p>
+<a class="post-dummy-target" id="heading6"></a><h3>两者的区别</h3>
+<p>如果你需要在客户端编译模板 (比如传入一个字符串给 template 选项，或挂载到一个元素上并以其 DOM 内部的 HTML 作为模板)，
+只包含运行时版（非完整版）不支持，而 完整版 支持。</p>
+<p><strong>简单来说就是：</strong></p>
+<p>只要从html渲染为页面中的结果，那么只 包含运行时版（非完整版）不支持，而 完整版 支持。</p>
+<a class="post-dummy-target" id="heading7"></a><h2>非完整版的存在意义</h2>
+<p>仍然通过CDN引入非完整版的Vue。</p>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.bootcss.com/vue/2.6.10/vue.runtime.min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading8"></a><h3>简单插入</h3>
+<p>如果你想实现上面的效果，那么你需要：</p>
+<p>使用一个 render 函数，他接受一个 h 参数，这个参数由 Vue 传入。</p>
+<p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// 元素 element
+</span><span class="c1"></span>  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">render</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span><span class="p">{</span>
+      <span class="c1">// 创建一个div 里面是 n
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">h</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading9"></a><h3>加入事件监听</h3>
+<p>如果我们在一个按钮的点击事件中，将 n 加一。</p>
+<p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="c1">// 元素 element
+</span><span class="c1"></span>  <span class="nx">el</span><span class="o">:</span> <span class="s1">&#39;#app&#39;</span><span class="p">,</span>
+  <span class="nx">render</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// 创建一个 div，div 里面是 n 和 button  
+</span><span class="c1"></span>      <span class="c1">// button 的事件监听是 点击后触发 add方法，button 里面(的内容)是 Click me to add one
+</span><span class="c1"></span>    <span class="k">return</span> <span class="nx">h</span><span class="p">(</span><span class="s1">&#39;div&#39;</span><span class="p">,</span> <span class="p">[</span><span class="k">this</span><span class="p">.</span><span class="nx">n</span><span class="p">,</span><span class="nx">h</span><span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="nx">on</span><span class="o">:</span><span class="p">{</span><span class="nx">click</span><span class="o">:</span><span class="k">this</span><span class="p">.</span><span class="nx">add</span><span class="p">}</span><span class="p">}</span><span class="p">,</span> <span class="s1">&#39;Click me to add one&#39;</span><span class="p">)</span><span class="p">]</span><span class="p">)</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+      <span class="c1">// add 方法
+</span><span class="c1"></span>    <span class="nx">add</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading10"></a><h3>“表面上”的弊端</h3>
+<p>通过这种方法，有一个明显的“表面上”的弊端：</p>
+<p>你必须要用 render 方法并传入 h 参数把所有的元素构造出来。</p>
+<a class="post-dummy-target" id="heading11"></a><h3>意义</h3>
+<p>那么它的意义在哪里？</p>
+<p>最大的意义就在于 <strong>体积小</strong>。</p>
+<p>完整版含有编译器（compiner），将含有占位符或条件循环的语句等变为真实的DOM节点。在你下次修改时，会去直接改DOM节点，来生成 HTML。但是它非常的复杂，也就是代码体积会很大。</p>
+<p><strong>非完整版要比完整版小 30% 左右。</strong></p>
+<a class="post-dummy-target" id="heading12"></a><h2>两全其美：单文件组件</h2>
+<p>我们有一种两全其美的方法：</p>
+<p>使用 webpack 的 vue-loader。（注意：我们在使用 vue-cli 时，它已经帮我们配置好了这个加载器。）</p>
+<p>我们在写组件的时候，在 build 时这个加载器会自动帮我们编译为 render 函数的方法 来构造。</p>
+<p>这样，用户下载产品时只需要下载体积小的非完整版，而开发人员编写代码时，也不需要使用 render 方法去构造元素。</p>
+<p>我们来这样再次实现上面的效果。</p>
+<a class="post-dummy-target" id="-vue-"></a><h3>创建 vue 文件</h3>
+<p>默认配置是非完整版的 vue，其实我们无需再外部引入。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>首先，需要创建一个vue文件。</p>
+<p><em>Demo.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-vue" data-lang="vue"><span class="p">&lt;</span><span class="nt">template</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&#34;demo&#34;</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">{</span><span class="p">{</span><span class="nx">n</span><span class="p">}</span><span class="p">}</span>
+    <span class="p">&lt;</span><span class="nt">button</span> <span class="nt">@click</span><span class="s">=&#34;add&#34;</span><span class="p">&gt;</span><span class="na">Click</span> <span class="na">me</span> <span class="na">to</span> <span class="na">add</span> <span class="na">one</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">template</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">script</span><span class="p"></span><span class="p">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span>
+    <span class="p">}</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">add</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">n</span> <span class="o">+=</span> <span class="mi">1</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">style</span> <span class="na">scoped</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">.</span><span class="nx">demo</span><span class="p">{</span>
+    <span class="nx">color</span><span class="o">:</span><span class="nx">blue</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在 template 中写 视图相关，在 script 中写 视图之外的所有内容，在 style 中写 CSS相关。</p>
+<p><strong>vue-loader 就可以把这些变为一个 对象。</strong></p>
+<a class="post-dummy-target" id="js"></a><h3>js中引入</h3>
+<p>在 js 中这样写：</p>
+<p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">import</span> <span class="nx">Vue</span> <span class="nx">from</span> <span class="s1">&#39;vue&#39;</span>
+<span class="kr">import</span> <span class="nx">Demo</span> <span class="nx">from</span> <span class="s1">&#39;./Demo.vue&#39;</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">render</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">h</span><span class="p">(</span><span class="nx">Demo</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="nx">$mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样 class为&quot;demo&rdquo; 的 div 就替换掉了 id为&quot;app&quot;的 div。并且 div 里有 n 和 button。</p>
+<p><strong>这也叫做 Vue 单文件组件。</strong></p>
+<a class="post-dummy-target" id="heading13"></a><h2>写在最后</h2>
+<p>Vue-cli 生成的项目中，默认配置就是 vue 的只包含运行时版（非完整版）；
+你只需使用单文件组件就可以快速、方便的使用Vue实例。</p>
+<p>Webpack 给前端带来了无限可能。</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-12-16 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/12/vuecli-two/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-two%2f&amp;text=Vue%e4%bd%bf%e7%94%a8%e5%ae%9e%e4%be%8b%ef%bc%9avue%2fvue.runtime&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-two%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-two%2f&amp;title=Vue%e4%bd%bf%e7%94%a8%e5%ae%9e%e4%be%8b%ef%bc%9avue%2fvue.runtime" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvuecli-two%2f&amp;appkey=&amp;title=Vue%e4%bd%bf%e7%94%a8%e5%ae%9e%e4%be%8b%ef%bc%9avue%2fvue.runtime" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/vue/"><i class="fas fa-tag fa-fw"></i>Vue</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/"><i class="fas fa-tag fa-fw"></i>转译</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/12/vuecli-one/" class="prev" rel="prev" title="Vue：安装 Vue-cli 与创建项目"><i class="fas fa-angle-left fa-fw"></i>Vue：安装 Vue-cli 与创建项目</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

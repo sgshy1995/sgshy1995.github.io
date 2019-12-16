@@ -7,18 +7,27 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Fri, 13 Dec 2019 16:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Mon, 16 Dec 2019 16:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
-      <title>@Vue/Cli入门：安装与创建项目</title>
+      <title>Vue使用实例：vue/vue.runtime</title>
+      <link>https://sgshy1995.github.io/2019/12/vuecli-two/</link>
+      <pubDate>Mon, 16 Dec 2019 16:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/vuecli-two/</guid>
+      <description>前言 本文假设： 你已经使用 vue-cli 生成了一个 vue 项目。或参照 小教程。 并且，src 目录中只有 main.js，public 目录中只有 index.html</description>
+    </item>
+    
+    <item>
+      <title>Vue：安装 Vue-cli 与创建项目</title>
       <link>https://sgshy1995.github.io/2019/12/vuecli-one/</link>
       <pubDate>Fri, 13 Dec 2019 16:22:42 +0800</pubDate>
       
       <guid>https://sgshy1995.github.io/2019/12/vuecli-one/</guid>
-      <description>前言 从 Webpack 到 @Vue/Cli。 Vue CLI 是一个基于 Vue.js 进行快速开发的完整系统，提供了很多功能： CLI CLI (@vue/cli) 是一个全局安装的 npm 包，提供了终端里的 vue 命令。 它可以</description>
+      <description>前言 从 Webpack 到 @Vue/Cli。 Vue-cli 是一个基于 Vue.js 进行快速开发的完整系统，提供了很多功能： CLI CLI (@vue/cli) 是一个全局安装的 npm 包，提供了终端里的 vue 命令。 它可以通</description>
     </item>
     
     <item>
