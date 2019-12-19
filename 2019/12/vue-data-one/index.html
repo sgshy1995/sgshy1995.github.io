@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>new Vue( )：数据响应式 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="深度解析Vue">
+<link rel="prev" href="https://sgshy1995.github.io/2019/12/vuecli-two/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/12/vue-data-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="new Vue( )：数据响应式"/>
+<meta name="twitter:description" content="深度解析Vue"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "new Vue( )：数据响应式",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/vue-data-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "Vue, 转译, 数据响应",
+    
+    "wordcount":  2330 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/12\/vue-data-one\/",
+    
+        "datePublished": "2019-12-19T08:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-12-19T08:42:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "深度解析Vue"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">new Vue( )：数据响应式</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-19>2019-12-19</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2330 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#es6--gettersetter">ES6 的 getter/setter</a>
+      <ul>
+        <li><a href="#heading1">打印名字</a></li>
+        <li><a href="#heading2">使用计算属性</a></li>
+        <li><a href="#heading3">修改并打印</a></li>
+        <li><a href="#heading4">观察这个对象</a></li>
+        <li><a href="#heading5">结论</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading6">如何对已声明对象操作？</a>
+      <ul>
+        <li><a href="#objectdefineproperty">Object.defineProperty</a></li>
+        <li><a href="#heading10">例子</a></li>
+        <li><a href="#heading11">问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">代理/监听</a>
+      <ul>
+        <li><a href="#heading13">使用代理</a></li>
+        <li><a href="#heading14">使用监听</a></li>
+        <li><a href="#heading16">多个属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#new-vue">new Vue()</a>
+      <ul>
+        <li><a href="#vue--data-">vue 对 data 做了什么？</a></li>
+        <li><a href="#heading17">目的</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading18">数据响应式</a></li>
+    <li><a href="#-data-">在 data 中添加属性</a>
+      <ul>
+        <li><a href="#heading19">一般对象</a></li>
+        <li><a href="#heading22">数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading23">什么才是最重要的</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">前言</a></li>
+    <li><a href="#es6--gettersetter">ES6 的 getter/setter</a>
+      <ul>
+        <li><a href="#heading1">打印名字</a></li>
+        <li><a href="#heading2">使用计算属性</a></li>
+        <li><a href="#heading3">修改并打印</a></li>
+        <li><a href="#heading4">观察这个对象</a></li>
+        <li><a href="#heading5">结论</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading6">如何对已声明对象操作？</a>
+      <ul>
+        <li><a href="#objectdefineproperty">Object.defineProperty</a></li>
+        <li><a href="#heading10">例子</a></li>
+        <li><a href="#heading11">问题</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading12">代理/监听</a>
+      <ul>
+        <li><a href="#heading13">使用代理</a></li>
+        <li><a href="#heading14">使用监听</a></li>
+        <li><a href="#heading16">多个属性</a></li>
+      </ul>
+    </li>
+    <li><a href="#new-vue">new Vue()</a>
+      <ul>
+        <li><a href="#vue--data-">vue 对 data 做了什么？</a></li>
+        <li><a href="#heading17">目的</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading18">数据响应式</a></li>
+    <li><a href="#-data-">在 data 中添加属性</a>
+      <ul>
+        <li><a href="#heading19">一般对象</a></li>
+        <li><a href="#heading22">数组</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading23">什么才是最重要的</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>前言</h2>
+<p>Vue 到底对 data 做了什么呢？我们来看下以下代码。</p>
+<p>为了方便操作，这里引入完整版 Vue。</p>
+<p><em>index.html</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;app&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;https://cdn.bootcss.com/vue/2.6.10/vue.min.js&#34;</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Vue</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">Vue</span>
+
+<span class="kr">const</span> <span class="nx">myData</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">n</span><span class="o">:</span><span class="mi">0</span>
+<span class="p">}</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+  <span class="nx">data</span><span class="o">:</span> <span class="nx">myData</span><span class="p">,</span>
+  <span class="nx">template</span><span class="o">:</span> <span class="sb">`</span><span class="sb">
+</span><span class="sb">    &lt;div&gt;{{n}}&lt;/div&gt;
+</span><span class="sb">  </span><span class="sb">`</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="nx">$mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">)</span>
+
+<span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+  <span class="nx">myData</span><span class="p">.</span><span class="nx">n</span> <span class="o">+=</span> <span class="mi">10</span>
+<span class="p">}</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myData</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>我们可以看到，在将 myData 传给 Vue 时，会被篡改。</p>
+<p>控制台：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-t" data-lang="t"><span class="c1"># {__ob__: we}</span>
+<span class="c1">#   n: (...)</span>
+<span class="c1">#   __ob__: we {value: {...}, dep: ce, vmCount: 1}</span>
+<span class="c1">#   get n: f ()</span>
+<span class="c1">#   set n: f (t)</span>
+<span class="c1">#   __proto__: Object</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="es6--gettersetter"></a><h2>ES6 的 getter/setter</h2>
+<a class="post-dummy-target" id="heading1"></a><h3>打印名字</h3>
+<p>下面是使用 ES6 新语法的例子：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Eden&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Sheng&#39;</span><span class="p">,</span>
+  <span class="nx">name</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">(</span><span class="p">)</span><span class="p">)</span> 
+
+<span class="c1">//EdenSheng
+</span></code></pre></td></tr></table>
+</div>
+</div><p>控制台可以打印出 EdenSheng 。</p>
+<a class="post-dummy-target" id="heading2"></a><h3>使用计算属性</h3>
+<p>如果我们使用 get 方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Eden&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Sheng&#39;</span><span class="p">,</span>
+  <span class="nx">get</span> <span class="nx">name</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">)</span>
+
+<span class="c1">//EdenSheng
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这时候可以通过使用 get 来直接使用 obj.name 这个计算属性，同样可以打印出 EdenSheng。</p>
+<p>这种写法就叫做 getter ，关键词为 get ，用于获取一个值。<strong>定义时为函数，但是使用时不用加括号。</strong></p>
+<a class="post-dummy-target" id="heading3"></a><h3>修改并打印</h3>
+<p>通过 set 来设置姓名：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">firstName</span><span class="o">:</span> <span class="s1">&#39;Eden&#39;</span><span class="p">,</span>
+  <span class="nx">lastName</span><span class="o">:</span> <span class="s1">&#39;Sheng&#39;</span><span class="p">,</span>
+  <span class="nx">get</span> <span class="nx">name</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">+</span> <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">set</span> <span class="nx">name</span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">firstName</span> <span class="o">=</span> <span class="nx">e</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">lastName</span> <span class="o">=</span> <span class="nx">e</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">obj</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="s1">&#39;xy&#39;</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span> <span class="sb">`</span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">firstName</span><span class="si">}</span><span class="sb">,</span><span class="si">${</span><span class="nx">obj</span><span class="p">.</span><span class="nx">lastName</span><span class="si">}</span><span class="sb">`</span><span class="p">)</span> 
+
+<span class="c1">//xy x,y
+</span></code></pre></td></tr></table>
+</div>
+</div><p>在 <code>obj.name = 'xy'</code> 时就相当于触发 set 函数。 setter 用于对数据的改写。</p>
+<a class="post-dummy-target" id="heading4"></a><h3>观察这个对象</h3>
+<p>我们来看一下这个 obj 是什么。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="p">...</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">obj</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-t" data-lang="t"><span class="c1"># {firstName: &#34;x&#34;, lastName: &#34;y&#34;}</span>
+<span class="c1">#   name: (...)</span>
+<span class="c1">#   firstName: &#34;x&#34;</span>
+<span class="c1">#   lastName: &#34;y&#34;</span>
+<span class="c1">#   get name: f name()</span>
+<span class="c1">#   set name: f name(e)</span>
+<span class="c1">#   __proto__: Object</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading5"></a><h3>结论</h3>
+<p>经过 vue 包装，以及我们这样写的 obj，n 和 name 都不是真实的属性；
+浏览器在显示的时候是 (&hellip;)，表示可以对n 和 name 进行读和写，但是他们并不真实存在，通过 get 和 name 来模拟对其的读写操作。</p>
+<a class="post-dummy-target" id="heading6"></a><h2>如何对已声明对象操作？</h2>
+<p>我们如何对于一个已经声明的对象，为其定义一个新的属性 ？</p>
+<a class="post-dummy-target" id="objectdefineproperty"></a><h3>Object.defineProperty</h3>
+<p>使用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty( )</a> 方法。</p>
+<p>Object.defineProperty( ) 方法会直接在一个对象上定义一个新属性，或者修改一个对象的现有属性，并返回这个对象。</p>
+<a class="post-dummy-target" id="heading7"></a><h4>语法</h4>
+<p><code>Object.defineProperty(obj, prop, descriptor)</code></p>
+<a class="post-dummy-target" id="heading8"></a><h4>参数</h4>
+<ul>
+<li>obj
+<ul>
+<li>要在其上定义属性的对象。</li>
+</ul>
+</li>
+<li>prop
+<ul>
+<li>要定义或修改的属性的名称。</li>
+</ul>
+</li>
+<li>descriptor
+<ul>
+<li>将被定义或修改的属性描述符。</li>
+</ul>
+</li>
+</ul>
+<a class="post-dummy-target" id="heading9"></a><h4>返回值</h4>
+<p>被传递给函数的对象。</p>
+<a class="post-dummy-target" id="heading10"></a><h3>例子</h3>
+<p>为已声明对象 data 定义新的属性 n。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">value</span><span class="o">:</span> <span class="mi">0</span>
+<span class="p">}</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">)</span>
+
+<span class="c1">//打印结果为 {n: 0}
+</span></code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading11"></a><h3>问题</h3>
+<p>当我们有这样一个需求： n不能小于0。但是 n 其实是并不存在的，我们如何对其进行判断？</p>
+<p>在 data 中“悄悄”搞一个变量来存储 n 。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">data</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+
+<span class="nx">data</span><span class="p">.</span><span class="nx">_n</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">get</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_n</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">_n</span> <span class="o">=</span> <span class="nx">value</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">data</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>那么这样就有一个问题：</strong> 如果直接从外部访问并篡改 data._n ，你的判断逻辑部分并不能察觉到这一点，就会造成混乱。</p>
+<p>如何解决这个问题？ 使用代理和监听。</p>
+<a class="post-dummy-target" id="heading12"></a><h2>代理/监听</h2>
+<a class="post-dummy-target" id="heading13"></a><h3>使用代理</h3>
+<p>代理也是一种设计模式，使用代理来实现上述需求。构造一个 proxy 函数。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">proxy</span><span class="p">(</span><span class="p">{</span> <span class="nx">data</span> <span class="p">}</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+      <span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">obj</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">dataProxy</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">(</span><span class="p">{</span> <span class="nx">data</span><span class="o">:</span> <span class="p">{</span> <span class="nx">n</span><span class="o">:</span> <span class="mi">0</span> <span class="p">}</span> <span class="p">}</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 1
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><p>函数中首先声明了一个空对象 obj。当你读写 dataProxy 时，实际得到的返回值为 obj，而 obj 其实就是 data 的返回结果。</p>
+<p>这样，在他们之间，就实现了一层代理： obj。我们暴露给用户或外面的只有一个对象：obj。</p>
+<a class="post-dummy-target" id="heading14"></a><h3>使用监听</h3>
+<a class="post-dummy-target" id="-"></a><h4>当 绕过代理</h4>
+<p>如果你在初始化时声明一个引用，可以绕过代理直接读写。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">myData</span> <span class="o">=</span> <span class="p">{</span><span class="nx">n</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="kd">let</span> <span class="nx">dataProxy</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">(</span><span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="nx">myData</span><span class="p">}</span><span class="p">)</span>
+<span class="p">...</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">myData</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// -1
+</span></code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading15"></a><h4>添加监听</h4>
+<p>为对象添加监听：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">function</span> <span class="nx">proxy</span><span class="p">(</span><span class="p">{</span> <span class="nx">data</span> <span class="p">}</span><span class="p">)</span> <span class="p">{</span>
+
+  <span class="c1">// 将 data.n 储存在 value 中
+</span><span class="c1"></span>  <span class="kd">let</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span>
+  <span class="c1">//这句可写可不写，接下来的定义新属性时如果发现n已经存在会自动覆盖
+</span><span class="c1"></span>  <span class="k">delete</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">value</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">set</span><span class="p">(</span><span class="nx">newValue</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">newValue</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+      <span class="nx">value</span> <span class="o">=</span> <span class="nx">newValue</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">)</span>
+
+  <span class="cm">/* 以上即添加监听 */</span>
+
+  <span class="cm">/* 以下对新的 &#34;data&#34; 进行代理 */</span>
+
+  <span class="kr">const</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="p">}</span>
+  <span class="nb">Object</span><span class="p">.</span><span class="nx">defineProperty</span><span class="p">(</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">&#39;n&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nx">get</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="nx">data</span><span class="p">.</span><span class="nx">n</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">set</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">if</span> <span class="p">(</span><span class="nx">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">)</span> <span class="k">return</span>
+      <span class="nx">data</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="nx">value</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">)</span>
+  <span class="k">return</span> <span class="nx">obj</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">myData</span> <span class="o">=</span> <span class="p">{</span><span class="nx">n</span><span class="o">:</span> <span class="mi">0</span><span class="p">}</span>
+<span class="kd">let</span> <span class="nx">dataProxy</span> <span class="o">=</span> <span class="nx">proxy</span><span class="p">(</span><span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="nx">myData</span><span class="p">}</span><span class="p">)</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">myData</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 0
+</span><span class="c1"></span>
+<span class="nx">myData</span><span class="p">.</span><span class="nx">n</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">dataProxy</span><span class="p">.</span><span class="nx">n</span><span class="p">)</span>
+<span class="c1">// 1
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>注意</strong>：我们只是在修改对象 {n: 0}，监听就是修改对象的过程，代理是在被修改过的原始对象上创建的。这样，彼此的连接才不会断开。</p>
+<a class="post-dummy-target" id="heading16"></a><h3>多个属性</h3>
+<p>当你有的 data 中有多个变量/属性时，可以用 闭包 和 循环 来实现这个过程。</p>
+<a class="post-dummy-target" id="new-vue"></a><h2>new Vue()</h2>
+<a class="post-dummy-target" id="vue--data-"></a><h3>vue 对 data 做了什么？</h3>
+<p>当你创建一个实例时</p>
+<p><code>const vm = new Vue({data: myData})</code></p>
+<ul>
+<li>vue 会让 vm 成为 myData 的代理。</li>
+<li>vue 会对 myData 的所有属性进行监控。</li>
+</ul>
+<a class="post-dummy-target" id="heading17"></a><h3>目的</h3>
+<p>这样做的目的是什么？</p>
+<ul>
+<li>你可以使用 this 来访问到 vm。 this.n === myData.n。</li>
+<li>之所以要监控，就是防止 vue 无法得知 myData 的属性变化。</li>
+<li>vue 得知属性变化才可以使用 render(data) 来更新 UI 和渲染页面。</li>
+</ul>
+<a class="post-dummy-target" id="heading18"></a><h2>数据响应式</h2>
+<ul>
+<li>响应式即对外界的变化做出的反应的一种形式。</li>
+<li>const vm = new Vue({data:{n: 0}})</li>
+<li>当修改 vm.n 或 data.n 时，render(data&hellip;) 中的 n 就会做出响应的响应。</li>
+<li><strong>这个联动的过程就是 vue 的 数据响应式。</strong></li>
+<li>vue 目前通过 Object.defineProperty 来实现数据响应式。</li>
+</ul>
+<a class="post-dummy-target" id="-data-"></a><h2>在 data 中添加属性</h2>
+<p>Vue 虽然对 data 中的属性（或对象中的属性）进行监听和代理，但是它却没有办法进行事先的监听和代理。</p>
+<p>如果你在初始化 data 之后再添加属性，该如何实现？</p>
+<a class="post-dummy-target" id="heading19"></a><h3>一般对象</h3>
+<p>对于一般的对象来说，可以在 data 中预先把所有可能用到的属性全部写出来，这样并不需要新增属性，只需要改它。</p>
+<p>也可以通过其他方法来添加属性。</p>
+<p>在了解以上原理后，我们来了解 Vue 提供的一个 API：</p>
+<p><code>Vue.set(object, key, value)</code></p>
+<p>或</p>
+<p><code>this.$set(object, key, value)</code></p>
+<a class="post-dummy-target" id="heading20"></a><h4>作用</h4>
+<ul>
+<li>在 data 中添加新的属性。</li>
+<li>自动创建为它创建代理和监听（如果没有创建过）。</li>
+</ul>
+<a class="post-dummy-target" id="heading21"></a><h4>示例</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kr">const</span> <span class="nx">Vue</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">Vue</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">{</span>
+    <span class="nx">data</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">obj</span><span class="o">:</span> <span class="p">{</span>
+            <span class="nx">a</span><span class="o">:</span> <span class="mi">0</span>
+        <span class="p">}</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">template</span><span class="o">:</span> <span class="sb">`</span><span class="sb">
+</span><span class="sb">    &lt;div&gt;
+</span><span class="sb">      {{obj.b}}
+</span><span class="sb">      &lt;button @click=&#39;one&#39;&gt;One&lt;/button&gt;
+</span><span class="sb">    &lt;/div&gt;
+</span><span class="sb">    </span><span class="sb">`</span><span class="p">,</span>
+    <span class="nx">methods</span><span class="o">:</span> <span class="p">{</span>
+        <span class="nx">one</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+            <span class="nx">Vue</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">obj</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="c1">// 或 this.$set(this.obj, &#39;b&#39;, 1)
+</span><span class="c1"></span>        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="p">)</span><span class="p">.</span><span class="nx">$mount</span><span class="p">(</span><span class="s1">&#39;#app&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading22"></a><h3>数组</h3>
+<p>因为数组本身的特殊性：数组的长度无法预测（比如所有用户的用户名，存在数组中），你无法使用 undefined 去为每一项占位，或一直使用 Vue.set( ) 方法。</p>
+<ul>
+<li>你可以使用 push 方法 <code>this.array.push('value')</code>，但其实数组已经被 Vue 包装了新的 push 方法。</li>
+<li>原理就是声明一个新的类来继承数组。</li>
+<li>各种在 Vue 实例 中使用的特例方法， 详见<a href="https://cn.vuejs.org/v2/guide/list.html#%E5%8F%98%E5%BC%82%E6%96%B9%E6%B3%95-mutation-method">数组变异方法</a>，一共有7个API。</li>
+<li>这些方法 (API) 会自动处理对数组该项的监听和代理，并触发视图更新。</li>
+</ul>
+<a class="post-dummy-target" id="heading23"></a><h2>什么才是最重要的</h2>
+<ul>
+<li>
+<p>研究思路和方法永远比知识更重要。</p>
+</li>
+<li>
+<p>你可以在不懂、不看源代码的前提下，去使用和理解一个库或项目或其他。</p>
+</li>
+<li>
+<p>前提是你已经知道了它的思路和方法。</p>
+</li>
+</ul>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-12-19 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/12/vue-data-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvue-data-one%2f&amp;text=new%20Vue%28%20%29%ef%bc%9a%e6%95%b0%e6%8d%ae%e5%93%8d%e5%ba%94%e5%bc%8f&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvue-data-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvue-data-one%2f&amp;title=new%20Vue%28%20%29%ef%bc%9a%e6%95%b0%e6%8d%ae%e5%93%8d%e5%ba%94%e5%bc%8f" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fvue-data-one%2f&amp;appkey=&amp;title=new%20Vue%28%20%29%ef%bc%9a%e6%95%b0%e6%8d%ae%e5%93%8d%e5%ba%94%e5%bc%8f" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/vue/"><i class="fas fa-tag fa-fw"></i>Vue</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/"><i class="fas fa-tag fa-fw"></i>转译</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E6%95%B0%E6%8D%AE%E5%93%8D%E5%BA%94/"><i class="fas fa-tag fa-fw"></i>数据响应</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/12/vuecli-two/" class="prev" rel="prev" title="Vue使用实例：vue/vue.runtime"><i class="fas fa-angle-left fa-fw"></i>Vue使用实例：vue/vue.runtime</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

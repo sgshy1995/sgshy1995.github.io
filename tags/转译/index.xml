@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Mon, 16 Dec 2019 16:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 19 Dec 2019 08:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>new Vue( )：数据响应式</title>
+      <link>https://sgshy1995.github.io/2019/12/vue-data-one/</link>
+      <pubDate>Thu, 19 Dec 2019 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/vue-data-one/</guid>
+      <description>前言 Vue 到底对 data 做了什么呢？我们来看下以下代码。 为了方便操作，这里引入完整版 Vue。 index.html 1 2 3 4 &amp;lt;body&amp;gt; &amp;lt;div id=&amp;#34;app&amp;#34;&amp;gt;&amp;lt;/div&amp;gt; &amp;lt;script src=&amp;#34;https://cdn.bootcss.com/vue/2.6.10/vue.min.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;/body&amp;gt; main.js 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17</description>
+    </item>
     
     <item>
       <title>Vue使用实例：vue/vue.runtime</title>
