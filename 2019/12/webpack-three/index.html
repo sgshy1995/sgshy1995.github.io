@@ -41,7 +41,7 @@
     
         "keywords": "Git, 转译, Shell",
     
-    "wordcount":  1205 ,
+    "wordcount":  1209 ,
     "url": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/",
     
         "datePublished": "2019-12-10T16:22:42\x2b08:00",
@@ -145,7 +145,7 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-10>2019-12-10</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1205 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1209 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div>
 
@@ -494,18 +494,20 @@ git checkout -
 <p><strong>deploy.sh</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
 </span></code></pre></td>
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">yarn build <span class="o">&amp;&amp;</span>
+git branch gh-pages<span class="p">;</span>
 git checkout gh-pages <span class="o">&amp;&amp;</span>
 rm -rf src tests css js public *.json *.ico *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh *.md <span class="o">&amp;&amp;</span>
 mv dist/* ./ <span class="o">&amp;&amp;</span>
