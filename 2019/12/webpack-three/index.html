@@ -41,7 +41,7 @@
     
         "keywords": "Git, 转译, Shell",
     
-    "wordcount":  1082 ,
+    "wordcount":  1205 ,
     "url": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/",
     
         "datePublished": "2019-12-10T16:22:42\x2b08:00",
@@ -145,7 +145,7 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-10>2019-12-10</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1082 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1205 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div>
 
@@ -186,8 +186,8 @@
         <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading14">创建脚本</a></li>
         <li><a href="#heading15">编写脚本</a></li>
-        <li><a href="#heading16">注意</a></li>
-        <li><a href="#heading17">一键部署</a></li>
+        <li><a href="#heading17">注意</a></li>
+        <li><a href="#heading18">一键部署</a></li>
       </ul>
     </li>
   </ul>
@@ -232,8 +232,8 @@
         <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading14">创建脚本</a></li>
         <li><a href="#heading15">编写脚本</a></li>
-        <li><a href="#heading16">注意</a></li>
-        <li><a href="#heading17">一键部署</a></li>
+        <li><a href="#heading17">注意</a></li>
+        <li><a href="#heading18">一键部署</a></li>
       </ul>
     </li>
   </ul>
@@ -462,6 +462,8 @@ $ git push --set-upstream origin gh-pages
 </code></pre></td></tr></table>
 </div>
 </div><a class="post-dummy-target" id="heading15"></a><h3>编写脚本</h3>
+<a class="post-dummy-target" id="heading16"></a><h4>半自动版</h4>
+<p>如果你已经创建过 gh-pages 分支且上传过，请使用下面版本：</p>
 <p><strong>deploy.sh</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -476,7 +478,7 @@ $ git push --set-upstream origin gh-pages
 </span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-sh" data-lang="sh">yarn build <span class="o">&amp;&amp;</span>
+<pre class="chroma"><code class="language-bash" data-lang="bash">yarn build <span class="o">&amp;&amp;</span>
 git checkout gh-pages <span class="o">&amp;&amp;</span>
 rm -rf src *.json *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh <span class="o">&amp;&amp;</span>
 mv dist/* ./ <span class="o">&amp;&amp;</span>
@@ -487,9 +489,36 @@ git push <span class="o">&amp;&amp;</span>
 git checkout -
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading16"></a><h3>注意</h3>
+</div><a class="post-dummy-target" id="vue"></a><h4>全自动版(兼容Vue)</h4>
+<p>自创版。全自动版，从你更新上传 master 分支开始。</p>
+<p><strong>deploy.sh</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">yarn build <span class="o">&amp;&amp;</span>
+git checkout gh-pages <span class="o">&amp;&amp;</span>
+rm -rf src tests css js public *.json *.ico *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh *.md <span class="o">&amp;&amp;</span>
+mv dist/* ./ <span class="o">&amp;&amp;</span>
+rm -rf dist<span class="p">;</span>
+git add . <span class="o">&amp;&amp;</span>
+git commit . -m <span class="s2">&#34;update&#34;</span> <span class="o">&amp;&amp;</span>
+git push --set-upstream origin gh-pages <span class="o">&amp;&amp;</span>
+git checkout -
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading17"></a><h3>注意</h3>
 <p><strong>注意：在使用脚本部署之前，一定要确认自己的本地master分支已经提交更新或上传至github仓库。以防止出错。</strong></p>
-<a class="post-dummy-target" id="heading17"></a><h3>一键部署</h3>
+<a class="post-dummy-target" id="heading18"></a><h3>一键部署</h3>
 <p>使用脚本文件一键部署，重复上述步骤并自动回到master分支。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">

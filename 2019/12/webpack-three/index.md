@@ -175,9 +175,13 @@ $ touch deploy.sh
 
 ### 编写脚本
 
+#### 半自动版
+
+如果你已经创建过 gh-pages 分支且上传过，请使用下面版本：
+
 **deploy.sh**
 
-```sh
+```bash
 yarn build &&
 git checkout gh-pages &&
 rm -rf src *.json *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh &&
@@ -186,6 +190,24 @@ rm -rf dist;
 git add . &&
 git commit . -m "update" &&
 git push &&
+git checkout -
+```
+
+#### 全自动版(兼容Vue)
+
+自创版。全自动版，从你更新上传 master 分支开始。
+
+**deploy.sh**
+
+```bash
+yarn build &&
+git checkout gh-pages &&
+rm -rf src tests css js public *.json *.ico *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh *.md &&
+mv dist/* ./ &&
+rm -rf dist;
+git add . &&
+git commit . -m "update" &&
+git push --set-upstream origin gh-pages &&
 git checkout -
 ```
 
