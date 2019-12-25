@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>修饰符 on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/%E4%BF%AE%E9%A5%B0%E7%AC%A6/</link>
+    <description>Recent content in 修饰符 on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Wed, 25 Dec 2019 08:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/%E4%BF%AE%E9%A5%B0%E7%AC%A6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue 解析：.sync 修饰符</title>
+      <link>https://sgshy1995.github.io/2019/12/vue-sync-one/</link>
+      <pubDate>Wed, 25 Dec 2019 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/vue-sync-one/</guid>
+      <description>用途 特别的需求： 当一个子组件改变了一个外部传入的属性时，这个变化也会同步到父组件中所绑定。 子组件要“通知”父组件，才可以改变。 避免真正的“双</description>
+    </item>
+    
+  </channel>
+</rss>

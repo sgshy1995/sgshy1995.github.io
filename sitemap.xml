@@ -3,7 +3,7 @@
         <url>
             <loc>https://sgshy1995.github.io/categories/</loc>
             
-                <lastmod>2019-12-19T08:42:42+08:00</lastmod>
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
             
             
                 <changefreq>weekly</changefreq>
@@ -31,7 +31,7 @@
         <url>
             <loc>https://sgshy1995.github.io/tags/</loc>
             
-                <lastmod>2019-12-19T08:42:42+08:00</lastmod>
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
             
             
                 <changefreq>weekly</changefreq>
@@ -45,7 +45,35 @@
         <url>
             <loc>https://sgshy1995.github.io/tags/vue/</loc>
             
-                <lastmod>2019-12-19T08:42:42+08:00</lastmod>
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
+            
+            
+                <changefreq>weekly</changefreq>
+            
+            
+                <priority>0.5</priority>
+            
+            
+        </url>
+    
+        <url>
+            <loc>https://sgshy1995.github.io/2019/12/vue-sync-one/</loc>
+            
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
+            
+            
+                <changefreq>weekly</changefreq>
+            
+            
+                <priority>0.5</priority>
+            
+            
+        </url>
+    
+        <url>
+            <loc>https://sgshy1995.github.io/tags/%E4%BF%AE%E9%A5%B0%E7%AC%A6/</loc>
+            
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
             
             
                 <changefreq>weekly</changefreq>
@@ -73,7 +101,21 @@
         <url>
             <loc>https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/</loc>
             
-                <lastmod>2019-12-19T08:42:42+08:00</lastmod>
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
+            
+            
+                <changefreq>weekly</changefreq>
+            
+            
+                <priority>0.5</priority>
+            
+            
+        </url>
+    
+        <url>
+            <loc>https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/</loc>
+            
+                <lastmod>2019-12-25T08:42:42+08:00</lastmod>
             
             
                 <changefreq>weekly</changefreq>
@@ -100,20 +142,6 @@
     
         <url>
             <loc>https://sgshy1995.github.io/2019/12/vue-data-one/</loc>
-            
-                <lastmod>2019-12-19T08:42:42+08:00</lastmod>
-            
-            
-                <changefreq>weekly</changefreq>
-            
-            
-                <priority>0.5</priority>
-            
-            
-        </url>
-    
-        <url>
-            <loc>https://sgshy1995.github.io/tags/%E8%BD%AC%E8%AF%91/</loc>
             
                 <lastmod>2019-12-19T08:42:42+08:00</lastmod>
             

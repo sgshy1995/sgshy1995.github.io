@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 19 Dec 2019 08:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 25 Dec 2019 08:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue 解析：.sync 修饰符</title>
+      <link>https://sgshy1995.github.io/2019/12/vue-sync-one/</link>
+      <pubDate>Wed, 25 Dec 2019 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2019/12/vue-sync-one/</guid>
+      <description>用途 特别的需求： 当一个子组件改变了一个外部传入的属性时，这个变化也会同步到父组件中所绑定。 子组件要“通知”父组件，才可以改变。 避免真正的“双</description>
+    </item>
     
     <item>
       <title>深度理解 Vue 数据响应式</title>
