@@ -87,7 +87,7 @@ export default {
 
 ### “儿子向父亲要钱” 的项目
 
-一个用 vue 的 .sync 修饰符实现的[项目](#)，同时包含了其他的一些修饰符的示意。
+一个用 vue 的 .sync 修饰符实现的[项目](https://github.com/sgshy1995/vue-demo-qualifier)，同时包含了其他的一些修饰符的示意。
 
 ![示意图](/images/vue/1.gif)
 
