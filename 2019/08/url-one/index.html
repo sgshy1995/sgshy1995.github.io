@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>关于 URL | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="浅析 URL">
+<link rel="prev" href="https://sgshy1995.github.io/2018/12/test/" />
+<link rel="next" href="https://sgshy1995.github.io/2019/08/http/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2019/08/url-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="关于 URL"/>
+<meta name="twitter:description" content="浅析 URL"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "关于 URL",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2019\/08\/url-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "HTTP, URL",
+    
+    "wordcount":  2330 ,
+    "url": "https:\/\/sgshy1995.github.io\/2019\/08\/url-one\/",
+    
+        "datePublished": "2019-08-24T16:22:42\x2b08:00",
+    
+    
+        "dateModified": "2019-08-24T18:22:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "浅析 URL"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">关于 URL</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-08-24>2019-08-24</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2330 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 5 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">传送协议</a>
+      <ul>
+        <li><a href="#http">HTTP</a></li>
+        <li><a href="#https">HTTPS</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading1">服务器</a>
+      <ul>
+        <li><a href="#ip-">IP 地址</a></li>
+        <li><a href="#heading2">域名</a></li>
+        <li><a href="#dns">DNS</a></li>
+        <li><a href="#nslookup">nslookup</a></li>
+        <li><a href="#ping">ping</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">端口</a>
+      <ul>
+        <li><a href="#heading5">一些默认端口</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading6">路径</a></li>
+    <li><a href="#heading7">查询参数</a></li>
+    <li><a href="#heading8">锚点</a></li>
+    <li><a href="#heading9">示例</a></li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">传送协议</a>
+      <ul>
+        <li><a href="#http">HTTP</a></li>
+        <li><a href="#https">HTTPS</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading1">服务器</a>
+      <ul>
+        <li><a href="#ip-">IP 地址</a></li>
+        <li><a href="#heading2">域名</a></li>
+        <li><a href="#dns">DNS</a></li>
+        <li><a href="#nslookup">nslookup</a></li>
+        <li><a href="#ping">ping</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading4">端口</a>
+      <ul>
+        <li><a href="#heading5">一些默认端口</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading6">路径</a></li>
+    <li><a href="#heading7">查询参数</a></li>
+    <li><a href="#heading8">锚点</a></li>
+    <li><a href="#heading9">示例</a></li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="www"></a><h1>万维网/WWW</h1>
+<p><a href="https://zh.wikipedia.org/wiki/%E4%B8%87%E7%BB%B4%E7%BD%91">万维网</a>（World Wide Web）亦作 WWW、Web，是一个透过互联网访问的，由许多互相链接的超文本组成的系统。</p>
+<p><em><strong>WWW = HTTP + URI + HTML</strong></em></p>
+<a class="post-dummy-target" id="url"></a><h1>URL</h1>
+<p>URI（Uniform Resource Identifier，缩写：URI）是一个全球网络资源唯一认证的系统，称为统一资源标识符。</p>
+<p>URI 的最常见的形式是 <strong>统一资源定位符</strong>（URL），经常指定为非正式的网址。</p>
+<p><a href="https://zh.wikipedia.org/wiki/%E7%BB%9F%E4%B8%80%E8%B5%84%E6%BA%90%E5%AE%9A%E4%BD%8D%E7%AC%A6">统一资源定位符</a>（Uniform Resource Locator，缩写：URL；或称统一资源定位器、定位地址、URL地址，俗称网页地址或简称网址）是因特网上标准的资源的地址（Address），如同在网络上的门牌。</p>
+<p>它最初是由<a href="https://zh.wikipedia.org/wiki/%E8%92%82%E5%A7%86%C2%B7%E4%BC%AF%E7%BA%B3%E6%96%AF-%E6%9D%8E">蒂姆·伯纳斯-李</a>发明用来作为万维网的地址，现在它已经被万维网联盟编制为因特网标准RFC 1738。</p>
+<p>大致分为几部分：</p>
+<a class="post-dummy-target" id="heading"></a><h2>传送协议</h2>
+<p>网页广泛使用的协议基本只有两种： HTTP 和 HTTPS 。</p>
+<a class="post-dummy-target" id="http"></a><h3>HTTP</h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE">超文本传输协议</a>（HyperText Transfer Protocol）是一种用于分布式、协作式和超媒体信息系统的应用层协议。HTTP是万维网的数据通信的基础。</p>
+<a class="post-dummy-target" id="https"></a><h3>HTTPS</h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E8%B6%85%E6%96%87%E6%9C%AC%E4%BC%A0%E8%BE%93%E5%AE%89%E5%85%A8%E5%8D%8F%E8%AE%AE">超文本传输安全协议</a>（HyperText Transfer Protocol Secure；常称为HTTP over TLS、HTTP over SSL 或 HTTP Secure）是一种通过计算机网络进行安全通信的传输协议。</p>
+<p>HTTPS经由HTTP进行通信，但利用SSL/TLS来加密数据包。HTTPS开发的主要目的，是提供对网站服务器的身份认证，保护交换数据的隐私与完整性。</p>
+<a class="post-dummy-target" id="heading1"></a><h2>服务器</h2>
+<p>通常为域名，也可为IP地址。</p>
+<a class="post-dummy-target" id="ip-"></a><h3>IP 地址</h3>
+<p><a href="https://zh.wikipedia.org/wiki/IP%E5%9C%B0%E5%9D%80">互联网协议地址</a>（Internet Protocol Address，又译为网际协议地址），缩写为IP地址（IP Address），是分配给网络上使用网际协议（Internet Protocol, IP）的设备的数字标签。</p>
+<p>IP地址主要有两个功能：标识主机或者网络和寻址。</p>
+<p>常见的 IP 地址分为 IPv4 与 IPv6 两大类，但是也有其他不常用的小分类。<em><strong>IP 地址是唯一的</strong></em>。</p>
+<p>IP 地址由 32位 二进制数组成，为便于使用，常以 XXX.XXX.XXX.XXX 形式表现，每组 XXX 代表小于或等于 255 的 10进制数，该表示方法称为点分十进制。</p>
+<a class="post-dummy-target" id="heading2"></a><h3>域名</h3>
+<p><a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D">网域名称</a>（Domain Name，简称：Domain），简称域名、网域，是由一串用点分隔的字符组成的互联网上某一台计算机或计算机组的名称，用于在数据传输时标识计算机的电子方位。</p>
+<p>域名可以说是一个IP地址的代称，目的是为了便于记忆后者。例如，baidu.com是一个域名，和 IP 地址 220.181.38.148 相对应。人们可以直接访问 baidu.com 来代替 IP 地址，然后域名系统（DNS）就会将它转化成便于机器识别的IP地址。这样，人们只需要记忆这一串带有特殊含义的字符，而不需要记忆没有含义的数字。</p>
+<ul>
+<li>一个域名可以对应不同的 IP（负载均衡）</li>
+<li>一个 IP 也可以对应不同的域名（共享主机）</li>
+</ul>
+<a class="post-dummy-target" id="dns"></a><h3>DNS</h3>
+<p>域名的核心是<a href="https://zh.wikipedia.org/wiki/%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9F">域名系统</a>（Domain Name System，缩写：DNS）。</p>
+<p>域名系统是互联网的一项服务。<em>它作为将域名和IP地址相互映射的一个分布式数据库，能够使人更方便地访问互联网。</em></p>
+<p>DNS 使用 TCP和UDP 端口53。当前，对于每一级域名长度的限制是63个字符，域名总长度则不能超过253个字符。</p>
+<a class="post-dummy-target" id="nslookup"></a><h3>nslookup</h3>
+<p><a href="https://en.wikipedia.org/wiki/Nslookup">nslookup</a> 命令用于查询 DNS 的记录，查看域名解析是否正常，在网络故障的时候用来诊断网络问题。</p>
+<p>使用最多的方法是直接查询一个域名的 A记录。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ nslookup domain <span class="o">[</span>dns-server<span class="o">]</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>如果没有指定 dns-server，用系统默认的 dns 服务器。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ nslookup baidu.com
+
+<span class="c1"># Server:	180.168.255.118</span>
+<span class="c1"># Address:	180.168.255.118#53</span>
+
+<span class="c1"># Non-authoritative answer:</span>
+<span class="c1"># Name:	baidu.com</span>
+<span class="c1"># Address: 220.181.38.148</span>
+<span class="c1"># Name:	baidu.com</span>
+<span class="c1"># Address: 39.156.69.79</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading3"></a><h4>域名级</h4>
+<p>域名系统中的任何名称都是域名。在域名系统的层次结构中，各种域名都隶属于域名系统根域的下级。</p>
+<ul>
+<li>
+<p>域名的第一级是顶级域，它包括通用顶级域，例如.com、.net和.org；以及国家和地区顶级域，例如.us、.cn和.tk。</p>
+</li>
+<li>
+<p>顶级域名下一层是二级域名，一级一级地往下。</p>
+</li>
+<li>
+<p>这些域名向人们提供注册服务，人们可以用它创建公开的互联网资源或运行网站。</p>
+</li>
+<li>
+<p>顶级域名的管理服务由对应的域名注册管理机构（域名注册局）负责，注册服务通常由域名注册商负责。</p>
+</li>
+</ul>
+<a class="post-dummy-target" id="ping"></a><h3>ping</h3>
+<p><a href="https://zh.wikipedia.org/wiki/Ping">ping</a>（呯）是一种计算机网络工具，用来测试数据包能否透过IP协议到达特定主机。</p>
+<p>ping 的运作原理是向目标主机传出一个 ICMP 的请求回显数据包，并等待接收回显回应数据包。程序会按时间和成功响应的次数估算丢失数据包率（丢包率）和数据包往返时间（网络时延）。</p>
+<p>这里展示 Linux/类Unix 系统中的 ping:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ ping baidu.com
+
+<span class="c1"># PING baidu.com (220.181.38.148): 56 data bytes</span>
+<span class="c1"># 64 bytes from 220.181.38.148: icmp_seq=0 ttl=51 time=27.892 ms</span>
+<span class="c1"># 64 bytes from 220.181.38.148: icmp_seq=1 ttl=51 time=29.555 ms</span>
+<span class="c1"># 64 bytes from 220.181.38.148: icmp_seq=2 ttl=51 time=29.480 ms</span>
+<span class="c1"># 64 bytes from 220.181.38.148: icmp_seq=3 ttl=51 time=29.192 ms</span>
+<span class="c1"># 64 bytes from 220.181.38.148: icmp_seq=4 ttl=51 time=29.236 ms</span>
+<span class="c1"># ...</span>
+<span class="c1"># ^C</span>
+<span class="c1"># --- baidu.com ping statistics ---</span>
+<span class="c1"># 11 packets transmitted, 11 packets received, 0.0% packet loss</span>
+<span class="c1"># round-trip min/avg/max/stddev = 27.892/29.640/32.078/0.949 ms</span>
+</code></pre></td></tr></table>
+</div>
+</div><ul>
+<li>
+<p>按 control/ctrl+C 中断。总计返回11个数据包，0丢包，最小27.892ms，最大29.640ms。</p>
+</li>
+<li>
+<p>IP 地址是 220.181.38.148。</p>
+</li>
+<li>
+<p>windows 系统下会默认只返回4个数据包，以32 bytes 大小测试。</p>
+</li>
+</ul>
+<a class="post-dummy-target" id="heading4"></a><h2>端口</h2>
+<p><a href="https://zh.wikipedia.org/wiki/%E9%80%9A%E8%A8%8A%E5%9F%A0">端口</a>（port），又称为连接端口、协议端口（protocol port）。</p>
+<p>每个端口都会与主机的IP地址及通信协议关联。端口以16比特数字来表示，这被称为端口编号（port number）。</p>
+<ul>
+<li>一共有 65535 个端口</li>
+<li>0&ndash;1023 系统保留，只能由root用户使用。</li>
+<li>其他端口给普通用户使用，端口可能存在被占用情况。</li>
+</ul>
+<a class="post-dummy-target" id="heading5"></a><h3>一些默认端口</h3>
+<ul>
+<li>21: 文件传输协议 FTP</li>
+<li>80: 超文本传输协议 HTTP</li>
+<li>443: 超文本传输安全协议 HTTPS</li>
+<li>156: SQL 服务</li>
+<li>170: 打印服务</li>
+<li>53: 域名服务系统 DNS</li>
+<li>513: 路由器</li>
+</ul>
+<a class="post-dummy-target" id="heading6"></a><h2>路径</h2>
+<p>路径用于请求一个IP或域名下的不同页面。</p>
+<p>以“/”字符区别路径中的每一个目录名称。</p>
+<a class="post-dummy-target" id="heading7"></a><h2>查询参数</h2>
+<p>查询参数可以查看同一个页面下的不同内容。</p>
+<p>以 “?” 字符为起点，每个参数以 “&amp;” 隔开，再以 “=” 分开参数名称与数据，通常以 UTF8 的 URL 编码，避开字符冲突的问题。</p>
+<a class="post-dummy-target" id="heading8"></a><h2>锚点</h2>
+<p>也称片段。用于查看页面中同一内容的不同位置。</p>
+<p>以“#”字符为起点。</p>
+<a class="post-dummy-target" id="heading9"></a><h2>示例</h2>
+<pre><code>https://www.baidu.com:443/s?wd=vue#5
+</code></pre><ul>
+<li>协议为 https。大多数网页浏览器不要求用户输入网页中 “https://” 的部分，因为绝大多数网页内容是超文本传输/安全传输协议文件</li>
+<li>域名为 www. baidu. com</li>
+<li>端口为 443。常用端口号也不必书写</li>
+<li>路径为 /s</li>
+<li>查询参数为 ?wd=vue</li>
+<li>锚点为 #5</li>
+</ul>
+<p><img src="/images/http/7.png" alt="url"></p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2019-08-24 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2019/08/url-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f08%2furl-one%2f&amp;text=%e5%85%b3%e4%ba%8e%20URL&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2019%2f08%2furl-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f08%2furl-one%2f&amp;title=%e5%85%b3%e4%ba%8e%20URL" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f08%2furl-one%2f&amp;appkey=&amp;title=%e5%85%b3%e4%ba%8e%20URL" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/http/"><i class="fas fa-tag fa-fw"></i>HTTP</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/url/"><i class="fas fa-tag fa-fw"></i>URL</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2018/12/test/" class="prev" rel="prev" title="测试示范页"><i class="fas fa-angle-left fa-fw"></i>测试示范页</a>
+        
+        
+            <a href="https://sgshy1995.github.io/2019/08/http/" class="next" rel="next" title="HTTP的请求与响应以及使用Chrome的查看方式">HTTP的请求与响应以及使用Chrome的查看方式<i class="fas fa-angle-right fa-fw"></i></a>
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>
