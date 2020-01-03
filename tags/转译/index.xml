@@ -49,12 +49,12 @@
     </item>
     
     <item>
-      <title>Webpack高级：一键部署</title>
+      <title>Webpack/Vue 实用：一键部署</title>
       <link>https://sgshy1995.github.io/2019/12/webpack-three/</link>
       <pubDate>Tue, 10 Dec 2019 16:22:42 +0800</pubDate>
       
       <guid>https://sgshy1995.github.io/2019/12/webpack-three/</guid>
-      <description>前言 当你完成一个webpack项目时，就到了将代码搞到仓库里的时候。 你可以全部部署到github仓库，使用GithubPages域名的dis</description>
+      <description>前言 当你完成一个 Webpack/Vue 项目时，将代码搞到仓库。 你可以全部部署到 github 仓库，使用 Github Pages 域名的 dist 路径来浏览页面。 也可以将 dist 目录与根目录分开在不同的仓库。 当</description>
     </item>
     
     <item>

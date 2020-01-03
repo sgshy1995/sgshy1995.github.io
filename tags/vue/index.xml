@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 25 Dec 2019 08:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jan 2020 08:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/tags/vue/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue组件通信的一种实现&#43;坑</title>
+      <link>https://sgshy1995.github.io/2020/01/vue-message-one/</link>
+      <pubDate>Thu, 02 Jan 2020 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2020/01/vue-message-one/</guid>
+      <description>组件通信 前端在用 Vue 框架进行开发时，使用核心思想之一的组件式开发。 在源生JS中，我们熟悉数据之间的通信，页面之间的通信；在这里，Vue 通过组件</description>
+    </item>
     
     <item>
       <title>Vue 解析：.sync 修饰符</title>

@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Wed, 25 Dec 2019 08:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Thu, 02 Jan 2020 08:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Vue组件通信的一种实现&#43;坑</title>
+      <link>https://sgshy1995.github.io/2020/01/vue-message-one/</link>
+      <pubDate>Thu, 02 Jan 2020 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2020/01/vue-message-one/</guid>
+      <description>组件通信 前端在用 Vue 框架进行开发时，使用核心思想之一的组件式开发。 在源生JS中，我们熟悉数据之间的通信，页面之间的通信；在这里，Vue 通过组件</description>
+    </item>
     
     <item>
       <title>Vue 解析：.sync 修饰符</title>
@@ -49,12 +58,12 @@
     </item>
     
     <item>
-      <title>Webpack高级：一键部署</title>
+      <title>Webpack/Vue 实用：一键部署</title>
       <link>https://sgshy1995.github.io/2019/12/webpack-three/</link>
       <pubDate>Tue, 10 Dec 2019 16:22:42 +0800</pubDate>
       
       <guid>https://sgshy1995.github.io/2019/12/webpack-three/</guid>
-      <description>前言 当你完成一个webpack项目时，就到了将代码搞到仓库里的时候。 你可以全部部署到github仓库，使用GithubPages域名的dis</description>
+      <description>前言 当你完成一个 Webpack/Vue 项目时，将代码搞到仓库。 你可以全部部署到 github 仓库，使用 Github Pages 域名的 dist 路径来浏览页面。 也可以将 dist 目录与根目录分开在不同的仓库。 当</description>
     </item>
     
     <item>

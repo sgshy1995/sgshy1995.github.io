@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="zh">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title>Vue组件通信的一种实现&#43;坑 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noodp" />
+<meta name="Description" content="深度解析Vue">
+<link rel="prev" href="https://sgshy1995.github.io/2019/12/vue-sync-one/" />
+<link rel="canonical" href="https://sgshy1995.github.io/2020/01/vue-message-one/" />
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#da532c">
+<meta name="theme-color" content="#ffffff">
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Vue组件通信的一种实现&#43;坑"/>
+<meta name="twitter:description" content="深度解析Vue"/>
+<script type="application/ld+json">
+    {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": "Vue组件通信的一种实现\x2b坑",
+    "mainEntityOfPage": {
+        "@type": "WebPage",
+        "@id": "https:\/\/sgshy1995.github.io\/2020\/01\/vue-message-one\/"
+    },
+    
+        "image": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/cover.png",
+            "width":  800 ,
+            "height":  600 
+        },
+    
+    "genre": "posts",
+    
+        "keywords": "Vue, 组件, 通信",
+    
+    "wordcount":  1346 ,
+    "url": "https:\/\/sgshy1995.github.io\/2020\/01\/vue-message-one\/",
+    
+        "datePublished": "2020-01-02T08:22:42\x2b08:00",
+    
+    
+        "dateModified": "2020-01-02T08:42:42\x2b08:00",
+    
+    
+        "license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    
+    
+        "publisher": {
+            "@type": "Organization",
+            "name": "XXXX",
+            "logo": {
+            "@type": "ImageObject",
+            "url": "https:\/\/sgshy1995.github.io\/logo.png",
+            "width":  127 ,
+            "height":  40 
+            }
+        },
+    
+    
+    "description": "深度解析Vue"
+    }
+    </script>
+<link rel="stylesheet" href="/css/style.min.css">
+<link rel="stylesheet" href="/css/lib/fontawesome-free/all.min.min.css">
+
+<link rel="stylesheet" href="/css/lib/animate/animate.min.min.css">
+
+    </head>
+    <body>
+        <script>
+            window.isDark = (window.localStorage && window.localStorage.getItem('theme')) === 'dark';
+            window.isDark && document.body.classList.add('dark-theme');
+        </script>
+        <div class="wrapper">
+            <nav class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-header animated bounceIn">
+            <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+        </div>
+        <div class="navbar-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav>
+<nav class="navbar-mobile">
+     <div class="navbar-container">
+        <div class="navbar-header">
+            <div class="navbar-header-title animated bounceIn">
+                <a href="https://sgshy1995.github.io/">小小盛的博客</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="navbar-menu" id="mobile-menu">
+            
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/posts" title="">文章</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/tags" title="">标签</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/categories" title="">分类</a>
+            
+                <a class="menu-item" href="https://sgshy1995.github.io/about" title="">关于</a>
+            
+            <a href="javascript:void(0);" class="theme-switch"><i class="fas fa-adjust fa-rotate-180 fa-fw"></i></a>
+        </div>
+    </div>
+</nav><main class="main">
+                <div class="container">
+                    
+    
+    
+    
+
+    <article class="post-warp">
+        <h1 class="post-title animated flipInX">Vue组件通信的一种实现&#43;坑</h1>
+
+        <div class="post-meta">
+            <div class="post-meta-main">
+                <a class="author" href="https://sgshy1995.github.io/" rel="author"><i class="fas fa-user-circle fa-fw"></i>Eden&nbsp;</a>
+                <span class="post-category">
+                        收录于
+                        <i class="far fa-folder fa-fw"></i><a href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/">技术</a>
+                            
+                    </span>
+            </div>
+            <div class="post-meta-other">
+                <i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-01-02>2020-01-02</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1346 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
+        </div>
+
+        
+
+        <div class="post-toc" id="post-toc">
+                <h2 class="post-toc-title">目录</h2>
+                <div class="post-toc-content always-active">
+                    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#heading">组件通信</a></li>
+    <li><a href="#heading1">父子组件</a>
+      <ul>
+        <li><a href="#-props">父子组件之 props</a></li>
+        <li><a href="#heading2">父组件给子组件传值</a></li>
+        <li><a href="#-props1">子组件申请改变 props</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading3">兄弟组件</a></li>
+    <li><a href="#heading4">一个坑</a>
+      <ul>
+        <li><a href="#heading5">解决一</a></li>
+        <li><a href="#heading6">解决二</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                </div>
+            </div>
+            <div class="post-toc-mobile" id="post-toc-mobile">
+                <details>
+                    <summary><div class="post-toc-title"><span>目录</span><span><i class="details icon fas fa-angle-down"></i></span></div></summary>
+                    <div class="post-toc-content">
+                        
+                        
+                        <nav id="TableOfContentsMobile">
+  <ul>
+    <li><a href="#heading">组件通信</a></li>
+    <li><a href="#heading1">父子组件</a>
+      <ul>
+        <li><a href="#-props">父子组件之 props</a></li>
+        <li><a href="#heading2">父组件给子组件传值</a></li>
+        <li><a href="#-props1">子组件申请改变 props</a></li>
+      </ul>
+    </li>
+    <li><a href="#heading3">兄弟组件</a></li>
+    <li><a href="#heading4">一个坑</a>
+      <ul>
+        <li><a href="#heading5">解决一</a></li>
+        <li><a href="#heading6">解决二</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+                    </div>
+                </details>
+            </div>
+
+        <div class="post-content">
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            <a class="post-dummy-target" id="heading"></a><h2>组件通信</h2>
+<p>前端在用 Vue 框架进行开发时，使用核心思想之一的组件式开发。</p>
+<p>在源生JS中，我们熟悉数据之间的通信，页面之间的通信；在这里，Vue 通过组件通信来实现所有互动。</p>
+<p>这里介绍父子组件、兄弟组件的一种常用而便捷的通信方式，同时在其中不经意间也有一些小小的坑。</p>
+<a class="post-dummy-target" id="heading1"></a><h2>父子组件</h2>
+<a class="post-dummy-target" id="-props"></a><h3>父子组件之 props</h3>
+<p>Prop 的<a href="https://cn.vuejs.org/v2/guide/components-props.html#%E5%8D%95%E5%90%91%E6%95%B0%E6%8D%AE%E6%B5%81">单向数据流</a>。</p>
+<a class="post-dummy-target" id="heading2"></a><h3>父组件给子组件传值</h3>
+<p><em>父组件 App.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;app&#34;</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="p">{</span><span class="nx">father</span><span class="p">}</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">Childone</span> <span class="o">:</span><span class="nx">child</span><span class="o">=</span><span class="s2">&#34;father&#34;</span> <span class="o">/</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">import</span> <span class="nx">Childone</span> <span class="nx">from</span> <span class="s2">&#34;./components/childone&#34;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;app&#39;</span><span class="p">,</span>
+  <span class="nx">data</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span><span class="p">{</span>
+      <span class="nx">father</span><span class="o">:</span><span class="mi">100</span>
+    <span class="p">}</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">components</span><span class="o">:</span><span class="p">{</span>
+    <span class="nx">Childone</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>子组件 childone.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;one&#34;</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="p">{</span><span class="nx">child</span><span class="p">}</span><span class="p">}</span>
+  <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;child&#39;</span><span class="p">]</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在父组件的 template 中对子组件的引用，通过 <code>:child=&quot;father&quot;</code> 来将 father 的值赋予 子组件中的 child。</p>
+<a class="post-dummy-target" id="-props1"></a><h3>子组件申请改变 props</h3>
+<p>在 Vue 文档中：</p>
+<p><em>额外的，每次父级组件发生更新时，子组件中所有的 prop 都将会刷新为最新的值。这意味着你不应该在一个子组件内部改变 prop。如果你这样做了，Vue 会在浏览器的控制台中发出警告。</em></p>
+<p>使用 <code>$emit</code> 和 <code>$event</code> 来实现子组件向父组件“申请”修改 props 并同步更新父组件的需求。</p>
+<ul>
+<li>子组件通过在一个事件(比如 click 等)中使用 <code>$emit</code> 来触发另外一个事件并传出一个参数</li>
+<li>父组件定义对该事件的监听，来响应子组件的变化</li>
+<li>父组件可以通过 <code>$emit</code> 来获取子组件传出的参数</li>
+</ul>
+<p><em>子组件 childone.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;one&#34;</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="p">{</span><span class="nx">child</span><span class="p">}</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="err">@</span><span class="nx">click</span><span class="o">=</span><span class="s2">&#34;$emit(&#39;update:child&#39;,child-100)&#34;</span><span class="o">&gt;</span><span class="nx">减100</span><span class="o">&lt;</span><span class="err">/</span><span class="err">b</span><span class="err">u</span><span class="err">t</span><span class="err">t</span><span class="err">o</span><span class="err">n</span><span class="err">&gt;</span>
+  <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">props</span><span class="o">:</span><span class="p">[</span><span class="s1">&#39;child&#39;</span><span class="p">]</span><span class="p">,</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>触发的这个事件名叫做 <code>update:child</code>，传出的参数为 <code>child-100</code>。</p>
+<p>父组件对这个事件进行监听，并且做出响应 <code>father=$event</code>，可以说 <code>$event === child-100</code>。</p>
+<p><em>父组件 App.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="nx">id</span><span class="o">=</span><span class="s2">&#34;app&#34;</span><span class="o">&gt;</span>
+    <span class="p">{</span><span class="p">{</span><span class="nx">father</span><span class="p">}</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="nx">Childone</span> <span class="o">:</span><span class="nx">child</span><span class="o">=</span><span class="s2">&#34;father&#34;</span> <span class="nx">v</span><span class="o">-</span><span class="nx">on</span><span class="o">:</span><span class="nx">update</span><span class="o">:</span><span class="nx">child</span><span class="o">=</span><span class="s2">&#34;father=$event&#34;</span> <span class="o">/</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="p">...</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>父子组件之间的通信实现。</p>
+<a class="post-dummy-target" id="heading3"></a><h2>兄弟组件</h2>
+<p>使用 Vue 中的 <code>中央事件总线(eventBus)</code> ， 用 <code>eventBus.$emit</code> 来触发事件， 用 <code>eventBus.$on</code> 来监听事件。</p>
+<p>其实这种方式可以用于任何的父子组件通信以及同级别组件(兄弟组件)的通信。</p>
+<p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="kd">let</span> <span class="nx">eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">)</span>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">$eventBus</span> <span class="o">=</span> <span class="nx">eventBus</span>
+
+<span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">...</span><span class="p">)</span><span class="p">.</span><span class="nx">$mount</span><span class="p">(</span><span class="p">...</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>子组件1 childone.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+  <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;one&#34;</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="p">{</span><span class="nx">word</span><span class="p">}</span><span class="p">}</span>
+      <span class="o">&lt;</span><span class="nx">button</span> <span class="err">@</span><span class="nx">click</span><span class="o">=</span><span class="s2">&#34;putWord&#34;</span><span class="o">&gt;</span><span class="nx">告诉兄弟</span><span class="o">&lt;</span><span class="err">/</span><span class="err">b</span><span class="err">u</span><span class="err">t</span><span class="err">t</span><span class="err">o</span><span class="err">n</span><span class="err">&gt;</span>
+  <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+    <span class="nx">data</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span><span class="p">{</span>
+            <span class="nx">word</span><span class="o">:</span><span class="s1">&#39;Hello&#39;</span>
+        <span class="p">}</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">methods</span><span class="o">:</span><span class="p">{</span>
+        <span class="nx">putWord</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+            <span class="k">this</span><span class="p">.</span><span class="nx">$eventHub</span><span class="p">.</span><span class="nx">$emit</span><span class="p">(</span><span class="s1">&#39;put&#39;</span><span class="p">,</span><span class="k">this</span><span class="p">.</span><span class="nx">word</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><em>子组件2 childtwo.vue</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">template</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="nx">div</span> <span class="kr">class</span><span class="o">=</span><span class="s2">&#34;two&#34;</span><span class="o">&gt;</span>
+      <span class="p">{</span><span class="p">{</span><span class="nx">wordNew</span><span class="p">}</span><span class="p">}</span>
+    <span class="o">&lt;</span><span class="err">/</span><span class="err">d</span><span class="err">i</span><span class="err">v</span><span class="err">&gt;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">t</span><span class="err">e</span><span class="err">m</span><span class="err">p</span><span class="err">l</span><span class="err">a</span><span class="err">t</span><span class="err">e</span><span class="err">&gt;</span>
+
+<span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">wordNew</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">}</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">created</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">$eventHub</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">&#34;put&#34;</span><span class="p">,</span> <span class="nx">dataFrom</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wordNew</span> <span class="o">=</span> <span class="nx">dataFrom</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>在子组件1中点击 button 即可将数据传给子组件2。</p>
+<a class="post-dummy-target" id="heading4"></a><h2>一个坑</h2>
+<p><strong>注意：定义 eventBus 的位置，一定要在创建 Vue 实例之前，否则 子组件2在创建和挂载之前的原型中将不会有 eventBus 存在。但是子组件1的功能却正常，因为在你触发点击事件时，已经使用新的原型。</strong></p>
+<p><strong>子组件2的 eventBus.$on 将会变为 undefined。</strong></p>
+<p>当你在创建一个 Vue实例 之后才定义 eventBus。</p>
+<p><em>main.js</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">...</span><span class="p">)</span><span class="p">.</span><span class="nx">$mount</span><span class="p">(</span><span class="p">...</span><span class="p">)</span>
+
+<span class="kd">let</span> <span class="nx">eventBus</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Vue</span><span class="p">(</span><span class="p">)</span>
+<span class="nx">Vue</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">$eventBus</span> <span class="o">=</span> <span class="nx">eventBus</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading5"></a><h3>解决一</h3>
+<p>子组件2可以通过 watch 来触发使用新的原型。</p>
+<p><em>子组件2</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">wordNew</span><span class="o">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">}</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">watch</span><span class="o">:</span> <span class="p">{</span>
+    <span class="nx">wordNew</span><span class="o">:</span> <span class="p">{</span>
+      <span class="nx">handler</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">$eventHub</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">&#34;put&#34;</span><span class="p">,</span> <span class="nx">dataFrom</span> <span class="p">=&gt;</span> <span class="p">{</span>
+          <span class="k">this</span><span class="p">.</span><span class="nx">wordNew</span> <span class="o">=</span> <span class="nx">dataFrom</span><span class="p">;</span>
+        <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+      <span class="p">}</span><span class="p">,</span>
+      <span class="nx">deep</span><span class="o">:</span> <span class="kc">true</span><span class="p">,</span>
+      <span class="nx">immediate</span><span class="o">:</span> <span class="kc">true</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><a class="post-dummy-target" id="heading6"></a><h3>解决二</h3>
+<p>或强行对 子组件2 产生一个更新，在 updated 中再使用 eventBus。</p>
+<p><em>子组件2</em></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-js" data-lang="js"><span class="o">&lt;</span><span class="nx">script</span><span class="o">&gt;</span>
+<span class="kr">export</span> <span class="k">default</span> <span class="p">{</span>
+  <span class="nx">data</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nx">wordNew</span><span class="o">:</span> <span class="s1">&#39;wordNew&#39;</span>
+    <span class="p">}</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">created</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wordNew</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">}</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span><span class="p">,</span>
+  <span class="nx">updated</span><span class="p">(</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">$eventHub</span><span class="p">.</span><span class="nx">$on</span><span class="p">(</span><span class="s2">&#34;put&#34;</span><span class="p">,</span> <span class="nx">dataFrom</span> <span class="p">=&gt;</span> <span class="p">{</span>
+      <span class="k">this</span><span class="p">.</span><span class="nx">wordNew</span> <span class="o">=</span> <span class="nx">dataFrom</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">)</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span><span class="p">;</span>
+<span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这个坑也是我自己在实现用 eventBus 实现组件通信时发现的，并且用两种不同的尝试“解决”了这个有趣的坑。</p>
+<p>：）</p>
+
+        </div>
+
+        <div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2020-01-02 更新</span>
+            </div>
+            <div class="post-info-license">
+                
+            </div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md">
+                
+                    
+                        <span><a class="link-to-markdown" href="https://sgshy1995.github.io/2020/01/vue-message-one/index.md" target="_blank">阅读原始文档</a></span>
+                    
+                
+            </div>
+            <div class="post-info-share">
+                
+                    <span>
+    
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2020%2f01%2fvue-message-one%2f&amp;text=Vue%e7%bb%84%e4%bb%b6%e9%80%9a%e4%bf%a1%e7%9a%84%e4%b8%80%e7%a7%8d%e5%ae%9e%e7%8e%b0%2b%e5%9d%91&amp;via=" target="_blank" title="Share on Twitter">
+            <i class="fab fa-twitter fa-fw"></i>
+        </a>
+    
+    
+        <a href="//www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fsgshy1995.github.io%2f2020%2f01%2fvue-message-one%2f" target="_blank" title="Share on Facebook">
+            <i class="fab fa-facebook-square fa-fw"></i>
+        </a>
+    
+    
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2020%2f01%2fvue-message-one%2f&amp;title=Vue%e7%bb%84%e4%bb%b6%e9%80%9a%e4%bf%a1%e7%9a%84%e4%b8%80%e7%a7%8d%e5%ae%9e%e7%8e%b0%2b%e5%9d%91" target="_blank" title="Share on Reddit">
+            <i class="fab fa-reddit fa-fw"></i>
+        </a>
+    
+    
+    
+    
+    
+    
+    
+    
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2020%2f01%2fvue-message-one%2f&amp;appkey=&amp;title=Vue%e7%bb%84%e4%bb%b6%e9%80%9a%e4%bf%a1%e7%9a%84%e4%b8%80%e7%a7%8d%e5%ae%9e%e7%8e%b0%2b%e5%9d%91" target="_blank" title="Share on Weibo">
+            <i class="fab fa-weibo fa-fw"></i>
+        </a>
+    
+</span>
+                
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section>
+            
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/vue/"><i class="fas fa-tag fa-fw"></i>Vue</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E7%BB%84%E4%BB%B6/"><i class="fas fa-tag fa-fw"></i>组件</a>
+                    </span>
+                
+                    <span class="tag">
+                        <a href="https://sgshy1995.github.io/tags/%E9%80%9A%E4%BF%A1/"><i class="fas fa-tag fa-fw"></i>通信</a>
+                    </span>
+                
+            
+        </section>
+        <section>
+            <span><a href="javascript:window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="https://sgshy1995.github.io/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav">
+        
+            <a href="https://sgshy1995.github.io/2019/12/vue-sync-one/" class="prev" rel="prev" title="Vue 解析：.sync 修饰符"><i class="fas fa-angle-left fa-fw"></i>Vue 解析：.sync 修饰符</a>
+        
+        
+    </div>
+</div>
+
+        <div class="post-comment">
+            
+            
+
+            
+        </div>
+    </article></div>
+            </main>
+            <footer class="footer">
+    <div class="copyright">
+        <div class="copyright-line">
+            由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
+        </div>
+        <div class="copyright-line">
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+    </div>
+</footer>
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+
+    
+    
+
+
+
+    
+    
+
+
+
+
+
+    
+    
+
+
+<script src="/js/lib/jquery/jquery.slim.min.min.js"></script>
+<script src="/js/lib/lazysizes/lazysizes.min.min.js"></script>
+<script src="/js/lib/smooth-scroll/smooth-scroll.polyfills.min.min.js"></script><script>window.scroll = new SmoothScroll('[data-scroll]', {speed: 300, speedAsDuration: true});</script>
+
+
+    
+    
+
+    
+
+    
+        <link rel="stylesheet" href="/css/lib/katex/katex.min.min.css"><script src="/js/lib/katex/katex.min.min.js"></script><script defer src="/js/lib/katex/auto-render.min.min.js" onload="renderMathInElement(document.body);"></script>
+    
+
+    
+
+    
+
+
+
+
+
+
+<script src="/js/blog.min.js"></script>
+
+
+    
+</div>
+        <a href="#" class="dynamic-to-top" id="dynamic-to-top" data-scroll><span>&nbsp;</span></a>
+    </body>
+</html>

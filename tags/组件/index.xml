@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>组件 on 小小盛的博客</title>
+    <link>https://sgshy1995.github.io/tags/%E7%BB%84%E4%BB%B6/</link>
+    <description>Recent content in 组件 on 小小盛的博客</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
+    <lastBuildDate>Thu, 02 Jan 2020 08:22:42 +0800</lastBuildDate>
+    
+	<atom:link href="https://sgshy1995.github.io/tags/%E7%BB%84%E4%BB%B6/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Vue组件通信的一种实现&#43;坑</title>
+      <link>https://sgshy1995.github.io/2020/01/vue-message-one/</link>
+      <pubDate>Thu, 02 Jan 2020 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2020/01/vue-message-one/</guid>
+      <description>组件通信 前端在用 Vue 框架进行开发时，使用核心思想之一的组件式开发。 在源生JS中，我们熟悉数据之间的通信，页面之间的通信；在这里，Vue 通过组件</description>
+    </item>
+    
+  </channel>
+</rss>

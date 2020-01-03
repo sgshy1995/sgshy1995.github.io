@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Webpack高级：一键部署 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Webpack/Vue 实用：一键部署 | 小小盛的博客</title><meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noodp" />
 <meta name="Description" content="webpack高级">
 <link rel="prev" href="https://sgshy1995.github.io/2019/12/webpack-two/" />
@@ -18,13 +18,13 @@
 <meta name="msapplication-TileColor" content="#da532c">
 <meta name="theme-color" content="#ffffff">
 <meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="Webpack高级：一键部署"/>
+<meta name="twitter:title" content="Webpack/Vue 实用：一键部署"/>
 <meta name="twitter:description" content="webpack高级"/>
 <script type="application/ld+json">
     {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
-    "headline": "Webpack高级：一键部署",
+    "headline": "Webpack\/Vue 实用：一键部署",
     "mainEntityOfPage": {
         "@type": "WebPage",
         "@id": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/"
@@ -41,7 +41,7 @@
     
         "keywords": "Git, 转译, Shell",
     
-    "wordcount":  1209 ,
+    "wordcount":  1311 ,
     "url": "https:\/\/sgshy1995.github.io\/2019\/12\/webpack-three\/",
     
         "datePublished": "2019-12-10T16:22:42\x2b08:00",
@@ -132,7 +132,7 @@
     
 
     <article class="post-warp">
-        <h1 class="post-title animated flipInX">Webpack高级：一键部署</h1>
+        <h1 class="post-title animated flipInX">Webpack/Vue 实用：一键部署</h1>
 
         <div class="post-meta">
             <div class="post-meta-main">
@@ -145,7 +145,7 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2019-12-10>2019-12-10</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1209 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1311 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div>
 
@@ -164,30 +164,32 @@
         <li><a href="#ignore">创建ignore</a></li>
         <li><a href="#heading4">提交代码</a></li>
         <li><a href="#github">上传到github仓库</a></li>
-        <li><a href="#githubpages">修改GithubPages路径</a></li>
+        <li><a href="#-github-pages-">修改 Github Pages 路径</a></li>
       </ul>
     </li>
     <li><a href="#heading5">分支部署</a>
       <ul>
-        <li><a href="#ignore1">添加ignore</a></li>
+        <li><a href="#-ignore">添加 ignore</a></li>
         <li><a href="#heading6">提交代码</a></li>
-        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#-github">上传至 github</a></li>
         <li><a href="#heading7">新建一个分支</a></li>
         <li><a href="#heading8">进入分支</a></li>
         <li><a href="#heading9">删除文件</a></li>
         <li><a href="#heading10">拷贝</a></li>
         <li><a href="#heading11">再次本地提交</a></li>
-        <li><a href="#github2">上传至github</a></li>
+        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading12">使用分支预览</a></li>
       </ul>
     </li>
     <li><a href="#heading13">用脚本实现这一切</a>
       <ul>
-        <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading14">创建脚本</a></li>
-        <li><a href="#heading15">编写脚本</a></li>
-        <li><a href="#heading17">注意</a></li>
-        <li><a href="#heading18">一键部署</a></li>
+        <li><a href="#heading15">创建分支</a></li>
+        <li><a href="#heading16">编写脚本</a></li>
+        <li><a href="#heading17">使用脚本</a></li>
+        <li><a href="#heading18">注意</a></li>
+        <li><a href="#heading19">一键部署</a></li>
       </ul>
     </li>
   </ul>
@@ -210,30 +212,32 @@
         <li><a href="#ignore">创建ignore</a></li>
         <li><a href="#heading4">提交代码</a></li>
         <li><a href="#github">上传到github仓库</a></li>
-        <li><a href="#githubpages">修改GithubPages路径</a></li>
+        <li><a href="#-github-pages-">修改 Github Pages 路径</a></li>
       </ul>
     </li>
     <li><a href="#heading5">分支部署</a>
       <ul>
-        <li><a href="#ignore1">添加ignore</a></li>
+        <li><a href="#-ignore">添加 ignore</a></li>
         <li><a href="#heading6">提交代码</a></li>
-        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#-github">上传至 github</a></li>
         <li><a href="#heading7">新建一个分支</a></li>
         <li><a href="#heading8">进入分支</a></li>
         <li><a href="#heading9">删除文件</a></li>
         <li><a href="#heading10">拷贝</a></li>
         <li><a href="#heading11">再次本地提交</a></li>
-        <li><a href="#github2">上传至github</a></li>
+        <li><a href="#github1">上传至github</a></li>
+        <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading12">使用分支预览</a></li>
       </ul>
     </li>
     <li><a href="#heading13">用脚本实现这一切</a>
       <ul>
-        <li><a href="#master">回到master分支</a></li>
         <li><a href="#heading14">创建脚本</a></li>
-        <li><a href="#heading15">编写脚本</a></li>
-        <li><a href="#heading17">注意</a></li>
-        <li><a href="#heading18">一键部署</a></li>
+        <li><a href="#heading15">创建分支</a></li>
+        <li><a href="#heading16">编写脚本</a></li>
+        <li><a href="#heading17">使用脚本</a></li>
+        <li><a href="#heading18">注意</a></li>
+        <li><a href="#heading19">一键部署</a></li>
       </ul>
     </li>
   </ul>
@@ -269,16 +273,16 @@
             
             
             <a class="post-dummy-target" id="heading"></a><h2>前言</h2>
-<p>当你完成一个webpack项目时，就到了将代码搞到仓库里的时候。</p>
+<p>当你完成一个 Webpack/Vue 项目时，将代码搞到仓库。</p>
 <ul>
 <li>
-<p>你可以全部部署到github仓库，使用GithubPages域名的dist路径来浏览页面。</p>
+<p>你可以全部部署到 github 仓库，使用 Github Pages 域名的 dist 路径来浏览页面。</p>
 </li>
 <li>
-<p>也可以将dist目录与根目录分开在不同的仓库。</p>
+<p>也可以将 dist 目录与根目录分开在不同的仓库。</p>
 </li>
 <li>
-<p>当然是物尽其用，利用github分支功能分开部署。</p>
+<p>当然是物尽其用，利用 github 分支功能分开部署。</p>
 </li>
 <li>
 <p>步骤太繁琐？脚本一键部署！</p>
@@ -331,7 +335,7 @@ $ git commit
 </div>
 </div><a class="post-dummy-target" id="github"></a><h3>上传到github仓库</h3>
 <p>在Github创建一个新的仓库，将本地文件上传至仓库。</p>
-<p>比如仓库名称为 &ldquo;webpack-demo-1&rdquo;，你的 github用户名为 lisa。使用SSH方式。</p>
+<p>比如仓库名称为 &ldquo;webpack-demo-1&rdquo;，你的 github 用户名为 lisa。使用SSH方式。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -342,22 +346,22 @@ $ git commit
 $ git push -u origin master
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="githubpages"></a><h3>修改GithubPages路径</h3>
-<p>如果开启GithubPages，那么在master分支访问会得到404页面。因为你的网页预览目录应该在根目录下的dist目录。</p>
-<p>那么你可以在首页的Edit选项中手动记录正确的访问地址，以方便预览网页。
-在GithubPages提供的浏览地址后面加上：&ldquo;dist/index.html&rdquo;。</p>
+</div><a class="post-dummy-target" id="-github-pages-"></a><h3>修改 Github Pages 路径</h3>
+<p>如果开启 Github Pages，那么在 master 分支访问会得到 404 页面。因为你的网页预览目录应该在根目录下的 dist 目录。</p>
+<p>那么你可以在首页的 Edit 选项中手动记录正确的访问地址，以方便预览网页。
+在 GithubPages 提供的浏览地址后面加上：&ldquo;dist/index.html&rdquo;。</p>
 <a class="post-dummy-target" id="heading5"></a><h2>分支部署</h2>
-<p>使用sh脚本文件和Github分支功能可以实现一键部署，并且把dist目录和项目其他文件分开。</p>
-<a class="post-dummy-target" id="ignore1"></a><h3>添加ignore</h3>
-<p>回到上面的第三步。在提交代码前，把dist目录也加入。</p>
+<p>使用 sh 脚本文件和 Github 分支功能可以实现一键部署，并且把 dist 目录和项目其他文件分开。</p>
+<a class="post-dummy-target" id="-ignore"></a><h3>添加 ignore</h3>
+<p>回到上面的第三步。在提交代码前，把 dist 目录也加入。</p>
 <p><strong>.gitignore</strong></p>
 <pre><code>/dist/
 /node_modules/
 </code></pre><a class="post-dummy-target" id="heading6"></a><h3>提交代码</h3>
 <p>同样的方法，在本地提交代码。</p>
-<a class="post-dummy-target" id="github1"></a><h3>上传至github</h3>
+<a class="post-dummy-target" id="-github"></a><h3>上传至 github</h3>
 <p>如果你新建了一个仓库，那么使用同样的方式上传。</p>
-<p>如果已经全部部署到了一个github仓库，那么把本次本地提交上传至github。</p>
+<p>如果已经全部部署到了一个 github 仓库，那么把本次本地提交上传至 github。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -399,7 +403,7 @@ $ git push -u origin master
 </li>
 </ul>
 <a class="post-dummy-target" id="heading10"></a><h3>拷贝</h3>
-<p>将dist目录中的文件拷贝至当前目录（根目录）。</p>
+<p>将 dist 目录中的文件拷贝至当前目录（根目录）。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -408,7 +412,7 @@ $ git push -u origin master
 <pre class="chroma"><code class="language-shell" data-lang="shell">$ mv dist/* ./
 </code></pre></td></tr></table>
 </div>
-</div><p>将dist目录（已经为空）删除。</p>
+</div><p>将 dist 目录（已经为空）删除。</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
@@ -429,41 +433,50 @@ $ git push -u origin master
 $ git commit . -m <span class="s2">&#34;delete source code&#34;</span>
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="github2"></a><h3>上传至github</h3>
+</div><a class="post-dummy-target" id="github1"></a><h3>上传至github</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ git push
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git push
 $ git push --set-upstream origin gh-pages
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading12"></a><h3>使用分支预览</h3>
-<p>在GithubPages中选择gh-pages分支的域名来浏览网页即可。</p>
+</div><a class="post-dummy-target" id="master"></a><h3>回到master分支</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git checkout master
+</code></pre></td></tr></table>
+</div>
+</div><p>如果你直接在项目中使用一键部署，是不需要这么多步骤的。你只需要创建分支，而不需要单独进入分支进行操作。</p>
+<a class="post-dummy-target" id="heading12"></a><h3>使用分支预览</h3>
+<p>在 Github Pages 中选择 gh-pages 分支的域名来浏览网页即可。</p>
 <a class="post-dummy-target" id="heading13"></a><h2>用脚本实现这一切</h2>
-<a class="post-dummy-target" id="master"></a><h3>回到master分支</h3>
+<p>不需要这么多步骤，都交给脚本！</p>
+<a class="post-dummy-target" id="heading14"></a><h3>创建脚本</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ git checkout master
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ touch deploy.sh
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading14"></a><h3>创建脚本</h3>
+</div><a class="post-dummy-target" id="heading15"></a><h3>创建分支</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ touch deploy.sh
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ git branch gh-pages
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading15"></a><h3>编写脚本</h3>
-<a class="post-dummy-target" id="heading16"></a><h4>半自动版</h4>
-<p>如果你已经创建过 gh-pages 分支且上传过，请使用下面版本：</p>
+</div><a class="post-dummy-target" id="heading16"></a><h3>编写脚本</h3>
 <p><strong>deploy.sh</strong></p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -480,36 +493,7 @@ $ git push --set-upstream origin gh-pages
 <td class="lntd">
 <pre class="chroma"><code class="language-bash" data-lang="bash">yarn build <span class="o">&amp;&amp;</span>
 git checkout gh-pages <span class="o">&amp;&amp;</span>
-rm -rf src *.json *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh <span class="o">&amp;&amp;</span>
-mv dist/* ./ <span class="o">&amp;&amp;</span>
-rm -rf dist<span class="p">;</span>
-git add . <span class="o">&amp;&amp;</span>
-git commit . -m <span class="s2">&#34;update&#34;</span> <span class="o">&amp;&amp;</span>
-git push <span class="o">&amp;&amp;</span>
-git checkout -
-</code></pre></td></tr></table>
-</div>
-</div><a class="post-dummy-target" id="vue"></a><h4>全自动版(兼容Vue)</h4>
-<p>自创版。全自动版，从你更新上传 master 分支开始。</p>
-<p><strong>deploy.sh</strong></p>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span></code></pre></td>
-<td class="lntd">
-<pre class="chroma"><code class="language-bash" data-lang="bash">yarn build <span class="o">&amp;&amp;</span>
-git branch gh-pages<span class="p">;</span>
-git checkout gh-pages <span class="o">&amp;&amp;</span>
-rm -rf src tests css js public *.json *.ico *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh *.md <span class="o">&amp;&amp;</span>
+rm -rf src tests css js img public *.json *.ico *.js *.css *.html *.png *.jpg *.gif *.jpeg *.lock *.sh *.md <span class="o">&amp;&amp;</span>
 mv dist/* ./ <span class="o">&amp;&amp;</span>
 rm -rf dist<span class="p">;</span>
 git add . <span class="o">&amp;&amp;</span>
@@ -518,19 +502,46 @@ git push --set-upstream origin gh-pages <span class="o">&amp;&amp;</span>
 git checkout -
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading17"></a><h3>注意</h3>
-<p><strong>注意：在使用脚本部署之前，一定要确认自己的本地master分支已经提交更新或上传至github仓库。以防止出错。</strong></p>
-<a class="post-dummy-target" id="heading18"></a><h3>一键部署</h3>
-<p>使用脚本文件一键部署，重复上述步骤并自动回到master分支。</p>
+</div><a class="post-dummy-target" id="heading17"></a><h3>使用脚本</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre class="chroma"><code class="language-shell" data-lang="shell">$ sh deploy.sh
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ sh deploy.sh
 </code></pre></td></tr></table>
 </div>
+</div><p>等待运行完毕。你的项目会自动打包，输出结果的 dist 目录中的文件会自动添加到 gh-pages 分支并且上传到 github 仓库；结束后自动回到 master 分支。</p>
+<a class="post-dummy-target" id="heading18"></a><h3>注意</h3>
+<ul>
+<li>在使用脚本部署之前，一定要确认自己的<strong>本地 master 分支已经提交更新或上传至 github 仓库</strong>。以防止出错。</li>
+<li>你可以在脚本的第三步选择删除掉 dist 目录外的所有文件，而不是手动选择去删除哪些文件，这无疑是更高效和安全的。</li>
+<li>这里只展示一些简单的脚本语言。更强大的功能需要更多的 bash shell 语言来实现。</li>
+<li>对于 Vue 项目，如果使用 vue-cli 生成的项目，一般已经无需配置及初始化，在修改 <a href="https://cli.vuejs.org/zh/config/#publicpath">publicPath</a> 后就可以直接一键部署。</li>
+</ul>
+<a class="post-dummy-target" id="heading19"></a><h3>一键部署</h3>
+<p>所以，你每次创建新的项目，打包时就变得非常简单了！</p>
+<p>你无须再创建新的仓库，只需创建新的分支。使用脚本文件一键部署，重复上述步骤并自动回到master分支。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> my-demo
+$ git add .
+$ git commit . -m <span class="s2">&#34;update&#34;</span>
+$ git push
+$ git branch gh-pages
+$ sh deploy.sh
+</code></pre></td></tr></table>
 </div>
+</div><p>记得在你的 Github Pages 中选择 gh-pages 分支来作为预览。</p>
+
         </div>
 
         <div class="post-footer" id="post-footer">
@@ -555,7 +566,7 @@ git checkout -
                 
                     <span>
     
-        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;text=Webpack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2&amp;via=" target="_blank" title="Share on Twitter">
+        <a href="//twitter.com/share?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;text=Webpack%2fVue%20%e5%ae%9e%e7%94%a8%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2&amp;via=" target="_blank" title="Share on Twitter">
             <i class="fab fa-twitter fa-fw"></i>
         </a>
     
@@ -565,7 +576,7 @@ git checkout -
         </a>
     
     
-        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;title=Webpack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Reddit">
+        <a href="//reddit.com/submit?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;title=Webpack%2fVue%20%e5%ae%9e%e7%94%a8%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Reddit">
             <i class="fab fa-reddit fa-fw"></i>
         </a>
     
@@ -576,7 +587,7 @@ git checkout -
     
     
     
-        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;appkey=&amp;title=Webpack%e9%ab%98%e7%ba%a7%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Weibo">
+        <a href="//service.weibo.com/share/share.php?url=https%3a%2f%2fsgshy1995.github.io%2f2019%2f12%2fwebpack-three%2f&amp;appkey=&amp;title=Webpack%2fVue%20%e5%ae%9e%e7%94%a8%ef%bc%9a%e4%b8%80%e9%94%ae%e9%83%a8%e7%bd%b2" target="_blank" title="Share on Weibo">
             <i class="fab fa-weibo fa-fw"></i>
         </a>
     
@@ -633,7 +644,7 @@ git checkout -
             由 <a href="https://gohugo.io/" target="_blank" rel="external nofollow noopener noreffer">Hugo</a> 强力驱动&nbsp;|&nbsp;主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="external nofollow noopener noreffer">LoveIt<i class="far fa-heart fa-fw"></i></a>
         </div>
         <div class="copyright-line">
-            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
+            <i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://sgshy1995.github.io/">Eden</a></span><span class="icp">&nbsp;|&nbsp;ICP-NONE</span><span class="license">&nbsp;|&nbsp;<a rel="license external nofollow noopener noreffer" href="https://github.com" target="_blank">Erect On Github</a></span></div>
     </div>
 </footer>
 
