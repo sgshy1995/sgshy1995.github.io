@@ -7,10 +7,19 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright>
-    <lastBuildDate>Thu, 02 Jan 2020 08:22:42 +0800</lastBuildDate>
+    <lastBuildDate>Sat, 04 Jan 2020 08:22:42 +0800</lastBuildDate>
     
 	<atom:link href="https://sgshy1995.github.io/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>JS 函数的执行时机</title>
+      <link>https://sgshy1995.github.io/2020/01/js-function-one/</link>
+      <pubDate>Sat, 04 Jan 2020 08:22:42 +0800</pubDate>
+      
+      <guid>https://sgshy1995.github.io/2020/01/js-function-one/</guid>
+      <description>打印数字的问题 有如下代码： 1 2 3 4 5 6 7 let i = 0 for (i = 0; i &amp;lt; 6; i++){ setTimeout(() =&amp;gt; { console.log(i) }) } // 打印结果为 6 6 6 6 6 6 ？？？ 因为setTimeout函数总是尽</description>
+    </item>
     
     <item>
       <title>Vue组件通信的两种实现&#43;坑</title>
