@@ -111,6 +111,10 @@ export default {
 
 父子组件之间的通信实现。
 
+### 切记
+
+子组件 `$emit('update:child',child-100)` 在事件后传入的应该是一个值，而不是一个其他表达式等，如 `child = child -100` 是不可取的。
+
 ## 兄弟组件
 
 使用 Vue 中的 `中央事件总线(eventBus)` ， 用 `eventBus.$emit` 来触发事件， 用 `eventBus.$on` 来监听事件。

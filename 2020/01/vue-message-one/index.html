@@ -41,7 +41,7 @@
     
         "keywords": "Vue, 组件, 通信",
     
-    "wordcount":  1346 ,
+    "wordcount":  1389 ,
     "url": "https:\/\/sgshy1995.github.io\/2020\/01\/vue-message-one\/",
     
         "datePublished": "2020-01-02T08:22:42\x2b08:00",
@@ -145,7 +145,7 @@
             </div>
             <div class="post-meta-other">
                 <i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-01-02>2020-01-02</time>&nbsp;
-                <i class="fas fa-pencil-alt fa-fw"></i>约 1346 字&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 1389 字&nbsp;
                 <i class="far fa-clock fa-fw"></i>预计阅读 3 分钟&nbsp;</div>
         </div>
 
@@ -162,13 +162,14 @@
         <li><a href="#-props">父子组件之 props</a></li>
         <li><a href="#heading2">父组件给子组件传值</a></li>
         <li><a href="#-props1">子组件申请改变 props</a></li>
+        <li><a href="#heading3">切记</a></li>
       </ul>
     </li>
-    <li><a href="#heading3">兄弟组件</a></li>
-    <li><a href="#heading4">一个坑</a>
+    <li><a href="#heading4">兄弟组件</a></li>
+    <li><a href="#heading5">一个坑</a>
       <ul>
-        <li><a href="#heading5">解决一</a></li>
-        <li><a href="#heading6">解决二</a></li>
+        <li><a href="#heading6">解决一</a></li>
+        <li><a href="#heading7">解决二</a></li>
       </ul>
     </li>
   </ul>
@@ -189,13 +190,14 @@
         <li><a href="#-props">父子组件之 props</a></li>
         <li><a href="#heading2">父组件给子组件传值</a></li>
         <li><a href="#-props1">子组件申请改变 props</a></li>
+        <li><a href="#heading3">切记</a></li>
       </ul>
     </li>
-    <li><a href="#heading3">兄弟组件</a></li>
-    <li><a href="#heading4">一个坑</a>
+    <li><a href="#heading4">兄弟组件</a></li>
+    <li><a href="#heading5">一个坑</a>
       <ul>
-        <li><a href="#heading5">解决一</a></li>
-        <li><a href="#heading6">解决二</a></li>
+        <li><a href="#heading6">解决一</a></li>
+        <li><a href="#heading7">解决二</a></li>
       </ul>
     </li>
   </ul>
@@ -387,7 +389,9 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>父子组件之间的通信实现。</p>
-<a class="post-dummy-target" id="heading3"></a><h2>兄弟组件</h2>
+<a class="post-dummy-target" id="heading3"></a><h3>切记</h3>
+<p>子组件 <code>$emit('update:child',child-100)</code> 在事件后传入的应该是一个值，而不是一个其他表达式等，如 <code>child = child -100</code> 是不可取的。</p>
+<a class="post-dummy-target" id="heading4"></a><h2>兄弟组件</h2>
 <p>使用 Vue 中的 <code>中央事件总线(eventBus)</code> ， 用 <code>eventBus.$emit</code> 来触发事件， 用 <code>eventBus.$on</code> 来监听事件。</p>
 <p>其实这种方式可以用于任何的父子组件通信以及同级别组件(兄弟组件)的通信。</p>
 <p><em>main.js</em></p>
@@ -502,7 +506,7 @@
 </code></pre></td></tr></table>
 </div>
 </div><p>在子组件1中点击 button 即可将数据传给子组件2。</p>
-<a class="post-dummy-target" id="heading4"></a><h2>一个坑</h2>
+<a class="post-dummy-target" id="heading5"></a><h2>一个坑</h2>
 <p><strong>注意：定义 eventBus 的位置，一定要在创建 Vue 实例之前，否则 子组件2在创建和挂载之前的原型中将不会有 eventBus 存在。但是子组件1的功能却正常，因为在你触发点击事件时，已经使用新的原型。</strong></p>
 <p><strong>子组件2的 eventBus.$on 将会变为 undefined。</strong></p>
 <p>当你在创建一个 Vue实例 之后才定义 eventBus。</p>
@@ -521,7 +525,7 @@
 <span class="nx">Vue</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">$eventBus</span> <span class="o">=</span> <span class="nx">eventBus</span>
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading5"></a><h3>解决一</h3>
+</div><a class="post-dummy-target" id="heading6"></a><h3>解决一</h3>
 <p>子组件2可以通过 watch 来触发使用新的原型。</p>
 <p><em>子组件2</em></p>
 <div class="highlight"><div class="chroma">
@@ -570,7 +574,7 @@
 <span class="o">&lt;</span><span class="err">/</span><span class="err">s</span><span class="err">c</span><span class="err">r</span><span class="err">i</span><span class="err">p</span><span class="err">t</span><span class="err">&gt;</span>
 </code></pre></td></tr></table>
 </div>
-</div><a class="post-dummy-target" id="heading6"></a><h3>解决二</h3>
+</div><a class="post-dummy-target" id="heading7"></a><h3>解决二</h3>
 <p>或强行对 子组件2 产生一个更新，在 updated 中再使用 eventBus。</p>
 <p><em>子组件2</em></p>
 <div class="highlight"><div class="chroma">
